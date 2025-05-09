@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Reference Guide - Zilin Ma Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            color: #0053b3;
+        }
+        .project-section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .image-reference {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .image-path {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        .image-info {
+            color: #555;
+        }
+        .page-reference {
+            font-style: italic;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Reference Guide</h1>
+    <p>This reference shows where each image is used throughout the website. Use this to locate which files need to be replaced.</p>
+    
+    <div class="project-section">
+        <h2>Humanitarian Negotiations Project</h2>
+        
+        <div class="image-reference">
+            <div>
+                <div class="image-path">images/humanitarian/hero-negotiation-interface.jpg</div>
+                <p class="page-reference">Used in: projects/humanitarian.html</p>
+            </div>
+            <div class="image-info">
+                <p><strong>Description:</strong> Main hero image showing the AI interface for humanitarian negotiators</p>
+                <p><strong>Size:</strong> 1200×630px</p>
+                <p><strong>HTML Element:</strong> Inside div.project-image-large at the top of the page</p>
+            </div>
+        </div>
+        
+        <div class="image-reference">
+            <div>
+                <div class="image-path">images/humanitarian/negotiator-fieldwork.jpg</div>
+                <p class="page-reference">Used in: projects/humanitarian.html</p>
+            </div>
+            <div class="image-info">
+                <p><strong>Description:</strong> Image showing humanitarian negotiators in the field</p>
+                <p><strong>Size:</strong> 600×400px</p>
+                <p><strong>HTML Element:</strong> In the background section, within div.image-placeholder</p>
+            </div>
+        </div>
+        
+        <div class="image-reference">
+            <div>
+                <div class="image-path">images/humanitarian/iceberg-css-wireframe.jpg</div>
+                <p class="page-reference">Used in: projects/humanitarian.html</p>
+            </div>
+            <div class="image-info">
+                <p><strong>Description:</strong> Wireframe of the Iceberg CSS builder</p>
+                <p><strong>Size:</strong> 600×400px</p>
+                <p><strong>HTML Element:</strong> Inside div.sketch-gallery, first item</p>
+            </div>
+        </div>
+        
+        <!-- Add other humanitarian project images -->
+    </div>
+    
+    <div class="project-section">
+        <h2>Mental Health Support Project</h2>
+        
+        <div class="image-reference">
+            <div>
+                <div class="image-path">images/mental-health/hero-emotional-support.jpg</div>
+                <p class="page-reference">Used in: projects/mental-health.html</p>
+            </div>
+            <div class="image-info">
+                <p><strong>Description:</strong> Main hero image showing person with chatbot</p>
+                <p><strong>Size:</strong> 1200×630px</p>
+                <p><strong>HTML Element:</strong> Inside div.project-image-large at the top of the page</p>
+            </div>
+        </div>
+        
+        <!-- Add other mental health project images -->
+    </div>
+    
+    <div class="project-section">
+        <h2>Bias Reduction Project</h2>
+        
+        <div class="image-reference">
+            <div>
+                <div class="image-path">images/bias-reduction/hero-interface-comparison.jpg</div>
+                <p class="page-reference">Used in: projects/bias-reduction.html</p>
+            </div>
+            <div class="image-info">
+                <p><strong>Description:</strong> Comparison of traditional and redesigned interfaces</p>
+                <p><strong>Size:</strong> 1200×630px</p>
+                <p><strong>HTML Element:</strong> Inside div.project-image-large at the top of the page</p>
+            </div>
+        </div>
+        
+        <!-- Add other bias reduction project images -->
+    </div>
+    
+    <div class="project-section">
+        <h2>General Website Images</h2>
+        
+        <div class="image-reference">
+            <div>
+                <div class="image-path">images/profile.jpg</div>
+                <p class="page-reference">Used in: index.html, about.html</p>
+            </div>
+            <div class="image-info">
+                <p><strong>Description:</strong> Your professional headshot/profile photo</p>
+                <p><strong>Size:</strong> 500×500px (square)</p>
+                <p><strong>HTML Element:</strong> Profile section on homepage and about page</p>
+            </div>
+        </div>
+        
+        <div class="image-reference">
+            <div>
+                <div class="image-path">images/project-placeholder.jpg</div>
+                <p class="page-reference">Used in: portfolio.html</p>
+            </div>
+            <div class="image-info">
+                <p><strong>Description:</strong> General placeholder for project thumbnails</p>
+                <p><strong>Size:</strong> 600×400px</p>
+                <p><strong>HTML Element:</strong> Project card thumbnails on the portfolio overview page</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

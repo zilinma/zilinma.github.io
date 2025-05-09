@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMs for Mental Health Support - Zilin Ma</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .project-detail {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+        
+        .project-header {
+            margin-bottom: 30px;
+        }
+        
+        .project-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-header .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .project-image-large {
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .project-image-large img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .project-content {
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .project-content h3 {
+            color: var(--primary-color);
+            margin: 30px 0 15px;
+            font-size: 1.6rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 15px;
+        }
+        
+        .project-content ul, .project-content ol {
+            margin-bottom: 15px;
+            margin-left: 20px;
+        }
+        
+        .project-content li {
+            margin-bottom: 5px;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .publication-card {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .publication-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .publication-card .authors {
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .publication-card .venue {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .process-stage {
+            background-color: #f8f8f8;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .process-stage h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .process-stage h3 i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .stat-highlight {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .stat-highlight p {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        
+        .stat-highlight strong {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .team-member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .team-member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-member-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+        
+        .team-member-info p {
+            margin: 0;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        /* Project Roadmap Navigation Styles */
+        .project-roadmap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 15px 0;
+            z-index: 100;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .roadmap-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+        }
+        
+        .roadmap-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            border: 2px solid #e0e0e0;
+            color: #666;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .roadmap-label {
+            font-size: 0.85rem;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .roadmap-line {
+            position: absolute;
+            top: 20px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background-color: #e0e0e0;
+            z-index: -1;
+        }
+        
+        .roadmap-item:last-child .roadmap-line {
+            display: none;
+        }
+        
+        .roadmap-item.active .roadmap-circle {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .roadmap-item.active .roadmap-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .roadmap-item.completed .roadmap-circle {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .roadmap-item.completed .roadmap-line {
+            background-color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .project-roadmap {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 5px;
+            }
+            
+            .roadmap-item {
+                flex: 0 0 auto;
+                margin-right: 40px;
+            }
+            
+            .roadmap-line {
+                width: 40px;
+                right: -20px;
+            }
+        }
+        
+        /* Add header transition styles */
+        header {
+            transition: transform 0.3s ease;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        main {
+            margin-top: 120px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="name">Zilin Ma</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../cv.html">CV</a></li>
+                    <li><a href="../publications.html">Publications</a></li>
+                    <li><a href="../portfolio.html">Portfolio</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="project-detail">
+            <div class="project-header">
+                <h2>Supporting Mental Health Through LLM Chatbots: Understanding LGBTQ+ User Needs</h2>
+                <div class="date">2023 - 2024</div>
+            </div>
+            
+            <div class="project-image-large">
+                <img src="../images/project-placeholder.jpg" alt="LLM Mental Health Support Project">
+                <!-- PLACEHOLDER: Add a visual showing a person interacting with a chatbot, possibly showing emotional support context. The image should be sensitive and respectful of the mental health and LGBTQ+ aspects of the research. -->
+            </div>
+            
+            <div class="project-roadmap">
+                <div class="roadmap-item" data-section="discover">
+                    <div class="roadmap-circle">1</div>
+                    <div class="roadmap-line"></div>
+                    <div class="roadmap-label">Discover</div>
+                </div>
+                <div class="roadmap-item" data-section="define">
+                    <div class="roadmap-circle">2</div>
+                    <div class="roadmap-line"></div>
+                    <div class="roadmap-label">Define</div>
+                </div>
+                <div class="roadmap-item" data-section="develop">
+                    <div class="roadmap-circle">3</div>
+                    <div class="roadmap-line"></div>
+                    <div class="roadmap-label">Develop</div>
+                </div>
+                <div class="roadmap-item" data-section="deliver">
+                    <div class="roadmap-circle">4</div>
+                    <div class="roadmap-label">Deliver</div>
+                </div>
+            </div>
+            
+            <div class="project-content">
+                <div class="process-stage" id="discover">
+                    <h3><i class="fas fa-search"></i> Discover</h3>
+                    <p>
+                        LLM-based chatbots like Replika and Character.ai are increasingly used for emotional support. For LGBTQ+ users, who face heightened mental health risks and often experience stigma or lack of access to affirming care, these tools can serve as judgment-free spaces for venting, reflection, and advice.
+                    </p>
+                    
+                    <div class="two-column">
+                        <div>
+                            <img src="../images/mental-health/chatbot-interface-example.jpg" alt="LLM Chatbot Interface Example">
+                            <!-- PLACEHOLDER: Add a screenshot of a typical LLM chatbot interface (like Replika) showing a supportive conversation. Be sure to use a mockup rather than an actual user conversation to protect privacy. -->
+                        </div>
+                        <div>
+                            <p>
+                                The rise of AI companions coincides with increasing mental health challenges and decreasing access to affordable care, especially for marginalized communities. LGBTQ+ individuals face unique barriers to traditional mental health services, including discrimination and lack of provider understanding.
+                            </p>
+                            <p>
+                                My research explores this intersection of AI technology and vulnerable communities, examining both benefits and risks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-stage" id="define">
+                    <h3><i class="fas fa-clipboard-list"></i> Define</h3>
+                    <p>
+                        I investigated how people—especially LGBTQ+ individuals—use LLM chatbots for mental health support, and what design opportunities and risks emerge from these interactions.
+                    </p>
+                    
+                    <h4>Research Questions</h4>
+                    <ul>
+                        <li>RQ1: Do LLM chatbots provide meaningful mental health support?</li>
+                        <li>RQ2: Do LGBTQ+ users use chatbots differently than others?</li>
+                        <li>RQ3: Can current LLMs understand and support LGBTQ+ needs effectively?</li>
+                    </ul>
+                    
+                    <div class="stat-highlight">
+                        <strong>120</strong>
+                        <p>Reddit posts analyzed, containing 2,917 comments</p>
+                    </div>
+                    
+                    <div class="stat-highlight">
+                        <strong>31</strong>
+                        <p>In-depth interviews conducted (18 LGBTQ+, 13 non-LGBTQ+)</p>
+                    </div>
+                </div>
+                
+                <div class="process-stage" id="develop">
+                    <h3><i class="fas fa-users"></i> Team & Roles</h3>
+                    <p>
+                        I led this project from conception to completion, formulating research questions and leading all primary activities including data collection, interviews, coding, and analysis. Co-authors supported interview protocol development, codebook validation, and publication writing, while senior advisors provided methodological guidance.
+                    </p>
+                    
+                    <div class="team-members">
+                        <div class="team-member">
+                            <div class="team-member-avatar">
+                                <img src="../images/mental-health/team-zilin.jpg" alt="Zilin Ma">
+                                <!-- PLACEHOLDER: Add a professional headshot of yourself -->
+                            </div>
+                            <div class="team-member-info">
+                                <h4>Zilin Ma</h4>
+                                <p>Principal Investigator</p>
+                            </div>
+                        </div>
+                        <!-- Similar team member entries could be added for other contributors -->
+                    </div>
+                </div>
+                
+                <div class="process-stage" id="deliver">
+                    <h3><i class="fas fa-tasks"></i> Deliver</h3>
+                    
+                    <h4>Methods</h4>
+                    <p>
+                        I used a two-phased approach to understand how LLM chatbots are used for mental health support:
+                    </p>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h5>Online Ethnography</h5>
+                            <p>
+                                <strong>Analyzed 120 posts and 2,917 comments</strong> from the r/Replika subreddit to identify user needs, patterns, and emotional outcomes.
+                            </p>
+                            
+                            <h5>In-Depth Interviews</h5>
+                            <p>
+                                Conducted <strong>31 interviews (18 LGBTQ+, 13 non-LGBTQ+)</strong> to explore diverse user goals and experiences with AI chatbots.
+                            </p>
+                        </div>
+                        <div>
+                            <img src="../images/mental-health/research-methodology.jpg" alt="Research Process Visualization">
+                            <!-- PLACEHOLDER: Add a research diagram showing your methodology workflow or a visualization of key themes from your analysis -->
+                            
+                            <h5>Analysis</h5>
+                            <p>
+                                Used open coding and thematic analysis, reaching saturation when no new themes emerged. Prioritized ethics with IRB approval and anonymization.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <h4>Key Findings</h4>
+                    <ul>
+                        <li>Chatbots offered companionship, reduced loneliness, and built social confidence</li>
+                        <li>LGBTQ+ users used chatbots to explore identity, rehearse coming out, and process discrimination</li>
+                        <li>Risks included emotional over-reliance, inappropriate advice, and stigma around AI companionship</li>
+                    </ul>
+                    
+                    <div class="two-column">
+                        <div>
+                            <img src="../images/project-placeholder.jpg" alt="Research Findings Visualization">
+                            <!-- PLACEHOLDER: Add a visualization of research findings, like a comparison between LGBTQ+ and non-LGBTQ+ user needs -->
+                        </div>
+                        <div>
+                            <h4>Design Recommendations</h4>
+                            <ul>
+                                <li>Avoid over-anthropomorphizing chatbot responses</li>
+                                <li>Design features that encourage user independence</li>
+                                <li>Connect users to human support and affirming resources</li>
+                                <li>Implement safety measures for sensitive identity topics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h4>Impact</h4>
+                    <ul>
+                        <li>First paper selected as a Student Paper Finalist at AMIA 2023, most cited AMIA paper of that year</li>
+                        <li>Second paper accepted at CHI 2024</li>
+                        <li>Informed development of the AffirmativeAI audit framework</li>
+                    </ul>
+                </div>
+                
+                <h3>Related Publications</h3>
+                
+                <div class="publication-card">
+                    <h4>Understanding the benefits and challenges of using large language model-based conversational agents for mental well-being support</h4>
+                    <p class="authors">Zilin Ma, Yiyang Mei, Zhaoyuan Su</p>
+                    <p class="venue">AMIA Annual Symposium Proceedings 2023</p>
+                    <a href="#" class="btn" target="_blank">Paper</a>
+                </div>
+                
+                <div class="publication-card">
+                    <h4>Evaluating the Experience of LGBTQ+ People Using Large Language Model Based Chatbots for Mental Health Support</h4>
+                    <p class="authors">Zilin Ma, Yiyang Mei, Yinru Long, Zhaoyuan Su, Krzysztof Z. Gajos</p>
+                    <p class="venue">Proceedings of the CHI Conference on Human Factors in Computing Systems, 2024</p>
+                    <a href="#" class="btn" target="_blank">Paper</a>
+                </div>
+                
+                <h3>Future Directions</h3>
+                <p>
+                    This project revealed both the promise and limitations of using LLMs in sensitive, identity-specific contexts. My findings have informed future work on safety and inclusivity in AI-driven mental health support, including:
+                </p>
+                <ul>
+                    <li>Development of the AffirmativeAI framework to evaluate LLMs for LGBTQ+ support</li>
+                    <li>Research on community-centered approaches that combine AI tools with human support systems</li>
+                    <li>Investigation of how LLM updates affect vulnerable users who depend on AI companionship</li>
+                    <li>Exploration of ethical guidelines for AI systems that serve mental health functions without clinical oversight</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Zilin Ma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define the sections and their corresponding roadmap items
+            const sections = [
+                { id: 'discover', element: document.getElementById('discover') },
+                { id: 'define', element: document.getElementById('define') },
+                { id: 'develop', element: document.getElementById('develop') },
+                { id: 'deliver', element: document.getElementById('deliver') }
+            ];
+            
+            const roadmapItems = document.querySelectorAll('.roadmap-item');
+            
+            // Function to update the active state of roadmap items
+            function updateRoadmap() {
+                const scrollPosition = window.scrollY + 200; // Offset to trigger slightly before reaching the section
+                
+                // Find the current section
+                let currentSectionIndex = -1;
+                
+                sections.forEach((section, index) => {
+                    if (section.element && section.element.offsetTop <= scrollPosition) {
+                        currentSectionIndex = index;
+                    }
+                });
+                
+                // Update roadmap items
+                roadmapItems.forEach((item, index) => {
+                    if (index <= currentSectionIndex) {
+                        item.classList.add('completed');
+                        item.classList.remove('active');
+                    } else {
+                        item.classList.remove('completed');
+                    }
+                    
+                    if (index === currentSectionIndex) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // If we're at the beginning of the page, activate the first item
+                if (currentSectionIndex === -1 && scrollPosition < 500) {
+                    roadmapItems[0].classList.add('active');
+                }
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', updateRoadmap);
+            
+            // Initialize the roadmap
+            updateRoadmap();
+            
+            // Add click handlers for the roadmap items
+            roadmapItems.forEach((item) => {
+                item.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    const targetElement = document.getElementById(sectionId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Header visibility logic - Modified to only show on hover near top
+            const header = document.querySelector('header');
+            
+            // Initially hide the header
+            header.classList.add('hidden');
+            
+            // Create a trigger area at the top of the page
+            const triggerArea = document.createElement('div');
+            triggerArea.style.position = 'fixed';
+            triggerArea.style.top = '0';
+            triggerArea.style.left = '0';
+            triggerArea.style.width = '100%';
+            triggerArea.style.height = '40px';
+            triggerArea.style.zIndex = '90';
+            document.body.appendChild(triggerArea);
+            
+            // Show header when hovering near the top
+            triggerArea.addEventListener('mouseenter', function() {
+                header.classList.remove('hidden');
+            });
+            
+            // Hide header when leaving header
+            header.addEventListener('mouseleave', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('hidden');
+                }
+            });
+            
+            // Keep header visible at top of page
+            window.addEventListener('scroll', function() {
+                if (window.scrollY < 50) {
+                    header.classList.remove('hidden');
+                } else if (!triggerArea.matches(':hover') && !header.matches(':hover')) {
+                    header.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
