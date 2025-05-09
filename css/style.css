@@ -4,16 +4,16 @@
     --secondary-color: #77abb7;
     --accent-color: #d8c3a5;
     --button-color: #0099a9;
-    --light-color: #e8f1f4;
+    --light-color: #f5f8fa; /* Cleaner light blue-white background */
     --dark-color: #006b78;
     --text-color: #2c4654;
     --link-color: #0099a9;
     --link-hover: #00b2c7;
-    --publication-bg: #f7f7f7;
-    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --publication-bg: #ffffff; /* Changed to pure white */
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Lighter shadow */
     --standard-spacing: 16px;
     --standard-padding: 32px;
-    --card-radius: 8px;
+    --card-radius: 4px; /* Reduced border radius for cleaner look */
     --heading-font: 'Montserrat', sans-serif;
     --body-font: 'Inter', 'Roboto', sans-serif;
 }
@@ -32,6 +32,13 @@ body {
     animation: fadeIn 0.5s ease-in-out;
     font-weight: 400;
     letter-spacing: 0.01em;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Remove custom cursor styles */
+.cursor-dot, .cursor-outline {
+    display: none;
 }
 
 a {
@@ -150,6 +157,8 @@ nav ul li a.active::after {
 .hero {
     padding: 40px 0;
     background-color: white;
+    position: relative;
+    overflow: hidden;
 }
 
 .profile-section {
@@ -158,12 +167,33 @@ nav ul li a.active::after {
     gap: 40px;
 }
 
+/* Profile photo styling - with improved circle and smaller image */
 .profile-photo {
     min-width: 250px;
     height: 250px;
     border-radius: 50%;
     overflow: hidden;
-    background-color: var(--accent-color);
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    transform: scale(0.95); /* Slightly smaller to avoid edge issues */
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+}
+
+#profile-img:hover {
+    transform: scale(1);
 }
 
 .profile-photo img {
@@ -217,12 +247,13 @@ nav ul li a.active::after {
 
 .featured-projects {
     background-color: white;
-    margin-top: -15px;
+    margin-top: 0;
+    margin-bottom: 50px;
 }
 
 .recent-publications {
     background-color: var(--publication-bg);
-    margin-top: -15px;
+    margin-top: 0;
 }
 
 main h2 {
@@ -236,10 +267,11 @@ main h2 {
     border-radius: var(--card-radius);
     box-shadow: var(--card-shadow);
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 100%;
 }
 
-.recent-publications h2, .publications-container h2 {
+.recent-publications h2, .featured-projects h2 {
     color: var(--dark-color);
     font-size: 2rem;
     margin-bottom: 30px;
@@ -273,20 +305,20 @@ main h2 {
     margin-bottom: 24px;
 }
 
-.publication-item {
+.publication-item, .project-tile {
     background-color: white;
     padding: var(--standard-spacing);
     border-radius: var(--card-radius);
     box-shadow: var(--card-shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
     position: relative;
     margin-bottom: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: none; /* Removed border */
 }
 
-.publication-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+.publication-item:hover, .project-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .publication-item h3 {
@@ -394,25 +426,8 @@ main h2 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
+    margin-top: 30px; /* Added top margin to create space below heading */
     margin-bottom: 30px;
-}
-
-.project-tile {
-    border-radius: var(--card-radius);
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: white;
-    margin-bottom: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.project-tile:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .project-image {
@@ -457,6 +472,16 @@ main h2 {
     flex-grow: 1;
 }
 
+.project-info ul {
+    margin-bottom: 15px;
+    padding-left: 18px;
+}
+
+.project-info li {
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
 .project-info strong {
     color: var(--dark-color);
     font-weight: 600;
@@ -473,6 +498,7 @@ footer {
     color: white;
     padding: 30px 0;
     text-align: center;
+    margin-top: 30px;
 }
 
 /* Responsive Design */
@@ -519,6 +545,7 @@ footer {
     border-radius: var(--card-radius);
     box-shadow: var(--card-shadow);
     margin-top: 30px;
+    margin-bottom: 30px;
     width: 100%;
 }
 
@@ -937,6 +964,7 @@ main {
 
 main.container {
     padding-top: 25px;
+    padding-bottom: 25px; /* Add consistent bottom padding */
 }
 
 /* Consistency fixes for margin alignment */
@@ -944,5 +972,610 @@ main.container {
     .publications-container, .cv-container, .contact-container, .portfolio-container {
         padding-left: var(--standard-padding);
         padding-right: var(--standard-padding);
+    }
+}
+
+/* Remove all geometric background elements */
+.geometric-background,
+.geo-shape,
+.circle-lg,
+.triangle-lg,
+.square-lg,
+.hexagon-lg,
+.dots-pattern-lg,
+.sacred-geometry-1,
+.sacred-geometry-2 {
+    display: none;
+}
+
+/* Geometric Shape Decorations */
+body::before {
+    content: '';
+    position: fixed;
+    top: 20%;
+    left: -80px;
+    width: 180px;
+    height: 180px;
+    background-image: linear-gradient(45deg, transparent 50%, rgba(0, 153, 169, 0.05) 50%);
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 10%;
+    right: -100px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 15px solid rgba(216, 195, 165, 0.1);
+    z-index: -1;
+}
+
+/* Hexagon decoration near the footer */
+.featured-projects::after, .recent-publications::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 70px;
+    background: rgba(0, 153, 169, 0.05);
+    left: 5%;
+    bottom: -20px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: -1;
+}
+
+/* Dots pattern */
+.featured-projects, .recent-publications {
+    position: relative;
+}
+
+.featured-projects::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(var(--accent-color) 1px, transparent 2px);
+    background-size: 10px 10px;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.recent-publications::before {
+    content: '';
+    position: absolute;
+    bottom: 5%;
+    left: 2%;
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(var(--accent-color) 1px, transparent 2px);
+    background-size: 10px 10px;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Animation for floating elements */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* For the floating particle effect on the profile */
+#profile-img {
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove the geometric shape styles for profile */
+.geometric-shape, 
+.shape1, 
+.shape2, 
+.floating-particle {
+    display: none;
+}
+
+/* Geometric shapes and particles for profile */
+.geometric-shape {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.shape1 {
+    top: -15px;
+    left: -15px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: spin 15s linear infinite;
+    position: relative;
+}
+
+.shape1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    border: 1px dashed var(--accent-color);
+    border-radius: 50%;
+}
+
+.shape1::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 100%;
+    height: 100%;
+    border: 1px dotted var(--primary-color);
+    border-radius: 50%;
+}
+
+.shape2 {
+    bottom: 10px;
+    right: -10px;
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 153, 169, 0.1);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: float 7s ease-in-out infinite;
+    position: relative;
+}
+
+.shape2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 153, 169, 0.2);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.shape2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.4) rotate(30deg);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 153, 169, 0.3);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.floating-particle {
+    position: absolute;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.4;
+    z-index: 2;
+    animation: floatParticle 5s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5px, -10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Geometric background elements */
+.geometric-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.geo-shape {
+    position: absolute;
+    opacity: 0.08;
+}
+
+.circle {
+    width: 300px;
+    height: 300px;
+    border: 15px solid var(--primary-color);
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+    position: relative;
+}
+
+.circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    border: 8px solid var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 40%;
+    border: 4px dotted var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.triangle {
+    width: 200px;
+    height: 200px;
+    background-color: var(--accent-color);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    bottom: -50px;
+    left: 15%;
+    transform: rotate(25deg);
+    position: relative;
+}
+
+.triangle::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.hexagon {
+    width: 150px;
+    height: 150px;
+    background-color: var(--primary-color);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    top: 20%;
+    left: -50px;
+    position: relative;
+}
+
+.hexagon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hexagon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.4) rotate(30deg);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.dots-pattern {
+    width: 200px;
+    height: 200px;
+    background-image: 
+        radial-gradient(var(--dark-color) 1px, transparent 2px),
+        radial-gradient(var(--dark-color) 1px, transparent 3px);
+    background-size: 15px 15px, 25px 25px;
+    background-position: 0 0, 10px 10px;
+    top: 60%;
+    right: 10%;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+/* Add a sacred geometry pattern */
+.featured-projects::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    bottom: -60px;
+    left: 5%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='rgba(0, 153, 169, 0.08)' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='rgba(0, 153, 169, 0.08)' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='rgba(0, 153, 169, 0.08)' stroke-width='0.5'/%3E%3Cpath d='M50,5 L50,95 M5,50 L95,50 M14.6,14.6 L85.4,85.4 M14.6,85.4 L85.4,14.6' stroke='rgba(0, 153, 169, 0.08)' fill='none' stroke-width='0.5'/%3E%3Cpath d='M50,5 L85.4,85.4 L14.6,85.4 Z' fill='none' stroke='rgba(0, 153, 169, 0.08)' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: contain;
+    animation: spin 40s linear infinite;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.recent-publications::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    bottom: -80px;
+    right: 5%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='rgba(216, 195, 165, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M50,5 L97,50 L80,95 L20,95 L3,50 Z' fill='none' stroke='rgba(216, 195, 165, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M50,5 L80,95 M50,5 L20,95 M3,50 L97,50 M20,95 L97,50 M80,95 L3,50' stroke='rgba(216, 195, 165, 0.1)' fill='none' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='rgba(216, 195, 165, 0.1)' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: contain;
+    animation: spin 50s linear infinite reverse;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+/* Animation for floating elements */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* For the floating particle effect on the profile */
+#profile-img {
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove the geometric shape styles for profile */
+.geometric-shape, 
+.shape1, 
+.shape2, 
+.floating-particle {
+    display: none;
+}
+
+/* Geometric shapes and particles for profile */
+.geometric-shape {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.shape1 {
+    top: -15px;
+    left: -15px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: spin 15s linear infinite;
+    position: relative;
+}
+
+.shape1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    border: 1px dashed var(--accent-color);
+    border-radius: 50%;
+}
+
+.shape1::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 100%;
+    height: 100%;
+    border: 1px dotted var(--primary-color);
+    border-radius: 50%;
+}
+
+.shape2 {
+    bottom: 10px;
+    right: -10px;
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 153, 169, 0.1);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: float 7s ease-in-out infinite;
+    position: relative;
+}
+
+.shape2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 153, 169, 0.2);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.shape2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.4) rotate(30deg);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 153, 169, 0.3);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.floating-particle {
+    position: absolute;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.4;
+    z-index: 2;
+    animation: floatParticle 5s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5px, -10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Geometric background elements */
+.geometric-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.geo-shape {
+    position: absolute;
+    opacity: 0.15;
+    transition: opacity 0.5s ease;
+}
+
+/* Large circle with sacred geometry pattern */
+.circle-lg {
+    width: 450px;
+    height: 450px;
+    right: -150px;
+    top: 20%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='450' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='none' stroke='%230099a9' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%230099a9' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='32' fill='none' stroke='%230099a9' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%230099a9' stroke-width='0.5'/%3E%3Cpath d='M50,2 L50,98 M2,50 L98,50 M14.6,14.6 L85.4,85.4 M14.6,85.4 L85.4,14.6' stroke='%230099a9' fill='none' stroke-width='0.3'/%3E%3C/svg%3E");
+    background-size: contain;
+    animation: slow-spin 120s linear infinite;
+}
+
+/* Triangle with geometric details */
+.triangle-lg {
+    width: 400px;
+    height: 400px;
+    bottom: 5%;
+    left: -100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 L90,80 L10,80 Z' fill='none' stroke='%23d8c3a5' stroke-width='0.8'/%3E%3Cpath d='M50,20 L80,75 L20,75 Z' fill='none' stroke='%23d8c3a5' stroke-width='0.5'/%3E%3Cpath d='M50,30 L70,70 L30,70 Z' fill='none' stroke='%23d8c3a5' stroke-width='0.5'/%3E%3Cpath d='M50,40 L60,65 L40,65 Z' fill='none' stroke='%23d8c3a5' stroke-width='0.5'/%3E%3Cpath d='M10,80 L90,80 M50,10 L10,80 M50,10 L90,80' stroke='%23d8c3a5' stroke-width='0.3' stroke-dasharray='2,1'/%3E%3C/svg%3E");
+    background-size: contain;
+    transform: rotate(15deg);
+}
+
+/* Square with golden ratio spiral */
+.square-lg {
+    width: 350px;
+    height: 350px;
+    top: 60%;
+    right: 10%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350' viewBox='0 0 100 100'%3E%3Crect x='10' y='10' width='80' height='80' fill='none' stroke='%230099a9' stroke-width='0.5'/%3E%3Cpath d='M90,90 C90,46.3 46.3,10 10,10' fill='none' stroke='%230099a9' stroke-width='1'/%3E%3Cpath d='M10,90 L90,90 L90,10 L10,10 L10,90 Z' fill='none' stroke='%230099a9' stroke-width='0.8'/%3E%3Cpath d='M10,90 L10,10 L90,10 M10,50 L90,50 M50,10 L50,90' stroke='%230099a9' stroke-width='0.3' stroke-dasharray='2,1'/%3E%3C/svg%3E");
+    background-size: contain;
+    animation: float-slow 15s ease-in-out infinite alternate;
+}
+
+/* Hexagon with nested patterns */
+.hexagon-lg {
+    width: 300px;
+    height: 300px;
+    top: 15%;
+    left: 10%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 100 100'%3E%3Cpath d='M50,5 L90,27.5 L90,72.5 L50,95 L10,72.5 L10,27.5 Z' fill='none' stroke='%230099a9' stroke-width='0.8'/%3E%3Cpath d='M50,20 L80,37.5 L80,62.5 L50,80 L20,62.5 L20,37.5 Z' fill='none' stroke='%230099a9' stroke-width='0.5'/%3E%3Cpath d='M50,35 L70,47.5 L70,52.5 L50,65 L30,52.5 L30,47.5 Z' fill='none' stroke='%230099a9' stroke-width='0.5'/%3E%3Cpath d='M50,5 L50,95 M10,27.5 L90,72.5 M10,72.5 L90,27.5' stroke='%230099a9' stroke-width='0.3'/%3E%3C/svg%3E");
+    background-size: contain;
+    animation: float-slow 20s ease-in-out infinite;
+}
+
+/* Dots pattern */
+.dots-pattern-lg {
+    width: 400px;
+    height: 400px;
+    top: 40%;
+    left: 35%;
+    background-image: 
+        radial-gradient(var(--dark-color) 1px, transparent 2px),
+        radial-gradient(var(--dark-color) 1px, transparent 2px);
+    background-size: 18px 18px, 30px 30px;
+    background-position: 0 0, 15px 15px;
+    opacity: 0.1;
+    border-radius: 50%;
+    transform: rotate(15deg);
+}
+
+/* Animation for floating elements */
+@keyframes float-slow {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(2deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Animation for slow spinning elements */
+@keyframes slow-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 } 
