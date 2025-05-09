@@ -7,6 +7,29 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .cv-section ul {
+            margin-left: 20px;
+        }
+        
+        .cv-item ul li {
+            margin-bottom: 8px;
+        }
+        
+        .cv-item a {
+            text-decoration: underline;
+        }
+        
+        .date {
+            font-weight: 600;
+        }
+        
+        .recognition {
+            font-style: italic;
+            margin-top: 8px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -33,96 +56,129 @@
             <div class="cv-section">
                 <h3>Education</h3>
                 <div class="cv-item">
-                    <h4>Ph.D. in [Your Field]</h4>
-                    <div class="date">Expected 20XX</div>
-                    <p>[Your University]</p>
-                    <p>Dissertation: "[Your dissertation title]"</p>
-                    <p>Advisor: [Advisor Name]</p>
+                    <h4>Ph.D. Candidate in Computer Science</h4>
+                    <div class="date">2019 - 2025 (Expected)</div>
+                    <p>Harvard University, School of Engineering and Applied Sciences (SEAS), Cambridge, MA</p>
+                    <p>Advisor: Prof. Krzysztof Gajos</p>
                 </div>
                 <div class="cv-item">
-                    <h4>M.S. in [Your Field]</h4>
-                    <div class="date">20XX</div>
-                    <p>[Your University]</p>
-                    <p>Thesis: "[Your thesis title]"</p>
-                </div>
-                <div class="cv-item">
-                    <h4>B.S. in [Your Field]</h4>
-                    <div class="date">20XX</div>
-                    <p>[Your University]</p>
+                    <h4>B.Sc. in Computer Science, B.A. in Physics (Magna Cum Laude)</h4>
+                    <div class="date">2015 - 2019</div>
+                    <p>Bucknell University, Lewisburg, PA</p>
                 </div>
             </div>
             
             <div class="cv-section">
-                <h3>Research Experience</h3>
+                <h3>Experience</h3>
                 <div class="cv-item">
-                    <h4>Research Assistant</h4>
-                    <div class="date">20XX - Present</div>
-                    <p>[Research Lab/University]</p>
+                    <h4>Researcher</h4>
+                    <div class="date">Jan 2023 - Present</div>
+                    <p>Frontline Associates</p>
                     <ul>
-                        <li>Description of research responsibilities and achievements</li>
-                        <li>Description of research responsibilities and achievements</li>
-                        <li>Description of research responsibilities and achievements</li>
+                        <li>Conducted a formative study with 30+ humanitarian and crisis negotiators to identify challenges in using ChatGPT for document summarization and knowledge sharing, resulting in a first-author publication presented at ICML Next Generation of AI Safety Workshop 2024.</li>
+                        <li>Designed and implemented an LLM-based interface that enhanced efficiency in humanitarian negotiation workflows. Comparative studies demonstrated an improvement in facilitator efficiency over ChatGPT, addressing key concerns such as risk assessments and alternative solution generation. Results published at CHIWORK 2025.</li>
+                        <li>Organized and led AI-focused workshops on frontline negotiation, the first of their kind. These workshops engaged over 100 global negotiators and were adopted by organizations including ICRC, UN, BMZ, and MSF, facilitating the integration of research insights into practical applications.</li>
+                        <li>Organized the first Harvard Negotiation Challenge with over 100 global negotiators simulating using LLM chatbots for negotiation.</li>
                     </ul>
                 </div>
                 <div class="cv-item">
-                    <h4>Research Intern</h4>
-                    <div class="date">Summer 20XX</div>
-                    <p>[Company/Organization]</p>
+                    <h4>CTO & Founding Engineer</h4>
+                    <div class="date">May 2022 - May 2023</div>
+                    <p>Sumeria Labs</p>
                     <ul>
-                        <li>Description of internship responsibilities and achievements</li>
-                        <li>Description of internship responsibilities and achievements</li>
+                        <li>Spearheaded the design and development of an NFT lending protocol, collaborating with the CEO to optimize user experience.</li>
+                        <li>Directed a comprehensive security audit with CertiK, successfully mitigating all identified vulnerabilities and ensuring the protocol met top-tier security standards.</li>
+                        <li>Integrated traditional banking models into Web3, enabling secure and permissionless NFT loan origination, thereby bridging conventional finance with decentralized platforms.</li>
+                        <li>Automated collateral liquidation processes on AWS, enhancing protocol efficiency and ensuring robust security during defaults or market fluctuations.</li>
+                    </ul>
+                </div>
+                <div class="cv-item">
+                    <h4>Research Intern, HCI Group</h4>
+                    <div class="date">May 2018 - Jan 2019</div>
+                    <p>Stanford University</p>
+                    <ul>
+                        <li>Assessed the effectiveness of <a href="https://habitlab.stanford.edu/" target="_blank">HabitLab</a> by analyzing user behavioral data, culminating in a publication presented at CHI 2019.</li>
+                        <li>Engineered behavioral coaching mechanisms utilizing neural networks and multi-armed bandit algorithms.</li>
+                        <li>Conducted A/B tests to evaluate intervention strategies, leading to data-driven enhancements in HabitLab's approach to user engagement and productivity.</li>
+                    </ul>
+                </div>
+                <div class="cv-item">
+                    <h4>Research Intern, Imaging Science and Innovation</h4>
+                    <div class="date">May 2016 - May 2017</div>
+                    <p>Geisinger Health System</p>
+                    <ul>
+                        <li>Developed a convolutional neural network (CNN) using TensorFlow to automatically segment heart substructures in Cardiac Magnetic Resonance images, achieving a 97% Dice coefficient on a dataset of 50 patients, demonstrating compatibility with manual segmentation.</li>
+                        <li>Created interactive data visualizations to effectively communicate research findings to the public and stakeholders, enhancing transparency and understanding of advanced medical imaging techniques.</li>
                     </ul>
                 </div>
             </div>
             
             <div class="cv-section">
-                <h3>Publications</h3>
+                <h3>Awards</h3>
                 <div class="cv-item">
-                    <p><strong>First Author Paper Title</strong></p>
-                    <p>Authors: Your Name, Co-author 2, Co-author 3</p>
-                    <p>Conference/Journal Name, Year</p>
+                    <p><strong>2023</strong> - AMIA Best Student Paper Finalist (Top 8)</p>
+                    <p><strong>2022</strong> - UniSwap Grants Program</p>
+                    <p><strong>2019</strong> - Computer Science Arts & Sciences Outstanding Student Award</p>
+                    <p><strong>2019</strong> - Phi Beta Kappa Honor Society</p>
+                    <p><strong>2018-2019</strong> - Sigma Pi Sigma Physics Honor Society</p>
+                    <p><strong>2017</strong> - Program for Undergraduate Research at Bucknell</p>
+                    <p><strong>2016-2019</strong> - Dean's List</p>
+                    <p><strong>2017-2018</strong> - Residential Education Academic Excellence Award</p>
                 </div>
-                <div class="cv-item">
-                    <p><strong>Second Paper Title</strong></p>
-                    <p>Authors: Co-author 1, Your Name, Co-author 3</p>
-                    <p>Conference/Journal Name, Year</p>
-                </div>
-                <!-- More publication items -->
             </div>
             
             <div class="cv-section">
                 <h3>Teaching Experience</h3>
+                <h4>Harvard University</h4>
                 <div class="cv-item">
-                    <h4>Teaching Assistant</h4>
-                    <div class="date">Fall 20XX, Spring 20XX</div>
-                    <p>[Course Name], [University]</p>
-                    <ul>
-                        <li>Description of teaching responsibilities</li>
-                        <li>Description of teaching responsibilities</li>
-                    </ul>
+                    <p><strong>2023-Present</strong> - Teaching Fellow for Data Science Capstone</p>
+                    <p><strong>2020</strong> - Teaching Fellow for Data Visualization. Course Designer for Intro to NLP with PyTorch</p>
                 </div>
-                <!-- More teaching items -->
-            </div>
-            
-            <div class="cv-section">
-                <h3>Skills</h3>
+                <h4>Bucknell University</h4>
                 <div class="cv-item">
-                    <p><strong>Programming Languages:</strong> Python, JavaScript, C++, etc.</p>
-                    <p><strong>Tools & Frameworks:</strong> TensorFlow, PyTorch, React, etc.</p>
-                    <p><strong>Languages:</strong> English (Fluent), [Other Languages]</p>
+                    <p><strong>2018</strong> - Teaching Assistant for Algorithms and Data Structures. Graded students' homework and organized help sessions.</p>
+                    <p><strong>2017-2018</strong> - Teaching Assistant for Classical Mechanics Lab. Assisted students with numerical techniques in classical mechanics using Python and Mathematica.</p>
+                    <p><strong>2016-2017</strong> - Teaching Assistant & Study Group Leader for Classical and Modern Physics I & II. Graded homework, organized study groups, and help sessions.</p>
+                    <p><strong>2016-2017</strong> - Teaching Assistant for Engineering 100. Organized lab sessions and prepared hardware materials in Computer Science Engineering seminars.</p>
+                    <p><strong>2016</strong> - Teaching Assistant for Introduction to Computer Science I. Organized help sessions and graded homework.</p>
                 </div>
             </div>
             
             <div class="cv-section">
-                <h3>Awards and Honors</h3>
+                <h3>Conference and Journal Reviewer</h3>
                 <div class="cv-item">
-                    <p><strong>Award Name</strong> - Awarding Organization, Year</p>
-                    <p><strong>Scholarship Name</strong> - Awarding Organization, Year</p>
+                    <p><strong>ACM CHI</strong> - 2024*, 2025</p>
+                    <p><strong>ACM CHI LBW</strong> - 2024</p>
+                    <p><strong>ACM CSCW</strong> - 2024*, 2025</p>
+                    <p><strong>ACM CSCW Posters</strong> - 2024</p>
+                    <p><strong>ACM DIS</strong> - 2025</p>
+                    <p><strong>ACM IUI</strong> - 2024*</p>
+                    <p><strong>ACM CUI Posters</strong> - 2024</p>
+                    <p><strong>ACM UIST</strong> - 2024</p>
+                    <p class="recognition">* Special recognition for outstanding reviews received.</p>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <h3>Invited Talks</h3>
+                <div class="cv-item">
+                    <p><strong>March 9, 2025</strong> - Programs On Negotiation, AI Negotiation Summit, "ChatGPT, Don't Tell Me What to Do: Designing AI for context analysis in humanitarian frontline negotiations"</p>
+                    <p><strong>March 7, 2025</strong> - Harvard Global AI in Negotiation Challenge, "ChatGPT, Don't Tell Me What to Do: Designing AI for context analysis in humanitarian frontline negotiations"</p>
+                    <p><strong>Sep 11, 2024</strong> - AI in Humanitarian and Crisis Negotiation Workshop, "Confidentiality and Privacy in Using ChatGPT for Humanitarian Frontline Negotiations"</p>
+                    <p><strong>Oct 31, 2024</strong> - Panelist, Carnegie Mellon University "Queer(ing) Generative AI for a Queer Visibility Summit"</p>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <h3>Leadership & Activities</h3>
+                <div class="cv-item">
+                    <p><strong>Jun 2018 - May 2019</strong> - President & Treasurer, Human Centered Design Club, Bucknell University</p>
+                    <p><strong>Aug 2016 - May 2018</strong> - LGBTQ+ Housing Residential Advisor, Residential Education, Bucknell University</p>
                 </div>
             </div>
             
             <div class="download-cv">
-                <a href="files/ZilinMa_CV.pdf" class="btn" download>Download PDF</a>
+                <a href="files/ZilinMa_CV.pdf" class="btn" download>Download Full CV</a>
             </div>
         </div>
     </main>
