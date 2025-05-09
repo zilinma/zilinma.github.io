@@ -138,6 +138,10 @@
             flex-direction: column;
         }
         
+        .interface-card.full-width {
+            grid-column: 1 / -1;
+        }
+        
         .interface-card h4 {
             background-color: var(--primary-color);
             color: white;
@@ -147,14 +151,15 @@
         }
         
         .interface-img {
-            height: 300px;
-            overflow: hidden;
+            height: auto;
+            min-height: 200px;
+            overflow: visible;
         }
         
         .interface-img img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
         }
         
         .interface-description {
@@ -363,8 +368,8 @@
             </div>
             
             <div class="project-image-large">
-                <img src="../images/project-placeholder.jpg" alt="Dating App Interface Redesign">
-                <!-- PLACEHOLDER: Main hero image showing comparison between traditional swipe interface and the redesigned interface that reduces bias -->
+                <img src="../images/bias-reduction/interface-teaser.png" alt="Comparison of Swipe and Reverse Interface Designs">
+                <!-- Teaser image showing both the swipe and reverse interfaces in one image -->
             </div>
             
             <div class="project-roadmap">
@@ -415,9 +420,9 @@
                         </ul>
                     </div>
                     <div>
-                        <div class="image-placeholder">
-                            <img src="../images/bias-reduction/traditional-swipe-interface.jpg" alt="Traditional dating app swipe interface with photo-first presentation">
-                            <p>PLACEHOLDER: Image showing a traditional dating app swipe interface with photo-first presentation</p>
+                        <div class="stat-box">
+                            <h4>Problem Statement</h4>
+                            <p>Dating app interfaces that prioritize photos before personal information may inadvertently amplify racial bias in user decision-making, even among users who explicitly reject racial preferences in dating.</p>
                         </div>
                     </div>
                 </div>
@@ -449,25 +454,13 @@
                 </p>
                 
                 <div class="interface-comparison">
-                    <div class="interface-card">
-                        <h4>Standard: Swipe Interface</h4>
+                    <div class="interface-card full-width">
+                        <h4>Interface Comparison: Standard Swipe vs. Reversed Sequence</h4>
                         <div class="interface-img">
-                            <img src="../images/bias-reduction/traditional-swipe-interface.jpg" alt="Swipe Interface Design">
-                            <!-- PLACEHOLDER: Image showing the standard swipe interface design with photo first -->
+                            <img src="../images/bias-reduction/interface-teaser.png" alt="Comparison of Swipe and Reversed Sequence Interface Designs">
                         </div>
                         <div class="interface-description">
-                            <p>Photo and name shown first, simulating standard dating apps</p>
-                        </div>
-                    </div>
-                    
-                    <div class="interface-card">
-                        <h4>Redesigned: Reversed Sequence</h4>
-                        <div class="interface-img">
-                            <img src="../images/bias-reduction/redesigned-info-first-interface.jpg" alt="Reversed Sequence Interface Design">
-                            <!-- PLACEHOLDER: Image showing the redesigned interface with profile details shown before photo -->
-                        </div>
-                        <div class="interface-description">
-                            <p>Profile details (interests, compatibility) shown before photo and name</p>
+                            <p>Left: Traditional photo-first interface that encourages snap judgments. Right: Our redesigned interface that presents profile details and compatibility before photos.</p>
                         </div>
                     </div>
                 </div>
@@ -543,9 +536,9 @@
                         </ul>
                     </div>
                     <div>
-                        <div class="image-placeholder">
-                            <img src="../images/bias-reduction/bias-reduction-results.jpg" alt="Bar chart comparing percentage of racially biased choices across interface types">
-                            <p>PLACEHOLDER: Bar chart comparing percentage of racially biased choices across interface types</p>
+                        <div class="image-placeholder" style="max-width: 100%; margin: 0 auto;">
+                            <img src="../images/bias-reduction/bias-reduction-results.png" alt="Bar chart comparing percentage of racially biased choices across interface types" style="width: 100%; max-width: 400px;">
+                            <p>My intervention successfully reduced the percentage of racially biased choices among participants who explicitly stated that they were against racial preferences in dating.</p>
                         </div>
                     </div>
                 </div>
@@ -572,12 +565,12 @@
                             <li>Well-designed friction can lead to fairer decisions</li>
                         </ul>
                     </div>
-                    <div>
+                    <!-- <div>
                         <div class="image-placeholder">
                             <img src="../images/bias-reduction/demographic-analysis.jpg" alt="Visualization of experimental results across demographics">
                             <p>PLACEHOLDER: Visualization of experimental results</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <h4>Design Recommendations</h4>
