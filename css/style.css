@@ -107,6 +107,8 @@ header {
     top: 0;
     z-index: 100;
     margin-bottom: 0;
+    overflow-x: auto; /* Enable horizontal scrolling for navbar */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 header .container {
@@ -114,6 +116,7 @@ header .container {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    min-width: 600px; /* Ensure minimum width for all menu items */
 }
 
 .name {
@@ -126,6 +129,8 @@ header .container {
 nav ul {
     display: flex;
     list-style: none;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    white-space: nowrap; /* Keep menu items on one line */
 }
 
 nav ul li {
@@ -151,6 +156,84 @@ nav ul li a.active::after {
     width: 100%;
     height: 2px;
     background-color: var(--accent-color);
+}
+
+/* Mobile warning for portfolio pages */
+.mobile-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.mobile-warning-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+}
+
+.mobile-warning h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.mobile-warning p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.mobile-warning .btn {
+    background-color: white;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+/* Show warning on portfolio pages for mobile devices */
+@media (max-width: 768px) {
+    .portfolio-page .mobile-warning {
+        display: block;
+    }
+    
+    /* Other mobile adjustments */
+    header .container {
+        justify-content: space-between;
+        min-width: unset; /* Reset min-width for small screens */
+        width: 100%;
+    }
+    
+    .name {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        margin-top: 0;
+    }
+    
+    nav ul li {
+        margin: 0 15px 0 0;
+    }
+    
+    nav ul li:last-child {
+        margin-right: 0;
+    }
+    
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 /* Hero Section */
@@ -457,24 +540,19 @@ main h2 {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
 .project-info h3 {
     color: var(--primary-color);
     margin-bottom: 15px;
     font-size: 1.3rem;
-    min-height: 45px;
 }
 
-.project-info p {
+.project-info p, .project-info ul {
     margin-bottom: 15px;
     line-height: 1.6;
-    flex-grow: 1;
-}
-
-.project-info ul {
-    margin-bottom: 15px;
-    padding-left: 18px;
 }
 
 .project-info li {
@@ -482,14 +560,33 @@ main h2 {
     line-height: 1.4;
 }
 
-.project-info strong {
-    color: var(--dark-color);
-    font-weight: 600;
-}
-
 .project-info .btn {
     margin-top: auto;
     align-self: flex-start;
+    position: relative;
+    bottom: 0;
+}
+
+/* Project tile structure improvements */
+.project-tile {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Methods section styling to ensure it's right above the button */
+.project-info p:last-of-type {
+    margin-bottom: 20px;
+}
+
+/* Button consistency */
+.btn, .publication-links a, .view-all {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 /* Footer */

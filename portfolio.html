@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="portfolio-page">
     <header>
         <div class="container">
             <h1 class="name">Zilin Ma</h1>
@@ -26,6 +26,15 @@
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Warning Message -->
+    <div class="mobile-warning">
+        <div class="mobile-warning-content">
+            <h2><i class="fas fa-laptop"></i> Desktop Recommended</h2>
+            <p>This portfolio page is best viewed on a desktop or laptop for the full experience. Some interactive elements might not work properly on mobile devices.</p>
+            <a href="index.html" class="btn">Return to Homepage</a>
+        </div>
+    </div>
 
     <main class="container">
         <div class="portfolio-container">
@@ -101,5 +110,24 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // Check if this is a mobile device
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileWarning = document.querySelector('.mobile-warning');
+            const continueButton = document.createElement('button');
+            continueButton.className = 'btn';
+            continueButton.innerHTML = '<i class="fas fa-arrow-right"></i> Continue Anyway';
+            continueButton.style.marginLeft = '10px';
+            
+            // Add button to dismiss warning
+            const warningContent = document.querySelector('.mobile-warning-content');
+            warningContent.appendChild(continueButton);
+            
+            // Let user dismiss the warning if they want to continue
+            continueButton.addEventListener('click', function() {
+                mobileWarning.style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html> 
