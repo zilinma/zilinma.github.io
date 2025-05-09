@@ -18,6 +18,7 @@
         
         .project-header {
             margin-bottom: 30px;
+            padding-top: 20px;
         }
         
         .project-header h2 {
@@ -333,6 +334,8 @@
             top: 0;
             z-index: 1000;
             background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 10px 0;
         }
         
         header.hidden {
@@ -340,7 +343,8 @@
         }
         
         main {
-            margin-top: 120px;
+            margin-top: 200px;
+            padding-top: 20px;
         }
     </style>
 </head>
@@ -361,6 +365,7 @@
     </header>
 
     <main class="container">
+        <div class="spacer" style="height: 40px;"></div>
         <div class="project-detail">
             <div class="project-header">
                 <h2>Redesigning a Dating App Interface to Reduce Implicit Racial Bias</h2>
@@ -698,12 +703,15 @@
             
             // Keep header visible at top of page
             window.addEventListener('scroll', function() {
-                if (window.scrollY < 50) {
+                if (window.scrollY < 100) {
                     header.classList.remove('hidden');
                 } else if (!triggerArea.matches(':hover') && !header.matches(':hover')) {
                     header.classList.add('hidden');
                 }
             });
+            
+            // Initialize with visible header
+            header.classList.remove('hidden');
         });
     </script>
 </body>
