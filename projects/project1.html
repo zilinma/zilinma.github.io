@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Name - Zilin Ma</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .project-detail {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+        
+        .project-header {
+            margin-bottom: 30px;
+        }
+        
+        .project-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-header .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .project-image-large {
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .project-image-large img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .project-content {
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .project-content h3 {
+            color: var(--primary-color);
+            margin: 30px 0 15px;
+            font-size: 1.6rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 15px;
+        }
+        
+        .project-content ul, .project-content ol {
+            margin-bottom: 15px;
+            margin-left: 20px;
+        }
+        
+        .project-content li {
+            margin-bottom: 5px;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="name">Zilin Ma</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../cv.html">CV</a></li>
+                    <li><a href="../publications.html">Publications</a></li>
+                    <li><a href="../portfolio.html">Portfolio</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="project-detail">
+            <div class="project-header">
+                <h2>Project Title 1</h2>
+                <div class="date">Completed in Month, Year</div>
+            </div>
+            
+            <div class="project-image-large">
+                <img src="../images/projects/project1-large.jpg" alt="Project 1 Main Image">
+            </div>
+            
+            <div class="project-content">
+                <h3>Overview</h3>
+                <p>
+                    This is a detailed description of the project. Here you can provide a comprehensive overview of what the project was about, 
+                    its goals, and the main outcomes. This section should give readers a clear understanding of the project's purpose and scope.
+                </p>
+                
+                <h3>Objectives</h3>
+                <ul>
+                    <li>Objective 1: Description of the first objective</li>
+                    <li>Objective 2: Description of the second objective</li>
+                    <li>Objective 3: Description of the third objective</li>
+                    <li>Objective 4: Description of the fourth objective</li>
+                </ul>
+                
+                <h3>Methodology</h3>
+                <p>
+                    Describe the methodology used in this project. What approach did you take? What techniques or tools did you use? 
+                    How did you go about achieving the objectives? This section should provide insight into your process and how you tackled the challenges.
+                </p>
+                
+                <h3>Results</h3>
+                <p>
+                    Detail the results of the project. What did you achieve? What were the key findings or outcomes? Were there any unexpected results? 
+                    How do these results contribute to the field or address the initial problem? Include any relevant metrics, data, or evaluations.
+                </p>
+                
+                <h3>Technologies Used</h3>
+                <ul>
+                    <li>Technology 1</li>
+                    <li>Technology 2</li>
+                    <li>Technology 3</li>
+                    <li>Technology 4</li>
+                </ul>
+                
+                <h3>Gallery</h3>
+                <div class="project-gallery">
+                    <div class="gallery-item">
+                        <img src="../images/projects/project1-gallery1.jpg" alt="Gallery Image 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/projects/project1-gallery2.jpg" alt="Gallery Image 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/projects/project1-gallery3.jpg" alt="Gallery Image 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/projects/project1-gallery4.jpg" alt="Gallery Image 4">
+                    </div>
+                </div>
+                
+                <h3>Conclusion</h3>
+                <p>
+                    Summarize the project, its significance, and potential future work or implications. What are the key takeaways from this project? 
+                    How might this work be extended or applied in future contexts? What did you learn from this experience?
+                </p>
+                
+                <div class="project-links">
+                    <a href="#" class="btn" target="_blank">View Demo</a>
+                    <a href="#" class="btn" target="_blank">GitHub Repository</a>
+                    <a href="#" class="btn" target="_blank">Download Report</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Zilin Ma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html> 
