@@ -32,7 +32,10 @@
         <div class="mobile-warning-content">
             <h2><i class="fas fa-laptop"></i> Desktop Recommended</h2>
             <p>This portfolio page is best viewed on a desktop or laptop for the full experience. Some interactive elements might not work properly on mobile devices.</p>
-            <a href="index.html" class="btn">Return to Homepage</a>
+            <div class="mobile-warning-buttons">
+                <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i>Return to Homepage</a>
+                <button class="btn btn-secondary" id="continue-anyway"><i class="fas fa-arrow-right"></i>Continue Anyway</button>
+            </div>
         </div>
     </div>
 
@@ -111,17 +114,10 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Check if this is a mobile device
+        // Handle the "Continue Anyway" button
         document.addEventListener('DOMContentLoaded', function() {
             const mobileWarning = document.querySelector('.mobile-warning');
-            const continueButton = document.createElement('button');
-            continueButton.className = 'btn';
-            continueButton.innerHTML = '<i class="fas fa-arrow-right"></i> Continue Anyway';
-            continueButton.style.marginLeft = '10px';
-            
-            // Add button to dismiss warning
-            const warningContent = document.querySelector('.mobile-warning-content');
-            warningContent.appendChild(continueButton);
+            const continueButton = document.getElementById('continue-anyway');
             
             // Let user dismiss the warning if they want to continue
             continueButton.addEventListener('click', function() {
