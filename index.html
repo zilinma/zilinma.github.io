@@ -7,6 +7,9 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◢</text></svg>">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -14,7 +17,7 @@
             <h1 class="name">Zilin Ma</h1>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="cv.html">CV</a></li>
                     <li><a href="publications.html">Publications</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
@@ -31,9 +34,8 @@
                     <img src="images/profile.jpg" alt="Zilin Ma" id="profile-img">
                 </div>
                 <div class="profile-info">
-                    <p>I design intelligent systems to address social challenges faced by vulnerable populations, including racial minorities and LGBTQ+ communities. My research focuses on creating socio-technical solutions that amplify positive social forces and align with individual intentions to achieve lasting, impactful change.</p>
-                    <p>My work spans multiple domains, including using LLMs to support humanitarian negotiators, evaluating AI-based mental health support for LGBTQ+ individuals, and designing interfaces that reduce racial bias in online platforms. I received a Best Student Paper Finalist award at the AMIA conference for my work on understanding LLM chatbots for mental well-being.</p>
-                    <p>Through my research, I challenge the assumption that technology inherently drives positive social change, demonstrating how thoughtful design interventions can mitigate biases and empower communities with established practices to support their vulnerable members.</p>
+                    <p>I design intelligent systems to address social challenges faced by vulnerable populations. My research creates socio-technical solutions that amplify positive social forces and align with user intentions for lasting impact.</p>
+                    <p>My work spans using LLMs for humanitarian negotiation, evaluating AI mental health support, and reducing bias in online platforms. I received the AMIA Best Student Paper Finalist award for my research on LLM chatbots for mental well-being.</p>
                     
                     <div class="contact-info">
                         <p><i class="fas fa-graduation-cap"></i> Ph.D. Candidate in Computer Science</p>
@@ -58,40 +60,40 @@
             <div class="project-grid">
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/project-placeholder.jpg" alt="AI for Humanitarian Negotiations">
+                        <img src="images/projects/negotiation.png" alt="AI for Humanitarian Negotiations">
                     </div>
                     <div class="project-info">
-                        <h3>AI for Humanitarian Negotiations</h3>
+                        <h3><i class="fas fa-handshake"></i> AI for Humanitarian Negotiations</h3>
                         <p>Designing LLM-powered tools that enhance rather than replace the expertise of humanitarian negotiators working in crisis zones. This research focuses on supporting established practices, contextualizing information, and enabling validation processes.</p>
-                        <p><strong>Methods:</strong> Field studies, interviews with frontline negotiators, design probing, prototype testing</p>
-                        <a href="projects/humanitarian.html" class="btn">View Project</a>
+                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Field studies, interviews with frontline negotiators, design probing, prototype testing</p>
+                        <a href="projects/humanitarian.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
                     </div>
                 </div>
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/project-placeholder.jpg" alt="LLMs for Mental Health Support">
+                        <img src="images/projects/lgbtq+_mental_health.png" alt="LLMs for Mental Health Support">
                     </div>
                     <div class="project-info">
-                        <h3>LLMs for Mental Health Support</h3>
+                        <h3><i class="fas fa-brain"></i> LLMs for Mental Health Support</h3>
                         <p>Investigating how LLM chatbots impact mental health support, particularly for LGBTQ+ individuals. This work reveals both benefits (accessibility, non-judgment) and challenges (harmful advice, unreliable support) of AI mental health tools.</p>
-                        <p><strong>Methods:</strong> Qualitative analysis of user experiences, interviews, comparative evaluation with therapy principles</p>
-                        <a href="projects/mental-health.html" class="btn">View Project</a>
+                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Qualitative analysis of user experiences, interviews, comparative evaluation with therapy principles</p>
+                        <a href="projects/mental-health.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
                     </div>
                 </div>
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/project-placeholder.jpg" alt="Reducing Bias in Online Platforms">
+                        <img src="images/projects/datingwebsite.png" alt="Reducing Bias in Online Platforms">
                     </div>
                     <div class="project-info">
-                        <h3>Reducing Bias in Online Platforms</h3>
+                        <h3><i class="fas fa-balance-scale"></i> Reducing Bias in Online Platforms</h3>
                         <p>Designing interfaces that reduce implicit racial bias in decision-making. This work demonstrated how seemingly "neutral" design choices in dating platforms can amplify racial bias, and developed cognitive forcing functions to mitigate these biases.</p>
-                        <p><strong>Methods:</strong> Online experiments, interface design, analysis of decision patterns</p>
-                        <a href="projects/bias-reduction.html" class="btn">View Project</a>
+                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Online experiments, interface design, analysis of decision patterns</p>
+                        <a href="projects/bias-reduction.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
                     </div>
                 </div>
                 <!-- More project tiles will go here -->
             </div>
-            <a href="portfolio.html" class="view-all">View All Projects</a>
+            <a href="portfolio.html" class="view-all"><i class="fas fa-arrow-right"></i> View All Projects</a>
         </div>
     </section>
     
@@ -100,39 +102,39 @@
             <h2>Recent Publications</h2>
             <div class="publication-preview">
                 <div class="publication-item">
-                    <h3>"ChatGPT, Don't Tell Me What to Do": Designing AI for Context Analysis in Humanitarian Frontline Negotiations</h3>
-                    <p class="authors">Zilin Ma, Yiyang Mei, Claude Bruderlein, Krzysztof Z. Gajos, Weiwei Pan</p>
-                    <p class="venue">Proceedings of the 4th Symposium on Human-Computer Interaction for Work (CHIWORK), 2025</p>
+                    <h3><i class="fas fa-file-alt"></i> "ChatGPT, Don't Tell Me What to Do": Designing AI for Context Analysis in Humanitarian Frontline Negotiations</h3>
+                    <p class="authors"><i class="fas fa-users"></i> <span class="me">Zilin Ma</span>, Yiyang Mei, Claude Bruderlein, Krzysztof Z. Gajos, Weiwei Pan</p>
+                    <p class="venue"><i class="fas fa-university"></i> Proceedings of the 4th Symposium on Human-Computer Interaction for Work (CHIWORK), 2025</p>
                     <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2410.09139" class="btn" target="_blank">arXiv</a>
+                        <a href="https://arxiv.org/abs/2410.09139" target="_blank" data-tooltip="View paper on arXiv"><i class="fas fa-external-link-alt"></i> arXiv</a>
                     </div>
                 </div>
                 
                 <div class="publication-item">
-                    <h3>Using Large Language Models for Humanitarian Frontline Negotiation: Opportunities and Considerations</h3>
-                    <p class="authors">Zilin Ma, Susannah Cheng Su, et al.</p>
-                    <p class="venue">ICML 2024 Next Generation of AI Safety Workshop</p>
+                    <h3><i class="fas fa-file-alt"></i> Using Large Language Models for Humanitarian Frontline Negotiation: Opportunities and Considerations</h3>
+                    <p class="authors"><i class="fas fa-users"></i> <span class="me">Zilin Ma</span>, Susannah Cheng Su, et al.</p>
+                    <p class="venue"><i class="fas fa-university"></i> ICML 2024 Next Generation of AI Safety Workshop</p>
                     <div class="publication-links">
-                        <a href="https://openreview.net/forum?id=ekHAMI97qf" class="btn" target="_blank">OpenReview</a>
+                        <a href="https://openreview.net/forum?id=ekHAMI97qf" target="_blank" data-tooltip="Read on OpenReview"><i class="fas fa-external-link-alt"></i> OpenReview</a>
                     </div>
                 </div>
                 
                 <div class="publication-item">
-                    <h3>Schrödinger's Update: User Perceptions of Uncertainties in Proprietary Large Language Model Updates</h3>
-                    <p class="authors">Zilin Ma, Yiyang Mei, Krzysztof Z. Gajos, Ian Arawjo</p>
-                    <p class="venue">Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI EA '24)</p>
+                    <h3><i class="fas fa-file-alt"></i> Schrödinger's Update: User Perceptions of Uncertainties in Proprietary Large Language Model Updates</h3>
+                    <p class="authors"><i class="fas fa-users"></i> <span class="me">Zilin Ma</span>, Yiyang Mei, Krzysztof Z. Gajos, Ian Arawjo</p>
+                    <p class="venue"><i class="fas fa-university"></i> Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI EA '24)</p>
                     <div class="publication-links">
-                        <a href="https://doi.org/10.1145/3613905.3651100" class="btn" target="_blank">DOI</a>
+                        <a href="https://doi.org/10.1145/3613905.3651100" target="_blank" data-tooltip="Access via DOI"><i class="fas fa-external-link-alt"></i> DOI</a>
                     </div>
                 </div>
             </div>
-            <a href="publications.html" class="view-all">View All Publications</a>
+            <a href="publications.html" class="view-all"><i class="fas fa-arrow-right"></i> View All Publications</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Zilin Ma. All rights reserved.</p>
+            <p>&copy; Zilin Ma</p>
         </div>
     </footer>
 

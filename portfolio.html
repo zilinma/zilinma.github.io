@@ -7,6 +7,9 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◢</text></svg>">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -17,7 +20,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="cv.html">CV</a></li>
                     <li><a href="publications.html">Publications</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -25,53 +28,53 @@
     </header>
 
     <main class="container">
-        <h2>Designing AI Systems for Vulnerable Populations</h2>
-        
-        <div class="portfolio-intro">
-            <p>
-                I design AI systems that empower rather than exploit vulnerable populations, focusing on equity-centered approaches in high-stakes contexts like mental health, dating, and humanitarian work. My research combines HCI methods with participatory design to create technology that respects users' lived realities and amplifies existing support structures.
-            </p>
-            
-            <p>Each project in this portfolio is a step toward that vision, grounded in fieldwork, participatory methods, and a commitment to equity-centered design.</p>
-        </div>
-        
-        <h3 class="section-title">Project Portfolio</h3>
-        
         <div class="portfolio-container">
+            <h3 class="publication-year"><i class="fas fa-laptop-code"></i> Research Portfolio</h3>
+            
+            <div class="portfolio-intro">
+                <p>
+                    <i class="fas fa-robot fa-lg" style="color: var(--primary-color); margin-right: 10px;"></i> I design AI systems that empower rather than exploit vulnerable populations, focusing on equity-centered approaches in high-stakes contexts like mental health, dating, and humanitarian work. My research combines HCI methods with participatory design to create technology that respects users' lived realities and amplifies existing support structures.
+                </p>
+                
+                <p><i class="fas fa-compass fa-lg" style="color: var(--primary-color); margin-right: 10px;"></i> Each project in this portfolio is a step toward that vision, grounded in fieldwork, participatory methods, and a commitment to equity-centered design.</p>
+            </div>
+            
+            <h3 class="publication-year"><i class="fas fa-folder-open"></i> Projects</h3>
+            
             <div class="project-grid">
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/project-placeholder.jpg" alt="AI for Humanitarian Negotiations">
+                        <img src="images/projects/negotiation.png" alt="AI for Humanitarian Negotiations">
                     </div>
                     <div class="project-info">
-                        <h3>AI for Humanitarian Negotiations</h3>
+                        <h3><i class="fas fa-handshake"></i> AI for Humanitarian Negotiations</h3>
                         <p>Designing LLM-powered tools that enhance rather than replace the expertise of humanitarian negotiators working in crisis zones. This research focuses on supporting established practices, contextualizing information, and enabling validation processes.</p>
-                        <p><strong>Methods:</strong> Field studies, interviews with frontline negotiators, design probing, prototype testing</p>
-                        <a href="projects/humanitarian.html" class="btn">View Project</a>
+                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Field studies, interviews with frontline negotiators, design probing, prototype testing</p>
+                        <a href="projects/humanitarian.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
                     </div>
                 </div>
                 
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/project-placeholder.jpg" alt="LLMs for Mental Health Support">
+                        <img src="images/projects/lgbtq+_mental_health.png" alt="LLMs for Mental Health Support">
                     </div>
                     <div class="project-info">
-                        <h3>LLMs for Mental Health Support</h3>
+                        <h3><i class="fas fa-brain"></i> LLMs for Mental Health Support</h3>
                         <p>Investigating how LLM chatbots impact mental health support, particularly for LGBTQ+ individuals. This work reveals both benefits (accessibility, non-judgment) and challenges (harmful advice, unreliable support) of AI mental health tools.</p>
-                        <p><strong>Methods:</strong> Qualitative analysis of user experiences, interviews, comparative evaluation with therapy principles</p>
-                        <a href="projects/mental-health.html" class="btn">View Project</a>
+                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Qualitative analysis of user experiences, interviews, comparative evaluation with therapy principles</p>
+                        <a href="projects/mental-health.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
                     </div>
                 </div>
                 
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/project-placeholder.jpg" alt="Reducing Bias in Online Platforms">
+                        <img src="images/projects/datingwebsite.png" alt="Reducing Bias in Online Platforms">
                     </div>
                     <div class="project-info">
-                        <h3>Reducing Bias in Online Platforms</h3>
+                        <h3><i class="fas fa-balance-scale"></i> Reducing Bias in Online Platforms</h3>
                         <p>Designing interfaces that reduce implicit racial bias in decision-making. This work demonstrated how seemingly "neutral" design choices in dating platforms can amplify racial bias, and developed cognitive forcing functions to mitigate these biases.</p>
-                        <p><strong>Methods:</strong> Online experiments, interface design, analysis of decision patterns</p>
-                        <a href="projects/bias-reduction.html" class="btn">View Project</a>
+                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Online experiments, interface design, analysis of decision patterns</p>
+                        <a href="projects/bias-reduction.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
                     </div>
                 </div>
             </div>
@@ -80,7 +83,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Zilin Ma. All rights reserved.</p>
+            <p>&copy; Zilin Ma</p>
         </div>
     </footer>
 
