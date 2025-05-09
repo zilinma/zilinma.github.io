@@ -7,6 +7,91 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .publication-year {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        
+        .publication-item {
+            margin-bottom: 30px;
+        }
+        
+        .authors {
+            margin-bottom: 5px;
+        }
+        
+        .me {
+            font-weight: bold;
+        }
+        
+        .venue {
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        
+        .publication-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .publication-links a {
+            font-size: 0.9rem;
+            padding: 6px 12px;
+        }
+        
+        .publication-item h3 {
+            margin-bottom: 8px;
+        }
+        
+        .citation-button {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        
+        .citation-button:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hidden-citation {
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 0.8rem;
+        }
+        
+        .copy-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            float: right;
+        }
+        
+        .copy-button:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,61 +113,357 @@
         <h2>Publications</h2>
         
         <div class="publications-container">
+            <!-- 2025 Publications -->
+            <h3 class="publication-year">2025</h3>
+            
             <div class="publication-item">
-                <h3>Paper Title 1</h3>
-                <p class="authors">Zilin Ma, Co-author 2, Co-author 3</p>
-                <p class="venue">Conference/Journal Name, Year</p>
-                <p class="abstract">
-                    Abstract of the paper goes here. This should be a brief summary of the paper's content, 
-                    contributions, and findings. It should give readers a clear idea of what the paper is about 
-                    without going into too much detail.
-                </p>
+                <h3>
+                    "ChatGPT, Don't Tell Me What to Do": Designing AI for Context Analysis in Humanitarian Frontline Negotiations
+                    <button class="citation-button" onclick="toggleCitation('ma2025chatgpt')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors"><span class="me">Zilin Ma</span>, Yiyang Mei, Claude Bruderlein, Krzysztof Z. Gajos, Weiwei Pan</p>
+                <p class="venue">Proceedings of the 4th Symposium on Human-Computer Interaction for Work (CHIWORK), to appear</p>
                 <div class="publication-links">
-                    <a href="#" class="btn">PDF</a>
-                    <a href="#" class="btn">Code</a>
-                    <a href="#" class="btn">Video</a>
-                    <a href="#" class="btn">Project Page</a>
-                    <a href="#" class="btn">DOI</a>
+                    <a href="https://arxiv.org/abs/2410.09139" class="btn" target="_blank">arXiv</a>
+                </div>
+                <div id="ma2025chatgpt" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('ma2025chatgpt-text')">Copy</button>
+                    <pre id="ma2025chatgpt-text">@inproceedings{ma2025chatgpt,
+  title={``ChatGPT, Don't Tell Me What to Do'': Designing AI for Context Analysis in Humanitarian Frontline Negotiations},
+  author={Ma, Zilin and Mei, Yiyang and Bruderlein, Claude and Gajos, Krzysztof Z. and Pan, Weiwei},
+  booktitle={Proceedings of the 4th Symposium on Human-Computer Interaction for Work (CHIWORK)},
+  pages={to appear},
+  year={2025},
+  organization={ACM},
+  address={Amsterdam, The Netherlands},
+  url={https://arxiv.org/abs/2410.09139}
+}</pre>
+                </div>
+            </div>
+            
+            <!-- 2024 Publications -->
+            <h3 class="publication-year">2024</h3>
+            
+            <div class="publication-item">
+                <h3>
+                    Using Large Language Models for Humanitarian Frontline Negotiation: Opportunities and Considerations
+                    <button class="citation-button" onclick="toggleCitation('ma2024usinglargelanguagemodels')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors"><span class="me">Zilin Ma</span>, Susannah Cheng Su, Nathan Zhao, Linn Bieske, Blake Bullwinkel, Jinglun Gao, Gekai Liao, Siyao Li, Ziqing Luo, Boxiang Wang, Zihan Wen, Yanrui Yang, Yanyi Zhang, Claude Bruderlein, Weiwei Pan</p>
+                <p class="venue">ICML 2024 Next Generation of AI Safety Workshop</p>
+                <div class="publication-links">
+                    <a href="https://openreview.net/forum?id=ekHAMI97qf" class="btn" target="_blank">OpenReview</a>
+                </div>
+                <div id="ma2024usinglargelanguagemodels" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('ma2024usinglargelanguagemodels-text')">Copy</button>
+                    <pre id="ma2024usinglargelanguagemodels-text">@inproceedings{ma2024usinglargelanguagemodels,
+  title={{Using Large Language Models for Humanitarian Frontline Negotiation: Opportunities and Considerations}},
+  author={Zilin Ma and Susannah Cheng Su and Nathan Zhao and Linn Bieske and Blake Bullwinkel and Jinglun Gao and Gekai Liao and Siyao Li and Ziqing Luo and Boxiang Wang and Zihan Wen and Yanrui Yang and Yanyi Zhang and Claude Bruderlein and Weiwei Pan},
+  booktitle={{ICML 2024 Next Generation of AI Safety Workshop}},
+  year={2024},
+  url={https://openreview.net/forum?id=ekHAMI97qf}
+}</pre>
                 </div>
             </div>
             
             <div class="publication-item">
-                <h3>Paper Title 2</h3>
-                <p class="authors">Co-author 1, Zilin Ma, Co-author 3</p>
-                <p class="venue">Conference/Journal Name, Year</p>
-                <p class="abstract">
-                    Abstract of the paper goes here. This should be a brief summary of the paper's content, 
-                    contributions, and findings. It should give readers a clear idea of what the paper is about 
-                    without going into too much detail.
-                </p>
+                <h3>
+                    Schrödinger's Update: User Perceptions of Uncertainties in Proprietary Large Language Model Updates
+                    <button class="citation-button" onclick="toggleCitation('ma2024llm')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors"><span class="me">Zilin Ma</span>, Yiyang Mei, Krzysztof Z. Gajos, Ian Arawjo</p>
+                <p class="venue">Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI EA '24)</p>
                 <div class="publication-links">
-                    <a href="#" class="btn">PDF</a>
-                    <a href="#" class="btn">Code</a>
-                    <a href="#" class="btn">Video</a>
-                    <a href="#" class="btn">Project Page</a>
-                    <a href="#" class="btn">DOI</a>
+                    <a href="https://doi.org/10.1145/3613905.3651100" class="btn" target="_blank">DOI</a>
+                </div>
+                <div id="ma2024llm" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('ma2024llm-text')">Copy</button>
+                    <pre id="ma2024llm-text">@inproceedings{ma2024llm,
+  title={{Schr{\"o}dinger's Update: User Perceptions of Uncertainties in Proprietary Large Language Model Updates}},
+  year={2024},
+  author={Ma, Zilin and Mei, Yiyang and Gajos, Krzysztof Z. and Arawjo, Ian},
+  booktitle={{Proceedings of the CHI Conference on Human Factors in Computing Systems}},
+  series={{CHI EA '24}},
+  address={{Honolulu, HI, USA}},
+  month={may},
+  date={11-16},
+  publisher={{ACM}},
+  doi={10.1145/3613905.3651100},
+  isbn={979-8-4007-0331-7},
+  location={{Honolulu, HI, USA}},
+  acmConference={{CHI EA '24}},
+  acmYear={2024},
+  note={{Extended Abstracts}},
+}</pre>
                 </div>
             </div>
             
             <div class="publication-item">
-                <h3>Paper Title 3</h3>
-                <p class="authors">Co-author 1, Co-author 2, Zilin Ma</p>
-                <p class="venue">Conference/Journal Name, Year</p>
-                <p class="abstract">
-                    Abstract of the paper goes here. This should be a brief summary of the paper's content, 
-                    contributions, and findings. It should give readers a clear idea of what the paper is about 
-                    without going into too much detail.
-                </p>
+                <h3>
+                    AffirmativeAI: Towards LGBTQ+ Friendly Audit Frameworks for Large Language Models
+                    <button class="citation-button" onclick="toggleCitation('long2024affirmativeailgbtqfriendlyaudit')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors">Yinru Long, <span class="me">Zilin Ma</span>, Yiyang Mei, Zhaoyuan Su</p>
+                <p class="venue">Workshop on Human-Centered Evaluation and Auditing of Language Models (HEAL) at CHI 2024</p>
                 <div class="publication-links">
-                    <a href="#" class="btn">PDF</a>
-                    <a href="#" class="btn">Code</a>
-                    <a href="#" class="btn">Video</a>
-                    <a href="#" class="btn">Project Page</a>
-                    <a href="#" class="btn">DOI</a>
+                    <a href="https://arxiv.org/abs/2405.04652" class="btn" target="_blank">arXiv</a>
+                </div>
+                <div id="long2024affirmativeailgbtqfriendlyaudit" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('long2024affirmativeailgbtqfriendlyaudit-text')">Copy</button>
+                    <pre id="long2024affirmativeailgbtqfriendlyaudit-text">@inproceedings{long2024affirmativeailgbtqfriendlyaudit,
+  title={{AffirmativeAI: Towards LGBTQ+ Friendly Audit Frameworks for Large Language Models}},
+  author={Yinru Long and Zilin Ma and Yiyang Mei and Zhaoyuan Su},
+  booktitle={{Workshop on Human-Centered Evaluation and Auditing of Language Models (HEAL) at CHI 2024}},
+  pages={},
+  year={2024},
+  organization={ACM},
+  url={https://arxiv.org/abs/2405.04652},
+}</pre>
                 </div>
             </div>
             
-            <!-- Add more publication items as needed -->
+            <div class="publication-item">
+                <h3>
+                    Evaluating the Experience of LGBTQ+ People Using Large Language Model Based Chatbots for Mental Health Support
+                    <button class="citation-button" onclick="toggleCitation('ma2024evaluating')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors"><span class="me">Zilin Ma</span>, Yiyang Mei, Yinru Long, Zhaoyuan Su, Krzysztof Z. Gajos</p>
+                <p class="venue">Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="ma2024evaluating" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('ma2024evaluating-text')">Copy</button>
+                    <pre id="ma2024evaluating-text">@inproceedings{ma2024evaluating,
+  title={{Evaluating the Experience of LGBTQ+ People Using Large Language Model Based Chatbots for Mental Health Support}},
+  author={Ma, Zilin and Mei, Yiyang and Long, Yinru and Su, Zhaoyuan and Gajos, Krzysztof Z.},
+  booktitle={{Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems}},
+  pages={{1--12}},
+  year={2024}
+}</pre>
+                </div>
+            </div>
+            
+            <!-- 2023 Publications -->
+            <h3 class="publication-year">2023</h3>
+            
+            <div class="publication-item">
+                <h3>
+                    Understanding the Benefits and Challenges of Using Large Language Model-Based Conversational Agents for Mental Well-being Support
+                    <button class="citation-button" onclick="toggleCitation('ma2023understanding')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors"><span class="me">Zilin Ma</span>, Yiyang Mei, Zhaoyuan Su</p>
+                <p class="venue">AMIA Annual Symposium Proceedings, Vol. 2023</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="ma2023understanding" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('ma2023understanding-text')">Copy</button>
+                    <pre id="ma2023understanding-text">@inproceedings{ma2023understanding,
+  title={{Understanding the Benefits and Challenges of Using Large Language Model-Based Conversational Agents for Mental Well-being Support}},
+  author={Ma, Zilin and Mei, Yiyang and Su, Zhaoyuan},
+  booktitle={{AMIA Annual Symposium Proceedings}},
+  volume={2023},
+  pages={{1105}},
+  year={2023},
+  organization={{American Medical Informatics Association}}
+}</pre>
+                </div>
+            </div>
+            
+            <!-- 2022 Publications -->
+            <h3 class="publication-year">2022</h3>
+            
+            <div class="publication-item">
+                <h3>
+                    Not Just a Preference: Reducing Biased Decision-Making on Dating Websites
+                    <button class="citation-button" onclick="toggleCitation('ma2022not')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors"><span class="me">Zilin Ma</span>, Krzysztof Z. Gajos</p>
+                <p class="venue">Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="ma2022not" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('ma2022not-text')">Copy</button>
+                    <pre id="ma2022not-text">@inproceedings{ma2022not,
+  title={{Not Just a Preference: Reducing Biased Decision-Making on Dating Websites}},
+  author={Ma, Zilin and Gajos, Krzysztof Z.},
+  booktitle={{Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems}},
+  pages={{1--14}},
+  year={2022}
+}</pre>
+                </div>
+            </div>
+            
+            <div class="publication-item">
+                <h3>
+                    Detecting Hotspots of Human-Wildlife Conflicts in India Using News Articles and Aerial Images
+                    <button class="citation-button" onclick="toggleCitation('egri2022detecting')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors">Gokhan Egri, Xinran Han, <span class="me">Zilin Ma</span>, Priyanka Surapaneni, Sunandan Chakraborty</p>
+                <p class="venue">ACM SIGCAS/SIGCHI Conference on Computing and Sustainable Societies (COMPASS)</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="egri2022detecting" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('egri2022detecting-text')">Copy</button>
+                    <pre id="egri2022detecting-text">@inproceedings{egri2022detecting,
+  title={{Detecting Hotspots of Human-Wildlife Conflicts in India Using News Articles and Aerial Images}},
+  author={Egri, Gokhan and Han, Xinran and Ma, Zilin and Surapaneni, Priyanka and Chakraborty, Sunandan},
+  booktitle={{ACM SIGCAS/SIGCHI Conference on Computing and Sustainable Societies (COMPASS)}},
+  pages={{375--385}},
+  year={2022}
+}</pre>
+                </div>
+            </div>
+            
+            <!-- 2021 Publications -->
+            <h3 class="publication-year">2021</h3>
+            
+            <div class="publication-item">
+                <h3>
+                    Learning Interpretable Fair Representations
+                    <button class="citation-button" onclick="toggleCitation('wang2021learning')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors">Tianhao Wang, Zana Buçinca, <span class="me">Zilin Ma</span></p>
+                <p class="venue">Technical report, Harvard University</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="wang2021learning" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('wang2021learning-text')">Copy</button>
+                    <pre id="wang2021learning-text">@techreport{wang2021learning,
+  title={{Learning Interpretable Fair Representations}},
+  author={Wang, Tianhao and Bu{\c{c}}inca, Zana and Ma, Zilin},
+  year={2021},
+  institution={{Technical report, Harvard University}}
+}</pre>
+                </div>
+            </div>
+            
+            <div class="publication-item">
+                <h3>
+                    Classifying and Analysing Human-Wildlife Conflicts in India Using News Articles
+                    <button class="citation-button" onclick="toggleCitation('egri2021classifying')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors">Gokhan Egri, Xinran Han, <span class="me">Zilin Ma</span>, Sunandan Chakraborty</p>
+                <p class="venue">EasyChair Preprint, No. 5898</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="egri2021classifying" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('egri2021classifying-text')">Copy</button>
+                    <pre id="egri2021classifying-text">@article{egri2021classifying,
+  title={{Classifying and Analysing Human--Wildlife Conflicts in India Using News Articles}},
+  author={Egri, Gokhan and Han, Xinran and Ma, Zilin and Chakraborty, Sunandan},
+  journal={{EasyChair Preprint}},
+  number={5898},
+  year={2021}
+}</pre>
+                </div>
+            </div>
+            
+            <!-- 2019 Publications -->
+            <h3 class="publication-year">2019</h3>
+            
+            <div class="publication-item">
+                <h3>
+                    Conservation of Procrastination: Do Productivity Interventions Save Time or Just Redistribute It?
+                    <button class="citation-button" onclick="toggleCitation('kovacs2019conservation')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors">Geza Kovacs, Drew Mylander Gregory, <span class="me">Zilin Ma</span>, Zhengxuan Wu, Golrokh Emami, Jacob Ray, Michael S. Bernstein</p>
+                <p class="venue">Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="kovacs2019conservation" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('kovacs2019conservation-text')">Copy</button>
+                    <pre id="kovacs2019conservation-text">@inproceedings{kovacs2019conservation,
+  title={{Conservation of Procrastination: Do Productivity Interventions Save Time or Just Redistribute It?}},
+  author={Kovacs, Geza and Gregory, Drew Mylander and Ma, Zilin and Wu, Zhengxuan and Emami, Golrokh and Ray, Jacob and Bernstein, Michael S.},
+  booktitle={{Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems}},
+  pages={{1--12}},
+  year={2019}
+}</pre>
+                </div>
+            </div>
+            
+            <div class="publication-item">
+                <h3>
+                    Ethical Considerations of Facial Classification: Reducing Racial Bias in AI
+                    <button class="citation-button" onclick="toggleCitation('angileri2019ethical')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors">John Angileri, Matt Brown, Joseph DiPalma, <span class="me">Zilin Ma</span>, Christopher L. Dancy</p>
+                <p class="venue">Retrieved February, Vol. 21</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="angileri2019ethical" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('angileri2019ethical-text')">Copy</button>
+                    <pre id="angileri2019ethical-text">@article{angileri2019ethical,
+  title={{Ethical Considerations of Facial Classification: Reducing Racial Bias in AI}},
+  author={Angileri, John and Brown, Matt and DiPalma, Joseph and Ma, Zilin and Dancy, Christopher L.},
+  journal={{Retrieved February}},
+  volume={21},
+  pages={2020},
+  year={2019}
+}</pre>
+                </div>
+            </div>
+            
+            <!-- 2018 Publications -->
+            <h3 class="publication-year">2018</h3>
+            
+            <div class="publication-item">
+                <h3>
+                    Ventricular Segmentation and Quantitative Assessment in Cardiac MR Using Convolutional Neural Networks
+                    <button class="citation-button" onclick="toggleCitation('stough2018ventricular')">
+                        <i class="fas fa-quote-right"></i>
+                    </button>
+                </h3>
+                <p class="authors">Joshua V Stough, Joseph DiPalma, <span class="me">Zilin Ma</span>, Brandon K Fornwalt, Christopher M. Haggerty</p>
+                <p class="venue">Medical Imaging 2018: Biomedical Applications in Molecular, Structural, and Functional Imaging, Vol. 10578</p>
+                <div class="publication-links">
+                    <!-- Add links when available -->
+                </div>
+                <div id="stough2018ventricular" class="hidden-citation">
+                    <button class="copy-button" onclick="copyCitation('stough2018ventricular-text')">Copy</button>
+                    <pre id="stough2018ventricular-text">@inproceedings{stough2018ventricular,
+  title={{Ventricular Segmentation and Quantitative Assessment in Cardiac MR Using Convolutional Neural Networks}},
+  author={Stough, Joshua V and DiPalma, Joseph and Ma, Zilin and Fornwalt, Brandon K and Haggerty, Christopher M.},
+  booktitle={{Medical Imaging 2018: Biomedical Applications in Molecular, Structural, and Functional Imaging}},
+  volume={10578},
+  pages={{521--527}},
+  year={2018},
+  organization={{SPIE}}
+}</pre>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -93,5 +474,36 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        function toggleCitation(id) {
+            const citation = document.getElementById(id);
+            if (citation.style.display === "block") {
+                citation.style.display = "none";
+            } else {
+                // Hide all other citations
+                const allCitations = document.getElementsByClassName("hidden-citation");
+                for (let i = 0; i < allCitations.length; i++) {
+                    allCitations[i].style.display = "none";
+                }
+                citation.style.display = "block";
+            }
+        }
+        
+        function copyCitation(id) {
+            const text = document.getElementById(id).textContent;
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    const copyButton = document.querySelector(`#${id}`).previousElementSibling;
+                    const originalText = copyButton.textContent;
+                    copyButton.textContent = "Copied!";
+                    setTimeout(() => {
+                        copyButton.textContent = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Error copying text: ', err);
+                });
+        }
+    </script>
 </body>
 </html> 
