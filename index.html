@@ -38,7 +38,7 @@
                     <p>My work spans using LLMs for humanitarian negotiation, evaluating AI mental health support, and reducing bias in online platforms. I received the AMIA Best Student Paper Finalist award for my research on LLM chatbots for mental well-being.</p>
                     
                     <div class="contact-info">
-                        <p><i class="fas fa-graduation-cap"></i> Ph.D. Candidate in Computer Science</p>
+                        <p><i class="fas fa-graduation-cap"></i> Ph.D. in Computer Science</p>
                         <p><i class="fas fa-university"></i> Harvard University, School of Engineering and Applied Sciences (SEAS)</p>
                         <p><i class="fas fa-map-marker-alt"></i> Cambridge, MA</p>
                         <p><i class="fas fa-envelope"></i> zilinma@g.harvard.edu</p>
@@ -60,7 +60,9 @@
             <div class="project-grid">
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/projects/negotiation.png" alt="AI for Humanitarian Negotiations">
+                        <a href="projects/humanitarian.html">
+                            <img src="images/projects/negotiation.png" alt="AI for Humanitarian Negotiations">
+                        </a>
                     </div>
                     <div class="project-info">
                         <h3><i class="fas fa-handshake"></i> AI for Humanitarian Negotiations</h3>
@@ -76,7 +78,9 @@
                 </div>
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/projects/lgbtq+_mental_health.png" alt="LLMs for Mental Health Support">
+                        <a href="projects/mental-health.html">
+                            <img src="images/projects/lgbtq+_mental_health.png" alt="LLMs for Mental Health Support">
+                        </a>
                     </div>
                     <div class="project-info">
                         <h3><i class="fas fa-brain"></i> LLMs for Mental Health Support</h3>
@@ -91,7 +95,9 @@
                 </div>
                 <div class="project-tile">
                     <div class="project-image">
-                        <img src="images/projects/datingwebsite.png" alt="Reducing Bias in Online Platforms">
+                        <a href="projects/bias-reduction.html">
+                            <img src="images/projects/datingwebsite.png" alt="Reducing Bias in Online Platforms">
+                        </a>
                     </div>
                     <div class="project-info">
                         <h3><i class="fas fa-balance-scale"></i> Reducing Bias in Online Platforms</h3>
@@ -152,5 +158,25 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // Fix animation issues with contact info and social icons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation-visible class to elements after their animation completes
+            const contactInfo = document.querySelector('.contact-info');
+            const socialLinks = document.querySelector('.social-links');
+            
+            if (contactInfo) {
+                setTimeout(function() {
+                    contactInfo.classList.add('animation-visible');
+                }, 1300); // Animation duration + delay
+            }
+            
+            if (socialLinks) {
+                setTimeout(function() {
+                    socialLinks.classList.add('animation-visible');
+                }, 1300); // Animation duration + delay
+            }
+        });
+    </script>
 </body>
 </html> 
