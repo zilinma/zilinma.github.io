@@ -191,8 +191,8 @@
         
         .sketch-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             margin: 25px 0;
         }
         
@@ -208,10 +208,12 @@
         }
         
         .sketch-caption {
-            padding: 10px;
+            padding: 15px;
             background-color: #f8f8f8;
             font-style: italic;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
         }
         
         /* Project Roadmap Navigation Styles */
@@ -308,6 +310,11 @@
                 width: 40px;
                 right: -20px;
             }
+            
+            .sketch-gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
     </style>
 </head>
@@ -373,8 +380,9 @@
                         </p>
                     </div>
                     <div>
-                        <div class="image-placeholder">
-                            <p>PLACEHOLDER: Image showing humanitarian negotiators in the field or working context</p>
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <img src="../images/humanitarian/negotiator-fieldwork.png" alt="Humanitarian negotiators in the field" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            <p style="margin-top: 10px; text-align: center; font-style: italic; font-size: 0.85rem; color: #666;">Liesbeth Aelbrecht visited an MSF team working in the General Rural Hospital of Dhi As Sufal district in the south of Ibb Governorate, in Yemen. (Photo: MSF/Majd Aljunaid) <a href="https://frontline-negotiations.org/blog/female-negotiators-need-more-recognition-and-opportunities-2" target="_blank">Source</a></p>
                         </div>
                     </div>
                 </div>
@@ -489,8 +497,11 @@
                         </ul>
                     </div>
                     <div>
-                        <div class="image-placeholder">
-                            <p>PLACEHOLDER: Screenshot of the interface architecture showing component relationships</p>
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <a href="../images/humanitarian/prompt-flow.png" target="_blank">
+                                <img src="../images/humanitarian/prompt-flow.png" alt="Interface architecture showing component relationships" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            </a>
+                            <p style="margin-top: 10px; text-align: center; font-style: italic; font-size: 0.85rem; color: #666;">Click to view full image</p>
                         </div>
                     </div>
                 </div>
@@ -512,24 +523,25 @@
                 
                 <div class="sketch-gallery">
                     <div class="sketch-item">
-                        <div class="image-placeholder">
-                            <p>PLACEHOLDER: Sketch of Iceberg CSS builder</p>
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <a href="../images/humanitarian/analysis_page.png" target="_blank">
+                                <img src="../images/humanitarian/analysis_page.png" alt="Workflow of the negotiation interface" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            </a>
                         </div>
-                        <div class="sketch-caption">Wireframe exploring the Iceberg CSS framework interaction</div>
+                        <div class="sketch-caption">
+                            At the left, the user can input the case file, and the negotiation parties. Then the probe will generate Islands of Agreement, Iceberg CSS, and Components. The user can choose to inspect the generated content (for example in box B) in markdown format, and modify in a text box (for example in box A).
+                        </div>
                     </div>
                     
                     <div class="sketch-item">
-                        <div class="image-placeholder">
-                            <p>PLACEHOLDER: Sketch of Red Line/Bottom Line spectrum</p>
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <a href="../images/humanitarian/risk_analysis.png" target="_blank">
+                                <img src="../images/humanitarian/risk_analysis.png" alt="Red Line/Bottom Line spectrum" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            </a>
                         </div>
-                        <div class="sketch-caption">Low-fidelity sketch of the Red Line/Bottom Line mapping tool</div>
-                    </div>
-                    
-                    <div class="sketch-item">
-                        <div class="image-placeholder">
-                            <p>PLACEHOLDER: Sketch of editable case summary interface</p>
+                        <div class="sketch-caption">
+                            Overview of the red line and bottom line interface. Panel E shows the red line and bottom line of the negotiation party that the user represents. The two boxes on the right show the red line and the bottom line of the counterparty. Panel F shows one of the scenarios or outcomes that the negotiator decides on. The outcomes are listed such that, from the right to the left, there is an increasing amount of risk of negotiation failure as the outcome crosses the bottom line and the red line of the party that the user represents. After selecting the scenario, the user can generate a risk assessment for this selection through button Ga, and show a risk matrix in Gb.
                         </div>
-                        <div class="sketch-caption">Wireframe for the editable case summary interface</div>
                     </div>
                 </div>
                 
@@ -539,7 +551,7 @@
                 
                 <h3 id="results">Final Design & Key Findings</h3>
                 
-                <div class="two-column">
+                <div class="two-column" id="results">
                     <div>
                         <h4>Probe Design Implementation</h4>
                         <ul>
@@ -555,15 +567,6 @@
                             <li>Novices gained structure while experts retained flexibility</li>
                             <li>The interface reduced bias and encouraged team-based validation</li>
                         </ul>
-                    </div>
-                    <div>
-                        <div class="image-placeholder">
-                            <p>PLACEHOLDER: Graph comparing perceived control: ChatGPT vs Probe</p>
-                        </div>
-                        
-                        <div class="image-placeholder">
-                            <p>PLACEHOLDER: Bar chart: Negotiator satisfaction by experience level</p>
-                        </div>
                     </div>
                 </div>
 
