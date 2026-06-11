@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zilin Ma</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◢</text></svg>">
+    <title>Zilin Ma, Ph.D. | Human-Centered AI Researcher</title>
+    <meta name="description" content="Zilin Ma is a postdoctoral researcher at the Harvard Business School AI Institute studying human-centered AI for humanitarian negotiation, mental health, and equitable platforms.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <canvas id="fun-canvas"></canvas>
+
     <header>
         <div class="container">
-            <h1 class="name">Zilin Ma</h1>
-            <nav>
+            <a href="index.html" class="logo">Zilin Ma<span class="dot">.</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav class="nav-menu">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="cv.html">CV</a></li>
+                    <li><a href="portfolio.html">Research</a></li>
                     <li><a href="publications.html">Publications</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="cv.html">CV</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -30,153 +38,201 @@
     <section class="hero">
         <div class="container">
             <div class="profile-section">
-                <div class="profile-photo">
-                    <img src="images/profile.jpeg" alt="Zilin Ma" id="profile-img">
-                </div>
-                <div class="profile-info">
-                    <p>I design intelligent systems to address social challenges faced by vulnerable populations. My research creates socio-technical solutions that amplify positive social forces and align with user intentions for lasting impact.</p>
-                    <p>My work spans using LLMs for humanitarian negotiation, evaluating AI mental health support, and reducing bias in online platforms. I received the AMIA Best Student Paper Finalist award for my research on LLM chatbots for mental well-being.</p>
-                    
-                    <div class="contact-info">
-                        <p><i class="fas fa-graduation-cap"></i> Ph.D. in Computer Science</p>
-                        <p><i class="fas fa-university"></i> Harvard University, School of Engineering and Applied Sciences (SEAS)</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Cambridge, MA</p>
-                        <p><i class="fas fa-envelope"></i> zilinma@g.harvard.edu</p>
+                <div class="profile-content">
+                    <span class="greeting">Hello, I'm</span>
+                    <h1 class="name">Zilin Ma, Ph.D.</h1>
+                    <p class="tagline">Designing <span class="highlight">human-centered AI</span> for <span class="rotating" data-words='["humanitarian negotiation","mental health support","equitable platforms","social good"]'>social good</span></p>
+
+                    <div class="bio-text">
+                        <p>I am a Postdoctoral Researcher at the <a href="https://aiinstitute.hbs.edu/" target="_blank" rel="noopener">Harvard Business School AI Institute</a> (formerly the D³ Institute), where I work with Jacqueline N. Lane, Shai Bernstein, and Karim R. Lakhani. I received my Ph.D. in Computer Science from Harvard SEAS in 2025, advised by Prof. Krzysztof Gajos. My research designs intelligent systems that address social challenges faced by vulnerable populations — creating socio-technical solutions that amplify positive social forces and preserve human agency.</p>
+                        <p class="sub-bio">My work spans LLMs for humanitarian frontline negotiation (deployed with negotiators from the UN, ICRC, and MSF), evaluating AI chatbots for mental health support in LGBTQ+ communities, and interface designs that reduce implicit bias on online platforms. I was an AMIA Best Student Paper Finalist for my research on LLM chatbots for mental well-being.</p>
                     </div>
-                    
+
+                    <div class="contact-info">
+                        <div class="info-item"><i class="fas fa-flask"></i> <span>Postdoc · HBS AI Institute</span></div>
+                        <div class="info-item"><i class="fas fa-graduation-cap"></i> <span>Ph.D. CS · Harvard '25</span></div>
+                        <div class="info-item"><i class="fas fa-map-marker-alt"></i> <span>Cambridge, MA</span></div>
+                        <div class="info-item"><i class="fas fa-envelope"></i> <span>zilinma@g.harvard.edu</span></div>
+                    </div>
+
                     <div class="social-links">
-                        <a href="https://github.com/zilinma" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/zilin-m-3b08b6118/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://scholar.google.com/citations?user=f85sjDgAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://github.com/zilinma" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/zilin-m-3b08b6118/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://scholar.google.com/citations?user=f85sjDgAAAAJ&hl=en" target="_blank" rel="noopener" class="social-btn" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="mailto:zilinma@g.harvard.edu" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="profile-visual">
+                    <div class="image-wrapper">
+                        <img src="images/profile.jpeg" alt="Portrait of Zilin Ma" id="profile-img">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="featured-projects">
+
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>Human-Computer Interaction</span>
+            <span>Large Language Models</span>
+            <span>Humanitarian Negotiation</span>
+            <span>Mental Health</span>
+            <span>AI Safety</span>
+            <span>Social Computing</span>
+            <span>Bias Reduction</span>
+            <span>Human-Computer Interaction</span>
+            <span>Large Language Models</span>
+            <span>Humanitarian Negotiation</span>
+            <span>Mental Health</span>
+            <span>AI Safety</span>
+            <span>Social Computing</span>
+            <span>Bias Reduction</span>
+        </div>
+    </div>
+
+    <section class="featured-projects" id="projects">
         <div class="container">
-            <h2>Featured Projects</h2>
+            <div class="section-header">
+                <h2>Featured Research</h2>
+                <p>Bridging technology and humanity</p>
+            </div>
             <div class="project-grid">
                 <div class="project-tile">
                     <div class="project-image">
                         <a href="projects/humanitarian.html">
                             <img src="images/projects/negotiation.png" alt="AI for Humanitarian Negotiations">
+                            <div class="overlay">
+                                <span>View Project</span>
+                            </div>
                         </a>
                     </div>
                     <div class="project-info">
-                        <h3><i class="fas fa-handshake"></i> AI for Humanitarian Negotiations</h3>
-                        <p>LLM-powered tools that enhance humanitarian negotiators' expertise in crisis zones.</p>
-                        <ul>
-                            <li>Support established practices</li>
-                            <li>Contextualize information</li>
-                            <li>Enable validation processes</li>
-                        </ul>
-                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Field studies, interviews with frontline negotiators, design probing, prototype testing</p>
-                        <a href="projects/humanitarian.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
+                        <div class="category"><i class="fas fa-handshake"></i> Humanitarian AI</div>
+                        <h3>AI for Humanitarian Negotiations</h3>
+                        <p>LLM-powered tools that enhance humanitarian negotiators' expertise in crisis zones — designed with and deployed to negotiators from the UN, ICRC, and MSF.</p>
+                        <div class="tags">
+                            <span>LLMs</span>
+                            <span>Field Studies</span>
+                            <span>CHIWORK 2025</span>
+                        </div>
+                        <a href="projects/humanitarian.html" class="btn-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-tile">
                     <div class="project-image">
                         <a href="projects/mental-health.html">
                             <img src="images/projects/lgbtq+_mental_health.png" alt="LLMs for Mental Health Support">
+                             <div class="overlay">
+                                <span>View Project</span>
+                            </div>
                         </a>
                     </div>
                     <div class="project-info">
-                        <h3><i class="fas fa-brain"></i> LLMs for Mental Health Support</h3>
-                        <p>Investigating LLM chatbots for mental health support, particularly for LGBTQ+ individuals.</p>
-                        <ul>
-                            <li>Benefits: accessibility, non-judgment</li>
-                            <li>Challenges: harmful advice, unreliable support</li>
-                        </ul>
-                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Qualitative analysis of user experiences, interviews, comparative evaluation with therapy principles</p>
-                        <a href="projects/mental-health.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
+                        <div class="category"><i class="fas fa-brain"></i> Mental Health</div>
+                        <h3>LLMs for Mental Health Support</h3>
+                        <p>Investigating how people — especially LGBTQ+ individuals — use LLM chatbots for emotional support, and what that means for safe, affirming design.</p>
+                        <div class="tags">
+                            <span>Qualitative Methods</span>
+                            <span>CHI 2024</span>
+                            <span>AMIA Finalist</span>
+                        </div>
+                        <a href="projects/mental-health.html" class="btn-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="project-tile">
                     <div class="project-image">
                         <a href="projects/bias-reduction.html">
                             <img src="images/projects/datingwebsite.png" alt="Reducing Bias in Online Platforms">
+                             <div class="overlay">
+                                <span>View Project</span>
+                            </div>
                         </a>
                     </div>
                     <div class="project-info">
-                        <h3><i class="fas fa-balance-scale"></i> Reducing Bias in Online Platforms</h3>
-                        <p>Designing interfaces that reduce implicit racial bias in dating platforms.</p>
-                        <ul>
-                            <li>"Neutral" design choices can amplify racial bias</li>
-                            <li>Cognitive forcing functions mitigate these biases</li>
-                        </ul>
-                        <p><strong><i class="fas fa-microscope"></i> Methods:</strong> Online experiments, interface design, analysis of decision patterns</p>
-                        <a href="projects/bias-reduction.html" class="btn"><i class="fas fa-eye"></i> View Project</a>
+                        <div class="category"><i class="fas fa-balance-scale"></i> Social Computing</div>
+                        <h3>Reducing Bias in Online Platforms</h3>
+                        <p>Interface designs that reduce implicit racial bias on dating platforms using cognitive forcing functions, validated in a 1,907-participant experiment.</p>
+                        <div class="tags">
+                            <span>Experiments</span>
+                            <span>UI Design</span>
+                            <span>CHI 2022</span>
+                        </div>
+                        <a href="projects/bias-reduction.html" class="btn-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <!-- More project tiles will go here -->
             </div>
-            <a href="portfolio.html" class="view-all"><i class="fas fa-arrow-right"></i> View All Projects</a>
+            <div class="center-btn">
+                <a href="portfolio.html" class="view-all-btn">View All Research</a>
+            </div>
         </div>
     </section>
-    
+
     <section class="recent-publications">
         <div class="container">
-            <h2>Recent Publications</h2>
+            <div class="section-header">
+                <h2>Selected Publications</h2>
+                <p>Contributions to the scientific community</p>
+            </div>
             <div class="publication-preview">
                 <div class="publication-item">
-                    <h3><i class="fas fa-file-alt"></i> "ChatGPT, Don't Tell Me What to Do": Designing AI for Context Analysis in Humanitarian Frontline Negotiations</h3>
-                    <p class="authors"><i class="fas fa-users"></i> <span class="me">Zilin Ma</span>, Yiyang Mei, Claude Bruderlein, Krzysztof Z. Gajos, Weiwei Pan</p>
-                    <p class="venue"><i class="fas fa-university"></i> Proceedings of the 4th Symposium on Human-Computer Interaction for Work (CHIWORK), 2025</p>
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2410.09139" target="_blank" data-tooltip="View paper on arXiv"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                    <div class="pub-icon"><i class="fas fa-scroll"></i></div>
+                    <div class="pub-content">
+                        <h3>"ChatGPT, Don't Tell Me What to Do": Designing AI for Context Analysis in Humanitarian Frontline Negotiations</h3>
+                        <p class="authors"><span class="me">Zilin Ma</span>, Yiyang Mei, Claude Bruderlein, Krzysztof Z. Gajos, Weiwei Pan</p>
+                        <p class="venue">Proceedings of the 4th Symposium on Human-Computer Interaction for Work (CHIWORK), 2025</p>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1145/3729176.3729194" target="_blank" rel="noopener" class="pill-btn"><i class="fas fa-external-link-alt"></i> DOI</a>
+                            <a href="https://arxiv.org/abs/2410.09139" target="_blank" rel="noopener" class="pill-btn"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="publication-item">
-                    <h3><i class="fas fa-file-alt"></i> Using Large Language Models for Humanitarian Frontline Negotiation: Opportunities and Considerations</h3>
-                    <p class="authors"><i class="fas fa-users"></i> <span class="me">Zilin Ma</span>, Susannah Cheng Su, et al.</p>
-                    <p class="venue"><i class="fas fa-university"></i> ICML 2024 Next Generation of AI Safety Workshop</p>
-                    <div class="publication-links">
-                        <a href="https://openreview.net/forum?id=ekHAMI97qf" target="_blank" data-tooltip="Read on OpenReview"><i class="fas fa-external-link-alt"></i> OpenReview</a>
+                    <div class="pub-icon"><i class="fas fa-heart"></i></div>
+                    <div class="pub-content">
+                        <h3>Evaluating the Experience of LGBTQ+ People Using Large Language Model Based Chatbots for Mental Health Support</h3>
+                        <p class="authors"><span class="me">Zilin Ma</span>, Yiyang Mei, Yinru Long, Zhaoyuan Su, Krzysztof Z. Gajos</p>
+                        <p class="venue">Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI '24)</p>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1145/3613904.3642482" target="_blank" rel="noopener" class="pill-btn"><i class="fas fa-external-link-alt"></i> DOI</a>
+                            <a href="https://arxiv.org/abs/2402.09260" target="_blank" rel="noopener" class="pill-btn"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="publication-item">
-                    <h3><i class="fas fa-file-alt"></i> Schrödinger's Update: User Perceptions of Uncertainties in Proprietary Large Language Model Updates</h3>
-                    <p class="authors"><i class="fas fa-users"></i> <span class="me">Zilin Ma</span>, Yiyang Mei, Krzysztof Z. Gajos, Ian Arawjo</p>
-                    <p class="venue"><i class="fas fa-university"></i> Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI EA '24)</p>
-                    <div class="publication-links">
-                        <a href="https://doi.org/10.1145/3613905.3651100" target="_blank" data-tooltip="Access via DOI"><i class="fas fa-external-link-alt"></i> DOI</a>
+                    <div class="pub-icon"><i class="fas fa-brain"></i></div>
+                    <div class="pub-content">
+                        <span class="award-badge"><i class="fas fa-medal"></i> Best Student Paper Finalist</span>
+                        <h3>Understanding the Benefits and Challenges of Using Large Language Model-Based Conversational Agents for Mental Well-being Support</h3>
+                        <p class="authors"><span class="me">Zilin Ma</span>, Yiyang Mei, Zhaoyuan Su</p>
+                        <p class="venue">AMIA Annual Symposium Proceedings, 2023</p>
+                        <div class="publication-links">
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10785945/" target="_blank" rel="noopener" class="pill-btn"><i class="fas fa-external-link-alt"></i> PMC</a>
+                            <a href="https://arxiv.org/abs/2307.15810" target="_blank" rel="noopener" class="pill-btn"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <a href="publications.html" class="view-all"><i class="fas fa-arrow-right"></i> View All Publications</a>
+            <div class="center-btn">
+                <a href="publications.html" class="view-all-btn">View All Publications</a>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; Zilin Ma</p>
+            <div class="footer-content">
+                <div class="footer-logo">Zilin Ma<span class="dot">.</span></div>
+                <div class="footer-links">
+                    <a href="mailto:zilinma@g.harvard.edu">Get in Touch</a>
+                    <a href="files/ZilinMa_CV.pdf">Download CV</a>
+                </div>
+                <p>&copy; <span class="footer-year">2026</span> Zilin Ma. Built with 🧠 &amp; 💻.</p>
+            </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        // Fix animation issues with contact info and social icons
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add animation-visible class to elements after their animation completes
-            const contactInfo = document.querySelector('.contact-info');
-            const socialLinks = document.querySelector('.social-links');
-            
-            if (contactInfo) {
-                setTimeout(function() {
-                    contactInfo.classList.add('animation-visible');
-                }, 1300); // Animation duration + delay
-            }
-            
-            if (socialLinks) {
-                setTimeout(function() {
-                    socialLinks.classList.add('animation-visible');
-                }, 1300); // Animation duration + delay
-            }
-        });
-    </script>
 </body>
-</html> 
+</html>

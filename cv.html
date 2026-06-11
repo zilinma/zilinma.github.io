@@ -3,55 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Zilin Ma</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◢</text></svg>">
+    <title>CV | Zilin Ma</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .cv-section ul {
-            margin-left: 20px;
-        }
-        
-        .cv-item ul li {
-            margin-bottom: 8px;
-        }
-        
-        .cv-item a {
-            text-decoration: underline;
-        }
-        
-        .date {
-            font-weight: 600;
-        }
-        
-        .recognition {
-            font-style: italic;
-            margin-top: 8px;
-            color: #666;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body class="cv-page">
+<body>
+    <canvas id="fun-canvas"></canvas>
+
     <header>
         <div class="container">
-            <h1 class="name">Zilin Ma</h1>
-            <nav>
+            <a href="index.html" class="logo">Zilin Ma<span class="dot">.</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav class="nav-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="cv.html" class="active">CV</a></li>
+                    <li><a href="portfolio.html">Research</a></li>
                     <li><a href="publications.html">Publications</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="cv.html" class="active">CV</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow">Curriculum Vitae</span>
+            <h1>Zilin Ma, Ph.D.</h1>
+            <p class="lede">Postdoctoral Researcher at the Harvard Business School AI Institute (formerly the Digital Data Design (D³) Institute). Ph.D. in Computer Science, Harvard University. <a href="files/ZilinMa_CV.pdf" download>Download the full CV (PDF)</a>.</p>
+        </div>
+    </section>
+
     <main class="container">
         <div class="cv-container">
+            <div class="cv-section">
+                <h3><i class="fas fa-briefcase"></i> Appointments</h3>
+                <div class="cv-item">
+                    <h4>Postdoctoral Researcher</h4>
+                    <div class="date"><i class="far fa-calendar-alt"></i> 2025 - Present</div>
+                    <p>Harvard Business School AI Institute (formerly D³ Institute), Boston, MA</p>
+                    <p><i class="fas fa-user-tie"></i> Working with Jacqueline N. Lane, Shai Bernstein, and Karim R. Lakhani</p>
+                    <p>Research on human-AI collaboration in high-stakes professional work, including AI-assisted negotiation.</p>
+                </div>
+            </div>
+
             <div class="cv-section">
                 <h3><i class="fas fa-graduation-cap"></i> Education</h3>
                 <div class="cv-item">
@@ -59,6 +62,7 @@
                     <div class="date"><i class="far fa-calendar-alt"></i> 2019 - 2025</div>
                     <p>Harvard University, School of Engineering and Applied Sciences (SEAS), Cambridge, MA</p>
                     <p><i class="fas fa-user-tie"></i> Advisor: Prof. Krzysztof Gajos</p>
+                    <p><i class="fas fa-book"></i> Dissertation: Designing intelligent systems that address social challenges faced by vulnerable populations</p>
                 </div>
                 <div class="cv-item">
                     <h4><i class="fas fa-university"></i> B.Sc. in Computer Science, B.A. in Physics (Magna Cum Laude)</h4>
@@ -66,128 +70,131 @@
                     <p>Bucknell University, Lewisburg, PA</p>
                 </div>
             </div>
-            
+
             <div class="cv-section">
-                <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                <h3><i class="fas fa-flask"></i> Research Experience</h3>
                 <div class="cv-item">
-                    <h4><i class="fas fa-flask"></i> Researcher</h4>
+                    <h4><i class="fas fa-handshake"></i> Researcher</h4>
                     <div class="date"><i class="far fa-calendar-alt"></i> Jan 2023 - Present</div>
                     <p>Frontline Associates</p>
                     <ul>
-                        <li><i class="fas fa-chart-line"></i> Conducted a formative study with 30+ humanitarian and crisis negotiators to identify challenges in using ChatGPT for document summarization and knowledge sharing, resulting in a first-author publication presented at ICML Next Generation of AI Safety Workshop 2024.</li>
-                        <li><i class="fas fa-drafting-compass"></i> Designed and implemented an LLM-based interface that enhanced efficiency in humanitarian negotiation workflows. Comparative studies demonstrated an improvement in facilitator efficiency over ChatGPT, addressing key concerns such as risk assessments and alternative solution generation. Results published at CHIWORK 2025.</li>
-                        <li><i class="fas fa-users"></i> Organized and led AI-focused workshops on frontline negotiation, the first of their kind. These workshops engaged over 100 global negotiators and were adopted by organizations including ICRC, UN, BMZ, and MSF, facilitating the integration of research insights into practical applications.</li>
-                        <li><i class="fas fa-trophy"></i> Organized the first Harvard Negotiation Challenge with over 100 global negotiators simulating using LLM chatbots for negotiation.</li>
+                        <li><i class="fas fa-chart-line"></i> Conducted a formative study with 30+ humanitarian and crisis negotiators to identify challenges in using ChatGPT for document summarization and knowledge sharing, resulting in a first-author publication at the ICML 2024 Next Generation of AI Safety Workshop.</li>
+                        <li><i class="fas fa-drafting-compass"></i> Designed and implemented an LLM-based interface that enhanced efficiency in humanitarian negotiation workflows. Comparative studies demonstrated an improvement in facilitator efficiency over ChatGPT, addressing key concerns such as risk assessments and alternative solution generation. Published at CHIWORK 2025.</li>
+                        <li><i class="fas fa-users"></i> Organized and led AI-focused workshops on frontline negotiation, the first of their kind, engaging over 100 global negotiators; adopted by organizations including the ICRC, UN, BMZ, and MSF.</li>
+                        <li><i class="fas fa-trophy"></i> Organized the first Harvard Negotiation Challenge, with over 100 global negotiators simulating negotiation with LLM chatbots.</li>
                     </ul>
                 </div>
                 <div class="cv-item">
-                    <h4>CTO & Founding Engineer</h4>
-                    <div class="date">May 2022 - May 2023</div>
+                    <h4>CTO &amp; Founding Engineer</h4>
+                    <div class="date"><i class="far fa-calendar-alt"></i> May 2022 - May 2023</div>
                     <p>Sumeria Labs</p>
                     <ul>
                         <li>Spearheaded the design and development of an NFT lending protocol, collaborating with the CEO to optimize user experience.</li>
-                        <li>Directed a comprehensive security audit with CertiK, successfully mitigating all identified vulnerabilities and ensuring the protocol met top-tier security standards.</li>
-                        <li>Integrated traditional banking models into Web3, enabling secure and permissionless NFT loan origination, thereby bridging conventional finance with decentralized platforms.</li>
-                        <li>Automated collateral liquidation processes on AWS, enhancing protocol efficiency and ensuring robust security during defaults or market fluctuations.</li>
+                        <li>Directed a comprehensive security audit with CertiK, mitigating all identified vulnerabilities and ensuring the protocol met top-tier security standards.</li>
+                        <li>Integrated traditional banking models into Web3, enabling secure and permissionless NFT loan origination.</li>
+                        <li>Automated collateral liquidation processes on AWS, enhancing protocol efficiency during defaults and market fluctuations.</li>
                     </ul>
                 </div>
                 <div class="cv-item">
                     <h4>Research Intern, HCI Group</h4>
-                    <div class="date">May 2018 - Jan 2019</div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> May 2018 - Jan 2019</div>
                     <p>Stanford University</p>
                     <ul>
-                        <li>Assessed the effectiveness of <a href="https://habitlab.stanford.edu/" target="_blank">HabitLab</a> by analyzing user behavioral data, culminating in a publication presented at CHI 2019.</li>
+                        <li>Assessed the effectiveness of <a href="https://habitlab.stanford.edu/" target="_blank" rel="noopener">HabitLab</a> by analyzing user behavioral data, culminating in a publication at CHI 2019.</li>
                         <li>Engineered behavioral coaching mechanisms utilizing neural networks and multi-armed bandit algorithms.</li>
                         <li>Conducted A/B tests to evaluate intervention strategies, leading to data-driven enhancements in HabitLab's approach to user engagement and productivity.</li>
                     </ul>
                 </div>
                 <div class="cv-item">
                     <h4>Research Intern, Imaging Science and Innovation</h4>
-                    <div class="date">May 2016 - May 2017</div>
+                    <div class="date"><i class="far fa-calendar-alt"></i> May 2016 - May 2017</div>
                     <p>Geisinger Health System</p>
                     <ul>
-                        <li>Developed a convolutional neural network (CNN) using TensorFlow to automatically segment heart substructures in Cardiac Magnetic Resonance images, achieving a 97% Dice coefficient on a dataset of 50 patients, demonstrating compatibility with manual segmentation.</li>
-                        <li>Created interactive data visualizations to effectively communicate research findings to the public and stakeholders, enhancing transparency and understanding of advanced medical imaging techniques.</li>
+                        <li>Developed a convolutional neural network using TensorFlow to automatically segment heart substructures in cardiac MR images, achieving a 97% Dice coefficient on a dataset of 50 patients.</li>
+                        <li>Created interactive data visualizations to communicate research findings to the public and stakeholders.</li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="cv-section">
-                <h3><i class="fas fa-award"></i> Awards</h3>
+                <h3><i class="fas fa-award"></i> Awards &amp; Honors</h3>
                 <div class="cv-item">
                     <p><strong>2023</strong> <i class="fas fa-medal"></i> AMIA Best Student Paper Finalist (Top 8)</p>
                     <p><strong>2022</strong> <i class="fas fa-hand-holding-usd"></i> UniSwap Grants Program</p>
-                    <p><strong>2019</strong> <i class="fas fa-trophy"></i> Computer Science Arts & Sciences Outstanding Student Award</p>
+                    <p><strong>2019</strong> <i class="fas fa-trophy"></i> Computer Science Arts &amp; Sciences Outstanding Student Award, Bucknell University</p>
                     <p><strong>2019</strong> <i class="fas fa-users"></i> Phi Beta Kappa Honor Society</p>
                     <p><strong>2018-2019</strong> <i class="fas fa-atom"></i> Sigma Pi Sigma Physics Honor Society</p>
-                    <p><strong>2017</strong> <i class="fas fa-microscope"></i> Program for Undergraduate Research at Bucknell</p>
-                    <p><strong>2016-2019</strong> <i class="fas fa-list-ol"></i> Dean's List</p>
                     <p><strong>2017-2018</strong> <i class="fas fa-star"></i> Residential Education Academic Excellence Award</p>
+                    <p><strong>2017</strong> <i class="fas fa-microscope"></i> Program for Undergraduate Research, Bucknell University</p>
+                    <p><strong>2016-2019</strong> <i class="fas fa-list-ol"></i> Dean's List</p>
                 </div>
             </div>
-            
+
             <div class="cv-section">
-                <h3>Teaching Experience</h3>
+                <h3><i class="fas fa-chalkboard-teacher"></i> Teaching Experience</h3>
                 <h4>Harvard University</h4>
                 <div class="cv-item">
-                    <p><strong>2023-Present</strong> - Teaching Fellow for Data Science Capstone</p>
-                    <p><strong>2020</strong> - Teaching Fellow for Data Visualization. Course Designer for Intro to NLP with PyTorch</p>
+                    <p><strong>2023-2025</strong> — Teaching Fellow for Data Science Capstone</p>
+                    <p><strong>2020</strong> — Teaching Fellow for Data Visualization; Course Designer for Intro to NLP with PyTorch</p>
                 </div>
                 <h4>Bucknell University</h4>
                 <div class="cv-item">
-                    <p><strong>2018</strong> - Teaching Assistant for Algorithms and Data Structures. Graded students' homework and organized help sessions.</p>
-                    <p><strong>2017-2018</strong> - Teaching Assistant for Classical Mechanics Lab. Assisted students with numerical techniques in classical mechanics using Python and Mathematica.</p>
-                    <p><strong>2016-2017</strong> - Teaching Assistant & Study Group Leader for Classical and Modern Physics I & II. Graded homework, organized study groups, and help sessions.</p>
-                    <p><strong>2016-2017</strong> - Teaching Assistant for Engineering 100. Organized lab sessions and prepared hardware materials in Computer Science Engineering seminars.</p>
-                    <p><strong>2016</strong> - Teaching Assistant for Introduction to Computer Science I. Organized help sessions and graded homework.</p>
+                    <p><strong>2018</strong> — Teaching Assistant for Algorithms and Data Structures</p>
+                    <p><strong>2017-2018</strong> — Teaching Assistant for Classical Mechanics Lab (numerical methods in Python and Mathematica)</p>
+                    <p><strong>2016-2017</strong> — Teaching Assistant &amp; Study Group Leader for Classical and Modern Physics I &amp; II</p>
+                    <p><strong>2016-2017</strong> — Teaching Assistant for Engineering 100</p>
+                    <p><strong>2016</strong> — Teaching Assistant for Introduction to Computer Science I</p>
                 </div>
             </div>
-            
+
             <div class="cv-section">
-                <h3>Conference and Journal Reviewer</h3>
+                <h3><i class="fas fa-glasses"></i> Academic Service</h3>
                 <div class="cv-item">
-                    <p><strong>ACM CHI</strong> - 2024*, 2025</p>
-                    <p><strong>ACM CHI LBW</strong> - 2024</p>
-                    <p><strong>ACM CSCW</strong> - 2024*, 2025</p>
-                    <p><strong>ACM CSCW Posters</strong> - 2024</p>
-                    <p><strong>ACM DIS</strong> - 2025</p>
-                    <p><strong>ACM IUI</strong> - 2024*</p>
-                    <p><strong>ACM CUI Posters</strong> - 2024</p>
-                    <p><strong>ACM UIST</strong> - 2024</p>
-                    <p class="recognition">* Special recognition for outstanding reviews received.</p>
+                    <p><strong>ACM CHI</strong> — 2024*, 2025</p>
+                    <p><strong>ACM CHI LBW</strong> — 2024</p>
+                    <p><strong>ACM CSCW</strong> — 2024*, 2025</p>
+                    <p><strong>ACM CSCW Posters</strong> — 2024</p>
+                    <p><strong>ACM DIS</strong> — 2025</p>
+                    <p><strong>ACM IUI</strong> — 2024*</p>
+                    <p><strong>ACM CUI Posters</strong> — 2024</p>
+                    <p><strong>ACM UIST</strong> — 2024</p>
+                    <p class="recognition">* Special recognition for outstanding reviews.</p>
                 </div>
             </div>
-            
+
             <div class="cv-section">
-                <h3>Invited Talks</h3>
+                <h3><i class="fas fa-microphone"></i> Invited Talks</h3>
                 <div class="cv-item">
-                    <p><strong>March 9, 2025</strong> - Programs On Negotiation, AI Negotiation Summit, "ChatGPT, Don't Tell Me What to Do: Designing AI for context analysis in humanitarian frontline negotiations"</p>
-                    <p><strong>March 7, 2025</strong> - Harvard Global AI in Negotiation Challenge, "ChatGPT, Don't Tell Me What to Do: Designing AI for context analysis in humanitarian frontline negotiations"</p>
-                    <p><strong>Sep 11, 2024</strong> - AI in Humanitarian and Crisis Negotiation Workshop, "Confidentiality and Privacy in Using ChatGPT for Humanitarian Frontline Negotiations"</p>
-                    <p><strong>Oct 31, 2024</strong> - Panelist, Carnegie Mellon University "Queer(ing) Generative AI for a Queer Visibility Summit"</p>
+                    <p><strong>Mar 2025</strong> — Program on Negotiation (PON), AI Negotiation Summit: "ChatGPT, Don't Tell Me What to Do: Designing AI for Context Analysis in Humanitarian Frontline Negotiations"</p>
+                    <p><strong>Mar 2025</strong> — Harvard Global AI in Negotiation Challenge: "ChatGPT, Don't Tell Me What to Do"</p>
+                    <p><strong>Oct 2024</strong> — Panelist, Carnegie Mellon University, "Queer(ing) Generative AI for a Queer Visibility Summit"</p>
+                    <p><strong>Sep 2024</strong> — AI in Humanitarian and Crisis Negotiation Workshop: "Confidentiality and Privacy in Using ChatGPT for Humanitarian Frontline Negotiations"</p>
                 </div>
             </div>
-            
+
             <div class="cv-section">
-                <h3>Leadership & Activities</h3>
+                <h3><i class="fas fa-people-group"></i> Leadership &amp; Activities</h3>
                 <div class="cv-item">
-                    <p><strong>Jun 2018 - May 2019</strong> - President & Treasurer, Human Centered Design Club, Bucknell University</p>
-                    <p><strong>Aug 2016 - May 2018</strong> - LGBTQ+ Housing Residential Advisor, Residential Education, Bucknell University</p>
+                    <p><strong>Jun 2018 - May 2019</strong> — President &amp; Treasurer, Human Centered Design Club, Bucknell University</p>
+                    <p><strong>Aug 2016 - May 2018</strong> — LGBTQ+ Housing Residential Advisor, Residential Education, Bucknell University</p>
                 </div>
             </div>
-            
+
             <div class="download-cv">
-                <a href="files/ZilinMa_CV.pdf" class="btn" download><i class="fas fa-download"></i> Download Full CV</a>
+                <a href="files/ZilinMa_CV.pdf" class="view-all-btn" download><i class="fas fa-download"></i> Download Full CV</a>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; Zilin Ma</p>
+            <div class="footer-content">
+                <div class="footer-logo">Zilin Ma<span class="dot">.</span></div>
+                <p>&copy; <span class="footer-year">2026</span> Zilin Ma. Built with 🧠 &amp; 💻.</p>
+            </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
 </body>
-</html> 
+</html>
