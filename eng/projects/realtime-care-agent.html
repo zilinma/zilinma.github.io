@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Memory-Enabled Realtime Voice Agent | Zilin Ma</title>
+    <meta name="description" content="Engineering case study: Google ADK, Vertex AI Memory Bank, Firestore, Twilio Media Streams, Gemini Live, audio transcoding, backpressure, and barge-in controls.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../../css/engineering.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+</head>
+<body class="engineering-site">
+    <header><div class="container"><a href="../index.html" class="logo">Zilin Ma<span class="dot">.</span></a><div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div><nav class="nav-menu" aria-label="Primary navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../portfolio.html" class="active">Systems</a></li><li><a href="../publications.html">Publications</a></li><li><a href="../contact.html">Contact</a></li></ul></nav></div></header>
+
+    <main>
+        <section class="case-hero">
+            <div class="container">
+                <p class="case-kicker">Agent systems · realtime voice · Google Cloud</p>
+                <h1>Building one agent across mobile, memory, and phone calls</h1>
+                <p class="case-summary">CareCorgi was a caregiving companion prototype with two runtimes: a memory-enabled planning API for a mobile app and a low-latency phone service connecting Twilio Media Streams to Gemini Live. The product did not reach commercial adoption. This case study covers its service boundaries and failure controls.</p>
+                <div class="case-actions"><a class="engineering-button primary" href="../portfolio.html">All systems</a></div>
+                <div class="case-metrics">
+                    <div class="case-metric"><strong>250 ms</strong><span>sustained-speech barge-in threshold</span></div>
+                    <div class="case-metric"><strong>8 / 16 / 24 kHz</strong><span>telephony / model audio rates</span></div>
+                    <div class="case-metric"><strong>20 / 50</strong><span>bounded output / input queue sizes</span></div>
+                    <div class="case-metric"><strong>$20K/mo</strong><span>Google Cloud credits awarded</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container article-shell">
+            <aside class="case-nav" aria-label="Case study sections"><strong>On this page</strong><a href="#boundaries">Service boundaries</a><a href="#architecture">Architecture</a><a href="#voice">Voice path</a><a href="#memory">Memory &amp; tools</a><a href="#deployment">Deployment</a><a href="#failures">Failure modes</a><a href="#ownership">Scope</a></aside>
+            <article class="case-content">
+                <section class="case-section" id="boundaries">
+                    <h2>One product, two latency regimes</h2>
+                    <p>The planning backend can spend seconds assembling goals, tasks, and memory. A phone call cannot: every audio chunk competes with network delay, transcoding, model response time, and playback. I separated these paths rather than forcing a single agent loop to own HTTP requests, persistent state, and realtime audio.</p>
+                    <div class="constraint-grid">
+                        <div class="constraint"><small>01 / REALTIME</small><h3>Latency accumulates</h3><p>Twilio uses μ-law at 8 kHz; Gemini receives PCM at 16 kHz and returns PCM at 24 kHz. Every conversion sits in the conversational loop.</p></div>
+                        <div class="constraint"><small>02 / INTERRUPTION</small><h3>Noise sounds like intent</h3><p>Naive voice activity detection can let line hiss or the assistant’s own audio interrupt a response.</p></div>
+                        <div class="constraint"><small>03 / STATE</small><h3>Memory is not session state</h3><p>Long-term semantic memory, current conversation, profile fields, plan objects, and task completion have different lifecycles.</p></div>
+                        <div class="constraint"><small>04 / PRIVACY</small><h3>Health-adjacent logs need restraint</h3><p>The call service tracks operational metrics while applying PII redaction to transcripts and keeping secrets outside source code.</p></div>
+                    </div>
+                </section>
+
+                <section class="case-section" id="architecture">
+                    <h2>System architecture</h2>
+                    <div class="architecture-stack" aria-label="CareCorgi architecture">
+                        <div class="architecture-layer"><code>MOBILE</code><p><strong>React Native app → Firebase token → API Gateway.</strong> Gateway-level JWT validation keeps authentication policy outside business handlers.</p></div>
+                        <div class="architecture-layer"><code>AGENT API</code><p><strong>FastAPI → Google ADK agent → function tools.</strong> Pydantic contracts cover chat, goals, tasks, plans, moods, recaps, and function-call traces.</p></div>
+                        <div class="architecture-layer"><code>STATE</code><p><strong>Firestore + Vertex AI Memory Bank.</strong> Firestore owns explicit product entities and user/session mappings; semantic memory supplies relevant cross-session context.</p></div>
+                        <div class="architecture-layer"><code>PHONE</code><p><strong>Twilio webhook → WebSocket → audio bridge → Gemini Live.</strong> A call manager isolates per-call sessions and cleans up stale connections.</p></div>
+                        <div class="architecture-layer"><code>OPERATE</code><p><strong>Cloud Build → Artifact Registry → Cloud Run.</strong> Health checks, structured request models, metrics, and mock/emulator smoke paths support deployment.</p></div>
+                    </div>
+                </section>
+
+                <section class="case-section" id="voice">
+                    <h2>Bounded queues and gated interruption</h2>
+                    <p>Incoming Twilio μ-law is decoded and resampled from 8 kHz to 16 kHz PCM. Gemini’s 24 kHz PCM response is downsampled and encoded back to μ-law. Input and output use separate bounded asyncio queues: the response queue holds roughly 1.25 seconds of audio; the input queue holds about three seconds. Bounding both prevents a slow downstream consumer from turning a live call into delayed playback.</p>
+                    <p>Barge-in is gated in two ways. A cooldown ignores audio immediately after text-to-speech begins, and WebRTC VAD must observe sustained voiced frames before interruption is allowed. The production constructor sets a 250 ms minimum, which is long enough to reject many clicks and bursts without making a real interruption feel ignored.</p>
+                    <div class="code-window">
+                        <div class="code-window-head"><span>barge_in_gate.py</span><span>sustained speech</span></div>
+<pre><code>def ok_to_barge(self, chunk: bytes) -&gt; bool:
+    if int(time.time() * 1000) - self._tts_since &lt; self.cooldown_ms:
+        return False
+    if len(chunk) &lt; self.frame_bytes:
+        return False
+
+    try:
+        voiced = self.vad.is_speech(chunk[:self.frame_bytes], self.sr)
+    except Exception:
+        return False
+
+    self._active = self._active + 1 if voiced else 0
+    return self._active &gt;= self.min_frames</code></pre>
+                    </div>
+                    <p>The adapter also tracks connection state, reconnect attempts, audio bytes, received chunks, interruptions, completed turns, call duration, and average send bitrate. These are debugging signals—not claimed product outcomes.</p>
+                </section>
+
+                <section class="case-section" id="memory">
+                    <h2>Memory and tools were explicit services.</h2>
+                    <p>The agent did more than retain chat text. It called tools to read and update profile information, generate hierarchical care goals, create short tasks, record completion, build daily plans, save moods, and produce recaps. The FastAPI layer returned function-call traces so the mobile client and logs could distinguish a model message from a state-changing operation.</p>
+                    <p>Cross-session continuity used Vertex AI Memory Bank, while Firestore stored product truth: user/session mappings, goals, tasks, category order, daily selections, mood entries, and recaps. This separation avoided asking semantic retrieval to behave like a transactional database.</p>
+                    <div class="callout"><p><strong>State model:</strong> conversation context, semantic recall, user profile, and mutable task state have different consistency and retention requirements.</p></div>
+                </section>
+
+                <section class="case-section" id="deployment">
+                    <h2>Deployment and smoke checks</h2>
+                    <p>The backend shipped as containers through Cloud Build, Artifact Registry, and Cloud Run. API Gateway validates Firebase secure tokens before forwarding requests. Firestore emulator and mock-LLM smoke paths made it possible to exercise basic routes without consuming live model traffic.</p>
+                    <p>CareCorgi was accepted into the Google for Startups Cloud Program and received approximately $20,000 per month in Google Cloud credits. That was infrastructure support, not revenue or user adoption, so I keep it separate from product-outcome claims.</p>
+                </section>
+
+                <section class="case-section" id="failures">
+                    <h2>Failure modes designed into the implementation</h2>
+                    <ul>
+                        <li><strong>Unbounded audio buffers create conversational time travel.</strong> Bounded queues trade controlled dropping/backpressure for runaway latency.</li>
+                        <li><strong>Immediate VAD interrupts on hiss or echo.</strong> Cooldown plus sustained-speech gating is more conservative.</li>
+                        <li><strong>One storage abstraction blurs consistency.</strong> Transactional product entities stay in Firestore; semantic recall stays in Memory Bank.</li>
+                        <li><strong>Mobile and backend schemas drift.</strong> Pydantic request/response models make the API contract inspectable and reject malformed calls.</li>
+                        <li><strong>Long-lived calls leak resources.</strong> Per-call task ownership, lifecycle cleanup, and stale-session cleanup release resources after disconnects.</li>
+                    </ul>
+                </section>
+
+                <section class="case-section" id="ownership">
+                    <h2>My scope</h2>
+                    <p>I was the founding engineer responsible for the Python agent backend and phone service: ADK integration, memory and planning services, FastAPI contracts, Firestore persistence, function tools, Twilio/Gemini Live bridge, audio conversion, VAD-gated barge-in, metrics, deployment assets, and mobile/backend integration. The React Native mobile application was primarily built by another team member.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="engineering-footer"><div class="container"><div class="footer-content"><div class="footer-logo">Zilin Ma<span class="dot">.</span></div><div class="footer-links"><a href="../portfolio.html">Systems</a><a href="mailto:zilinma@g.harvard.edu">Email</a></div><p>&copy; <span class="footer-year">2026</span> Zilin Ma.</p></div></div></footer>
+    <script src="../../js/main.js?v=20260720"></script>
+</body>
+</html>

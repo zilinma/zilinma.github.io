@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an Evaluated LLM Taxonomy Pipeline | Zilin Ma</title>
+    <meta name="description" content="Engineering case study: 120 Common Crawl snapshots, 30.1M archived pages, human gold sets, DSPy/GEPA evaluation, and an interpretable taxonomy of 88,336 startups.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/engineering.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+</head>
+<body class="engineering-site">
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">Zilin Ma<span class="dot">.</span></a>
+            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            <nav class="nav-menu" aria-label="Primary navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../portfolio.html" class="active">Systems</a></li><li><a href="../publications.html">Publications</a></li><li><a href="../contact.html">Contact</a></li></ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="case-hero">
+            <div class="container">
+                <p class="case-kicker">LLM measurement · data infrastructure · evaluation</p>
+                <h1>Building an evaluated taxonomy from 30.1M archived web pages</h1>
+                <p class="case-summary">This research pipeline recovers historical startup websites, extracts structured problem statements, fits interpretable representations, and validates LLM classifiers against human gold labels. The proprietary source rows and interview content remain private.</p>
+                <div class="case-actions">
+                    <a class="engineering-button primary" href="../portfolio.html">All systems</a>
+                    <a class="engineering-button" href="https://tech-tag-annotation.vercel.app/" target="_blank" rel="noopener">Annotation tool ↗</a>
+                </div>
+                <div class="case-metrics">
+                    <div class="case-metric"><strong>470,978</strong><span>startup-year domain targets</span></div>
+                    <div class="case-metric"><strong>120</strong><span>Common Crawl snapshots</span></div>
+                    <div class="case-metric"><strong>30.1M</strong><span>WARC page records recovered</span></div>
+                    <div class="case-metric"><strong>88,336</strong><span>firms in the final taxonomy</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container article-shell">
+            <aside class="case-nav" aria-label="Case study sections">
+                <strong>On this page</strong>
+                <a href="#constraints">Constraints</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#crawl">Cost-aware crawl</a>
+                <a href="#measurement">LLM measurement</a>
+                <a href="#evaluation">Gold-set evaluation</a>
+                <a href="#taxonomy">Representation choice</a>
+                <a href="#failures">Failure modes</a>
+                <a href="#ownership">Scope</a>
+            </aside>
+
+            <article class="case-content">
+                <section class="case-section" id="constraints">
+                    <h2>Scale and measurement validity</h2>
+                    <p>The research question required a longitudinal view of what problems startups said they were solving. Domains change owners, companies disappear, and present-day copy leaks future information into earlier years. The data layer had to recover each company website at the right historical snapshot before any model touched the text.</p>
+                    <div class="constraint-grid">
+                        <div class="constraint"><small>01 / SCALE</small><h3>Do not download the web</h3><p>Common Crawl exposes a massive index and compressed WARC files. The system needed to reduce to relevant byte ranges before moving content.</p></div>
+                        <div class="constraint"><small>02 / COST</small><h3>Use managed scans selectively</h3><p>The completed crawl stored 883.1 GiB. A monitor snapshot showed roughly $199 accumulated AWS cost and about $22/month in storage.</p></div>
+                        <div class="constraint"><small>03 / MODEL RISK</small><h3>Prompts are fitted instruments</h3><p>Every classifier needed an explicit construct, human labels, held-out evaluation, and an audit trail—not confidence-by-anecdote.</p></div>
+                        <div class="constraint"><small>04 / DISCLOSURE</small><h3>Keep licensed rows private</h3><p>Public artifacts can expose schemas, synthetic fixtures, prompts, and metrics; they cannot publish the licensed company data or interview records.</p></div>
+                    </div>
+                </section>
+
+                <section class="case-section" id="architecture">
+                    <h2>End-to-end architecture</h2>
+                    <p>The pipeline separates recovery, measurement, evaluation, representation learning, and analysis. Each layer writes a durable artifact with stable identifiers for the next stage.</p>
+                    <div class="architecture-stack" aria-label="Problem taxonomy system architecture">
+                        <div class="architecture-layer"><code>01 / UNIVERSE</code><p><strong>Licensed firm table → domain-year panel.</strong> Normalize domains, apply sample rules, and preserve the company/year keys used downstream.</p></div>
+                        <div class="architecture-layer"><code>02 / INDEX</code><p><strong>Athena over the Common Crawl index.</strong> Match registered domains, exact hosts, and redirects; rank homepage-like URLs; export capped WARC pointers.</p></div>
+                        <div class="architecture-layer"><code>03 / RECOVERY</code><p><strong>Concurrent byte-range fetches → S3.</strong> Decompress WARC records, extract HTTP bodies, gzip HTML, checkpoint success/failure, and retry transient errors.</p></div>
+                        <div class="architecture-layer"><code>04 / MEASURE</code><p><strong>Clean text → structured LLM extraction.</strong> Produce fixed problem components with schema validation, deterministic inference settings, caches, and run manifests.</p></div>
+                        <div class="architecture-layer"><code>05 / REPRESENT</code><p><strong>3,072-dimensional embeddings → sparse themes.</strong> Compare classical topic models and hard clusters with top-K sparse representations at multiple resolutions.</p></div>
+                        <div class="architecture-layer"><code>06 / EVALUATE</code><p><strong>Human codebooks → gold labels → DSPy/GEPA.</strong> Split train/validation/test, optimize prompts, apply a validation guard, and report held-out macro-F1 and agreement.</p></div>
+                        <div class="architecture-layer"><code>07 / ANALYZE</code><p><strong>Canonical flat files → statistical outputs.</strong> Preserve feature provenance, regenerate tables and figures, and record every cluster split, merge, reassignment, or exclusion.</p></div>
+                    </div>
+                </section>
+
+                <section class="case-section" id="crawl">
+                    <h2>Why Athena instead of running a Spark cluster?</h2>
+                    <p>The Common Crawl URL index already lives next to the data in object storage. The expensive operation was a selective scan and reduction, not an always-on distributed compute workload. Athena let the pipeline push domain filters into managed SQL, materialize a small pointer table, and pay only for scans. Spark would have added cluster provisioning, shuffle tuning, and idle capacity without eliminating the need to read the same index.</p>
+                    <div class="decision-table-wrap">
+                        <table class="decision-table">
+                            <thead><tr><th>Option</th><th>Useful for</th><th>Why it was not the final path</th></tr></thead>
+                            <tbody>
+                                <tr><td>Local HTTP crawl</td><td>Current sites and small pilots</td><td>Fails on dead companies, blocks, and longitudinal leakage.</td></tr>
+                                <tr><td>Spark/EMR</td><td>Repeated wide transformations and large joins</td><td>Operational overhead was high for index reduction plus selective retrieval.</td></tr>
+                                <tr><td>Athena + WARC ranges</td><td>Serverless index scans and sparse retrieval</td><td><strong>Selected:</strong> export metadata pointers first; fetch only ranked byte ranges.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>After pointer export, worker processes request only the byte interval that contains one WARC record. Results go directly to S3; EC2 disk is scratch. A URL cap prevents one company with a huge site from dominating the run, and checkpoint rows make a 120-snapshot job restartable.</p>
+
+                    <div class="code-window">
+                        <div class="code-window-head"><span>common_crawl/fetch_warc_records_to_s3.py</span><span>range fetch</span></div>
+<pre><code>def fetch_https(pointer: Pointer, timeout: float) -&gt; bytes:
+    end = pointer.offset + pointer.length - 1
+    request = urllib.request.Request(
+        f"https://data.commoncrawl.org/{pointer.warc_filename}",
+        headers={
+            "Range": f"bytes={pointer.offset}-{end}",
+            "User-Agent": "problem-taxonomy-commoncrawl-fetcher/0.1",
+        },
+    )
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        return response.read()</code></pre>
+                    </div>
+
+                    <figure class="ops-figure">
+                        <img src="../../images/problem-taxonomy/crawl-pages-by-year.svg" alt="Archived pages processed by panel year across the Common Crawl recovery run">
+                        <figcaption>Operational output from the crawl monitor: page volume by panel year. This is pipeline telemetry, not a research result.</figcaption>
+                    </figure>
+                </section>
+
+                <section class="case-section" id="measurement">
+                    <h2>Treat LLM extraction as a measurement instrument.</h2>
+                    <p>Website prose is noisy: it mixes the customer, the problem, the solution, marketing claims, and investor language. The extractor therefore returns fixed fields under a strict schema instead of free-form summaries. Inference runs at temperature 0, output parsing is deterministic, and the same record identifiers survive through caches and downstream flat files.</p>
+                    <p>Before scaling the company-segment router, I ran a balanced 2,000-company audit against the licensed source taxonomy. Overall agreement was 85.45%, but the confusion matrix was asymmetric: text-derived B2B assignments often disagreed with source-side B2C labels when the described buyer was an institution or operator. That result became a routing diagnostic, not a claim that either label source was automatic ground truth.</p>
+                    <p>The most important validation is external. In an ongoing program of 331 structured founder interviews, founders first describe their company’s problem in their own words and review the extracted components afterward. The order avoids anchoring them on the model’s framing. Only aggregate validation statistics are reported publicly; transcripts and responses are not exposed.</p>
+                    <div class="callout"><p><strong>Validation rule:</strong> fluent output does not establish validity. Every measurement needs a comparison target independent of the model and source text being evaluated.</p></div>
+                </section>
+
+                <section class="case-section" id="evaluation">
+                    <h2>Human gold labels, DSPy, and a validation guard</h2>
+                    <p>For the customer-need classifiers, six coders iterated through six codebook rounds. Majority votes form the gold labels. Mean agreement is 91.5%, with weighted Fleiss κ = 0.57. Each construct uses separate train, validation, and test partitions; the test split is never available to optimization.</p>
+                    <p>GEPA, implemented through DSPy, treats the classifier prompt as a fitted parameter. A stronger reasoning model reads production-model errors and proposes instruction revisions. The written codebook remains the seed prompt, so the search stays inside a human-defined construct. I tested instruction-only versus demonstrations, 0–16 few-shot examples, direct prediction versus chain-of-thought, optimizer budgets, and smaller production models.</p>
+                    <div class="decision-table-wrap">
+                        <table class="decision-table">
+                            <thead><tr><th>Need code</th><th>Codebook macro-F1</th><th>Selected program test F1</th><th>What changed</th></tr></thead>
+                            <tbody>
+                                <tr><td>Knowledge</td><td>0.773</td><td>0.797</td><td>Modest gain</td></tr>
+                                <tr><td>Efficiency</td><td>0.743</td><td>0.872</td><td>Large boundary-rule gain</td></tr>
+                                <tr><td>Material</td><td>0.805</td><td>0.882</td><td>Large precision/recall gain</td></tr>
+                                <tr><td>Service</td><td>0.708</td><td>0.696</td><td>Validation-selected prompt slipped on test</td></tr>
+                                <tr><td>Experience</td><td>0.786</td><td>0.857</td><td>Clear held-out gain</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>A validation guard chooses among the codebook, optimized instructions, and optimized instructions plus demonstrations. More optimizer budget was not monotonically better, prompts did not transfer cleanly between model sizes, and one validation-selected program still landed slightly below baseline on the untouched test split.</p>
+                </section>
+
+                <section class="case-section" id="taxonomy">
+                    <h2>Why sparse autoencoders instead of one hard clustering?</h2>
+                    <p>NMF and LDA provide familiar topic-word summaries, but their bag-of-words representation is sensitive to vocabulary and does not naturally express that one firm can address several problems. K-means is efficient and useful for local splits, yet it forces every firm into one centroid and produces unrelated partitions when the requested number of clusters changes.</p>
+                    <div class="decision-table-wrap">
+                        <table class="decision-table">
+                            <thead><tr><th>Representation</th><th>Strength</th><th>Limitation for this system</th></tr></thead>
+                            <tbody>
+                                <tr><td>NMF / LDA</td><td>Readable topic terms; fast baseline</td><td>Vocabulary-driven and weak at multi-theme membership.</td></tr>
+                                <tr><td>Embedding + k-means</td><td>Scalable semantic partition</td><td>Exactly one cluster per firm; centroid labels are difficult to audit.</td></tr>
+                                <tr><td>Top-K SAE</td><td>Sparse multi-theme dictionary with tunable resolution</td><td>Requires training, neuron labeling, and seed/resolution stability checks.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>The system trains top-K sparse autoencoders over 3,072-dimensional text embeddings at M ∈ {128, 256, 512, 1024}. M = 256 balances distinctness and interpretability; seed stability is checked by matching learned features with the Hungarian algorithm. A scripted review pass records splits, merges, reassignments, and exclusions, yielding 265 active clusters over 88,336 firms.</p>
+                </section>
+
+                <section class="case-section" id="failures">
+                    <h2>What did not work cleanly</h2>
+                    <ul>
+                        <li><strong>Current-web crawling created temporal errors.</strong> Historical reconstruction had to preserve snapshot identity rather than collapsing immediately to a year-level row.</li>
+                        <li><strong>Fetching full WARC objects was the wrong unit.</strong> Pointer-first byte ranges reduced transfer and made retries addressable at the record level.</li>
+                        <li><strong>Prompt optimization was not monotonic.</strong> Larger search budgets stayed in a narrow mean-F1 band, and optimized prompts were model-specific.</li>
+                        <li><strong>One cluster resolution was not enough evidence.</strong> The full analysis was recomputed on a raw 512-feature partition to test sensitivity to both resolution and review decisions.</li>
+                        <li><strong>LLM labels without coder disagreement hid construct problems.</strong> Codebook rounds and IRR exposed boundaries that no amount of prompt tweaking could define on its own.</li>
+                    </ul>
+                </section>
+
+                <section class="case-section" id="ownership">
+                    <h2>My scope</h2>
+                    <p>I led the computational research pipeline and manuscript integration: historical web recovery, orchestration, structured LLM extraction, annotation tools, codebooks, gold-set construction, DSPy/GEPA evaluation, analysis artifacts, and reproducibility. The broader research—including interviews, construct development, and sparse-representation work—is collaborative.</p>
+                    <p class="ownership-note">Disclosure: licensed company data, raw web captures, and interview materials remain private. This case study uses aggregate metrics and implementation details only.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="engineering-footer"><div class="container"><div class="footer-content"><div class="footer-logo">Zilin Ma<span class="dot">.</span></div><div class="footer-links"><a href="../portfolio.html">Systems</a><a href="mailto:zilinma@g.harvard.edu">Email</a></div><p>&copy; <span class="footer-year">2026</span> Zilin Ma.</p></div></div></footer>
+    <script src="../../js/main.js?v=20260720"></script>
+</body>
+</html>

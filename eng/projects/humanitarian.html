@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Humanitarian Negotiations | Zilin Ma</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="fun-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">Zilin Ma<span class="dot">.</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../portfolio.html" class="active">Systems</a></li>
+                    <li><a href="../publications.html">Publications</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 140px;">
+        <div class="project-detail">
+            <div class="project-header">
+                <h2>Designing AI Tools for Humanitarian Negotiation</h2>
+                <div class="date">2023 - 2025</div>
+            </div>
+            
+            <div class="project-image-large">
+                <img src="../../images/humanitarian/analysis_page.png" alt="Humanitarian Negotiations AI Interface">
+            </div>
+            
+            <div class="project-roadmap">
+                <div class="roadmap-item" data-section="research">
+                    <div class="roadmap-circle">1</div>
+                    <div class="roadmap-line"></div>
+                    <div class="roadmap-label">Research</div>
+                </div>
+                <div class="roadmap-item" data-section="design">
+                    <div class="roadmap-circle">2</div>
+                    <div class="roadmap-line"></div>
+                    <div class="roadmap-label">Design</div>
+                </div>
+                <div class="roadmap-item" data-section="ideate">
+                    <div class="roadmap-circle">3</div>
+                    <div class="roadmap-line"></div>
+                    <div class="roadmap-label">Ideate</div>
+                </div>
+                <div class="roadmap-item" data-section="results">
+                    <div class="roadmap-circle">4</div>
+                    <div class="roadmap-label">Results</div>
+                </div>
+            </div>
+            
+            <div class="project-content">
+                <div class="two-column" id="research">
+                    <div>
+                        <h3>Background</h3>
+                        <p>
+                            Frontline Associates, a global network of humanitarian negotiators, approached my team to investigate how AI could support their negotiation workflows. As conflicts intensify globally, these negotiators sought guidance on whether LLMs could responsibly support their highly contextual and relational work.
+                        </p>
+                        <p>
+                            Humanitarian negotiations are ethically complex and emotionally demanding. Negotiators—often working unarmed under political pressure—must engage with actors ranging from tribal leaders to armed groups. While they've begun experimenting with LLMs to synthesize information and prepare for engagements, current AI tools prioritize outcome optimization rather than supporting the human, iterative processes critical to this work.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <img src="../../images/humanitarian/negotiator-fieldwork.png" alt="Humanitarian negotiators in the field" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            <p style="margin-top: 10px; text-align: center; font-style: italic; font-size: 0.85rem; color: var(--text-secondary);">Liesbeth Aelbrecht visited an MSF team working in the General Rural Hospital of Dhi As Sufal district in the south of Ibb Governorate, in Yemen. (Photo: MSF/Majd Aljunaid) <a href="https://frontline-negotiations.org/blog/female-negotiators-need-more-recognition-and-opportunities-2" target="_blank">Source</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Problem</h3>
+                <p>
+                    Negotiators at organizations like MSF, UN, and ICRC are turning to AI, but existing tools don't align with their workflows. My research revealed they need structured, context-aware assistance that preserves negotiator agency and aligns with established frameworks like Iceberg and Island of Agreements. To address this, I designed and evaluated an AI-powered interface tailored to negotiation preparation.
+                </p>
+                
+                <h3>My Role</h3>
+                <p>
+                    I led this project end-to-end as designer, developer, and UX researcher. Key responsibilities included conducting formative interviews, building the probe interface, leading a comparison study between ChatGPT and my interface, facilitating synthesis workshops, and collaborating with practitioners to ground the design in real-world constraints.
+                </p>
+                
+                <h3>Methods</h3>
+                <p>
+                    I used affinity diagramming extensively in both studies to synthesize qualitative data. After transcribing interviews and study sessions, I grouped quotes and observations on virtual whiteboards to identify emerging themes. This method allowed me to contrast experiences with ChatGPT and my custom probe interface, helping surface insights around usability, collaboration, and alignment with negotiation workflows.
+                </p>
+                <p>
+                    I partnered with Frontline Associates, a global NGO network of negotiators, to run the study. My work unfolded in two phases:
+                </p>
+                
+                <div class="two-column">
+                    <div class="method-box">
+                        <h4>Phase 1: Formative Research</h4>
+                        <ul>
+                            <li>Conducted 14 interviews with negotiators from MSF, UN, and ICRC</li>
+                            <li>Identified key tasks: context analysis, compromise ideation, risk assessment</li>
+                            <li>Mapped major concerns: confidentiality, bias, overreliance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="method-box">
+                        <h4>Phase 2: Design Probe Study</h4>
+                        <ul>
+                            <li>Ran a within-subjects think-aloud study with 18 negotiators</li>
+                            <li>Each participant prepared a negotiation plan first using ChatGPT, then my custom probe</li>
+                            <li>Used open coding and thematic analysis across transcripts</li>
+                            <li>Synthesized findings into journey maps and iterated on the interface</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3 id="design">Personas & User Stories</h3>
+                <p>
+                    These personas emerged from my formative study with 14 humanitarian negotiators and directly informed the design requirements of the probe interface. Amina's persona represents concerns about AI overreach and loss of agency, while Luis embodies newer negotiators who struggle with complex frameworks.
+                </p>
+                
+                <div class="persona-card">
+                    <h4>Primary Persona: Amina, Experienced Field Negotiator</h4>
+                    <div class="persona-meta">
+                        <ul>
+                            <li>15+ years of humanitarian negotiation experience</li>
+                            <li>Comfortable with traditional tools and skeptical of new tech</li>
+                            <li>Needs tools that preserve agency and don't oversimplify context</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="persona-divider"></div>
+                    
+                    <h5>Goals</h5>
+                    <p>Build trust with counterparties, make ethically grounded decisions, pass on negotiation strategies to less experienced colleagues</p>
+                    
+                    <h5>Frustrations</h5>
+                    <p>LLMs offer "overconfident" advice; require too much prompt engineering; lack sensitivity to local norms</p>
+                    
+                    <h5>User Story</h5>
+                    <p>"As a senior negotiator, I want AI tools that help me organize negotiation knowledge without automating away my judgment."</p>
+                </div>
+                
+                <div class="persona-card" style="margin-top: 30px;">
+                    <h4>Secondary Persona: Luis, Early-Career Regional Negotiator</h4>
+                    <div class="persona-meta">
+                        <ul>
+                            <li>2 years of experience, focused on logistics and documentation</li>
+                            <li>Interested in using LLMs but unsure how to trust or structure them</li>
+                            <li>Relies on senior negotiators for framing strategies</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="persona-divider"></div>
+                    
+                    <h5>Goals</h5>
+                    <p>Learn effective practices, reduce prep time, avoid errors</p>
+                    
+                    <h5>Frustrations</h5>
+                    <p>Chat interfaces are overwhelming and unstructured; difficult to learn frameworks like Iceberg CSS alone</p>
+                    
+                    <h5>User Story</h5>
+                    <p>"As a new negotiator, I want AI to guide me through strategy frameworks so I can build better cases and learn from experts."</p>
+                </div>
+                
+                <h3 id="ideate">Design Process & Sketches</h3>
+                <p>
+                    Before implementation, I created low-fidelity sketches to explore concepts with subject matter experts. These visualizations clarified how to scaffold negotiators' workflows using frameworks like Island of Agreements and Iceberg CSS, while helping me pivot from an outcome-based to a process-oriented approach.
+                </p>
+                <p>
+                    Iterative testing with negotiators shaped key design decisions such as editable markdown summaries, simplified risk visualizations, and strategic organization of negotiation tiers.
+                </p>
+
+                <h3>Probe Interface Implementation</h3>
+                <p>
+                    I implemented the interface as a full-stack web application using React for the frontend and Node.js with Express for the backend. The interface integrated with the OpenAI API to provide context-sensitive assistance while maintaining negotiator control through carefully designed interaction patterns.
+                </p>
+                
+                <div class="two-column">
+                    <div>
+                        <h4>Technical Implementation</h4>
+                        <ul>
+                            <li>Built a modular component architecture to handle different negotiation frameworks</li>
+                            <li>Implemented state management to track negotiation progress and allow for collaborative review</li>
+                            <li>Created custom prompt engineering templates to maintain consistency while providing targeted assistance</li>
+                            <li>Developed a markdown-based editing system that balanced structure with flexibility</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <a href="../../images/humanitarian/prompt-flow.png" target="_blank">
+                                <img src="../../images/humanitarian/prompt-flow.png" alt="Interface architecture showing component relationships" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            </a>
+                            <p style="margin-top: 10px; text-align: center; font-style: italic; font-size: 0.85rem; color: var(--text-secondary);">Click to view full image</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    The probe interface was designed as a guided workflow with four key modules, each addressing a specific negotiation preparation need:
+                </p>
+
+                <ol>
+                    <li><strong>Context Analysis</strong> - Structured input forms for capturing situation details and stakeholder positions</li>
+                    <li><strong>Framework Application</strong> - Interactive tools applying Iceberg CSS and Island of Agreements methodologies</li>
+                    <li><strong>Position Mapping</strong> - Visual interface for identifying red lines, bottom lines, and zones of agreement</li>
+                    <li><strong>Risk Assessment</strong> - AI-assisted identification of potential issues with negotiator-led validation</li>
+                </ol>
+
+                <p>
+                    Each module leveraged AI capabilities while maintaining human judgment at decision points. The AI components were designed to suggest rather than decide, providing options that negotiators could accept, modify, or reject within their established workflows.
+                </p>
+                
+                <div class="sketch-gallery">
+                    <div class="sketch-item">
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <a href="../../images/humanitarian/analysis_page.png" target="_blank">
+                                <img src="../../images/humanitarian/analysis_page.png" alt="Workflow of the negotiation interface" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            </a>
+                        </div>
+                        <div class="sketch-caption">
+                            At the left, the user can input the case file, and the negotiation parties. Then the probe will generate Islands of Agreement, Iceberg CSS, and Components. The user can choose to inspect the generated content (for example in box B) in markdown format, and modify in a text box (for example in box A).
+                        </div>
+                    </div>
+                    
+                    <div class="sketch-item">
+                        <div class="image-placeholder" style="padding: 0; border: none;">
+                            <a href="../../images/humanitarian/risk_analysis.png" target="_blank">
+                                <img src="../../images/humanitarian/risk_analysis.png" alt="Red Line/Bottom Line spectrum" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            </a>
+                        </div>
+                        <div class="sketch-caption">
+                            Overview of the red line and bottom line interface. Panel E shows the red line and bottom line of the negotiation party that the user represents. The two boxes on the right show the red line and the bottom line of the counterparty. Panel F shows one of the scenarios or outcomes that the negotiator decides on. The outcomes are listed such that, from the right to the left, there is an increasing amount of risk of negotiation failure as the outcome crosses the bottom line and the red line of the party that the user represents. After selecting the scenario, the user can generate a risk assessment for this selection through button Ga, and show a risk matrix in Gb.
+                        </div>
+                    </div>
+                </div>
+                
+                <p>
+                    These visual explorations grounded my interface in the real cognitive processes of negotiation, informed the probe's modular architecture, and allowed me to align the final design with the participants' mental models.
+                </p>
+                
+                <h3 id="results">Final Design & Key Findings</h3>
+                
+                <div class="two-column" id="results">
+                    <div>
+                        <h4>Probe Design Implementation</h4>
+                        <ul>
+                            <li>Step-by-step workflow integrating established negotiation frameworks</li>
+                            <li>Custom LLM prompt templates that maintain ethical boundaries</li>
+                            <li>Editable, structured outputs that preserve human oversight</li>
+                            <li>Progressive disclosure interface reducing cognitive load</li>
+                        </ul>
+                        
+                        <h4>Key Results</h4>
+                        <ul>
+                            <li>Negotiators preferred my interface over ChatGPT for its transparency and alignment with frameworks</li>
+                            <li>Novices gained structure while experts retained flexibility</li>
+                            <li>The interface reduced bias and encouraged team-based validation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>Implementation Challenges & Solutions</h4>
+                <p>
+                    Developing the probe interface required balancing several competing requirements:
+                </p>
+                
+                <div class="two-column">
+                    <div>
+                        <h5>Challenge: Contextual Understanding</h5>
+                        <p>LLMs struggled with the nuanced geopolitical contexts of negotiations</p>
+                        <h5>Solution:</h5>
+                        <p>Implemented a pre-processing layer where negotiators could verify and correct contextual information before framework application</p>
+                    </div>
+                    <div>
+                        <h5>Challenge: Maintaining Agency</h5>
+                        <p>Early prototypes sometimes overrode negotiator judgment</p>
+                        <h5>Solution:</h5>
+                        <p>Redesigned to provide suggestions with explicit "accept/modify/reject" controls in each module</p>
+                    </div>
+                </div>
+
+                <p>
+                    Through iterative user testing, I refined the implementation to better match negotiators' mental models. Key improvements included simplifying the UI, adding collaborative annotation features, and providing clearer pathways between negotiation framework stages.
+                </p>
+                
+                <h3>Impact</h3>
+                
+                <p><strong>Deliverables</strong></p>
+                <ul>
+                    <li>A deployed design probe tested in two studies</li>
+                    <li>Published at CHIWORK 2025</li>
+                    <li>Shared with 200+ professional negotiators through the <strong>AI in Negotiation Workshop</strong>, hosted by Frontline Associates (<a href="https://www.frontline-associates.org/_files/ugd/2481ae_0d5bf0d7df9841cd9bd66f6c408b5688.pdf" target="_blank">workshop PDF</a>)</li>
+                </ul>
+                
+                <p><strong>Outcomes</strong></p>
+                <ul>
+                    <li>Disseminated findings to MSF, UN, ICRC, and others via weekly workshops with over 20+ participants each week</li>
+                    <li>Helped shape professional guidelines on AI use in negotiation</li>
+                    <li>Reinforced the need for process-oriented AI in high-stakes, human-centered fields</li>
+                </ul>
+                
+                <div class="publication-card">
+                    <h4>"ChatGPT, Don't Tell Me What to Do": Designing AI for Context Analysis in Humanitarian Frontline Negotiations</h4>
+                    <p class="authors">Zilin Ma, Yiyang Mei, Claude Bruderlein, Krzysztof Z. Gajos, Weiwei Pan</p>
+                    <p class="venue">Proceedings of the 4th Annual Symposium on Human-Computer Interaction for Work (CHIWORK '25)</p>
+                    <a href="https://doi.org/10.1145/3729176.3729194" class="view-all-btn" target="_blank" rel="noopener" style="margin-top: 10px;">DOI</a>
+                    <a href="https://arxiv.org/abs/2410.09139" class="view-all-btn" target="_blank" rel="noopener" style="margin-top: 10px; margin-left: 10px;">arXiv</a>
+                </div>
+                
+                <div class="publication-card">
+                    <h4>Using Large Language Models for Humanitarian Frontline Negotiation: Opportunities and Considerations</h4>
+                    <p class="authors">Zilin Ma, Susannah Cheng Su, Nathan Zhao, Linn Bieske, Blake Bullwinkel, Jinglun Gao, Gekai Liao, Siyao Li, Ziqing Luo, Boxiang Wang, Zihan Wen, Yanrui Yang, Yanyi Zhang, Claude Bruderlein, Weiwei Pan</p>
+                    <p class="venue">ICML 2024 Next Generation of AI Safety Workshop</p>
+                    <a href="https://openreview.net/forum?id=ekHAMI97qf" class="view-all-btn" target="_blank" style="display: inline-block; margin-top: 10px;">Paper</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Zilin Ma<span class="dot">.</span></div>
+                <p>&copy; <span class="footer-year">2026</span> Zilin Ma. Built with 🧠 &amp; 💻.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = [
+                { id: 'research', element: document.getElementById('research') },
+                { id: 'design', element: document.getElementById('design') },
+                { id: 'ideate', element: document.getElementById('ideate') },
+                { id: 'results', element: document.getElementById('results') }
+            ];
+            
+            const roadmapItems = document.querySelectorAll('.roadmap-item');
+            
+            function updateRoadmap() {
+                const scrollPosition = window.scrollY + 300; 
+                
+                let currentSectionIndex = -1;
+                sections.forEach((section, index) => {
+                    if (section.element && section.element.offsetTop <= scrollPosition) {
+                        currentSectionIndex = index;
+                    }
+                });
+                
+                roadmapItems.forEach((item, index) => {
+                    if (index <= currentSectionIndex) {
+                        item.classList.add('completed');
+                        item.classList.remove('active');
+                    } else {
+                        item.classList.remove('completed');
+                    }
+                    
+                    if (index === currentSectionIndex) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                if (currentSectionIndex === -1 && scrollPosition < 500) {
+                    roadmapItems[0].classList.add('active');
+                }
+            }
+            
+            window.addEventListener('scroll', updateRoadmap);
+            updateRoadmap();
+            
+            roadmapItems.forEach((item) => {
+                item.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    const targetElement = document.getElementById(sectionId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 150,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

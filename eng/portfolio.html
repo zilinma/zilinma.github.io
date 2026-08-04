@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Systems | Zilin Ma</title>
+    <meta name="description" content="Engineering case studies across LLM evaluation, research platforms, realtime agents, and data pipelines built by Zilin Ma.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/engineering.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+</head>
+<body class="engineering-site">
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Zilin Ma<span class="dot">.</span></a>
+            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            <nav class="nav-menu" aria-label="Primary navigation"><ul>
+                <li><a href="index.html">Home</a></li><li><a href="portfolio.html" class="active">Systems</a></li><li><a href="publications.html">Publications</a></li><li><a href="contact.html">Contact</a></li>
+            </ul></nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="systems-index-hero">
+            <div class="container">
+                <h1>Systems I have built and evaluated.</h1>
+                <p>Selected work across LLM measurement, data infrastructure, online experiments, realtime agents, and research software. Each case study records the constraints, design decisions, and failures behind the implementation.</p>
+            </div>
+        </section>
+
+        <section class="system-index-group">
+            <div class="container">
+                <span class="section-number">ENGINEERING CASE STUDIES</span>
+                <div class="system-list">
+                    <article class="system-row">
+                        <span class="system-row-index">01</span>
+                        <div><h3>Problem Taxonomy Research System</h3><div class="system-row-meta">DATA + LLM EVALUATION · 2025–PRESENT</div></div>
+                        <p>The pipeline recovered 30.1M archived pages, extracted structured measurements for 88,336 startups, built human gold standards, optimized LLM classifiers with DSPy/GEPA, and organized embeddings into 265 interpretable themes.</p>
+                        <div class="system-row-links"><a href="projects/problem-taxonomy.html">Read case study</a></div>
+                    </article>
+                    <article class="system-row">
+                        <span class="system-row-index">02</span>
+                        <div><h3>Negotiation Task Reader</h3><div class="system-row-meta">HUMAN-AI EXPERIMENT SYSTEM · 2026</div></div>
+                        <p>A six-condition platform that controls the evidence layer while varying AI behavior. Includes provenance-aware retrieval, structured outputs, SSE streaming, experiment assignment, Postgres persistence, and a research dashboard.</p>
+                        <div class="system-row-links"><a href="projects/negotiation-platform.html">Read case study</a><a href="https://negotiation-task-reader.vercel.app/" target="_blank" rel="noopener">Live ↗</a></div>
+                    </article>
+                    <article class="system-row">
+                        <span class="system-row-index">03</span>
+                        <div><h3>CareCorgi Agent + Voice</h3><div class="system-row-meta">AGENT + VOICE INFRASTRUCTURE · 2025</div></div>
+                        <p>FastAPI and Google ADK backend with function-calling care tools, Firestore sessions, Vertex AI Memory Bank, plus a Twilio-to-Gemini Live audio path with transcoding, backpressure, barge-in, and reconnect handling.</p>
+                        <div class="system-row-links"><a href="projects/realtime-care-agent.html">Read case study</a></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="system-index-group">
+            <div class="container">
+                <span class="section-number">DEPLOYED RESEARCH TOOLS</span>
+                <div class="system-list">
+                    <article class="system-row">
+                        <span class="system-row-index">04</span>
+                        <div><h3>HBS Interview Workbench</h3><div class="system-row-meta">REACT · TYPESCRIPT · VERCEL · IN USE</div></div>
+                        <p>Diarized transcription, LLM paragraph segmentation, source search, and structured evidence review for an HBS research team conducting an ongoing 331-interview program, including a localized Chinese-startup workflow.</p>
+                        <div class="system-row-links"><a href="https://hbs-interview-interface.vercel.app/" target="_blank" rel="noopener">Live ↗</a></div>
+                    </article>
+                    <article class="system-row">
+                        <span class="system-row-index">05</span>
+                        <div><h3>Annotation Infrastructure</h3><div class="system-row-meta">NEXT.JS · PRISMA · POSTGRES · IN USE</div></div>
+                        <p>Balanced assignment, reservations, resumable sessions, quality checks, and exports for human coding. The resulting 800+ annotations support inter-rater reliability and gold-label inputs to model evaluation.</p>
+                        <div class="system-row-links"><a href="https://tech-tag-annotation.vercel.app/" target="_blank" rel="noopener">Live ↗</a></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="system-index-group">
+            <div class="container">
+                <span class="section-number">RESEARCH ARCHIVE</span>
+                <h2>Earlier human-AI research</h2>
+                <p class="section-intro">These earlier projects cover controlled experiments, computational analysis, and human evaluation of AI systems.</p>
+                <div class="archive-links">
+                    <a href="projects/humanitarian.html">Humanitarian negotiation · CHIWORK 2025</a>
+                    <a href="projects/mental-health.html">LLMs for mental health support · CHI 2024</a>
+                    <a href="projects/bias-reduction.html">Bias reduction experiment · CHI 2022</a>
+                    <a href="publications.html">Complete publications</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="engineering-footer"><div class="container"><div class="footer-content"><div class="footer-logo">Zilin Ma<span class="dot">.</span></div><div class="footer-links"><a href="mailto:zilinma@g.harvard.edu">Email</a><a href="https://github.com/zilinma">GitHub</a></div><p>&copy; <span class="footer-year">2026</span> Zilin Ma.</p></div></div></footer>
+    <script src="../js/main.js?v=20260720"></script>
+</body>
+</html>

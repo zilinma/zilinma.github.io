@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering a Six-Condition Human-AI Experiment | Zilin Ma</title>
+    <meta name="description" content="Engineering case study: evidence-grounded LLM workflows, experimental condition isolation, SSE streaming, schema validation, and revision-safe behavioral logging.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../../css/engineering.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+</head>
+<body class="engineering-site">
+    <header><div class="container"><a href="../index.html" class="logo">Zilin Ma<span class="dot">.</span></a><div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div><nav class="nav-menu" aria-label="Primary navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../portfolio.html" class="active">Systems</a></li><li><a href="../publications.html">Publications</a></li><li><a href="../contact.html">Contact</a></li></ul></nav></div></header>
+
+    <main>
+        <section class="case-hero">
+            <div class="container">
+                <p class="case-kicker">Human-AI experimentation · grounded generation · observability</p>
+                <h1>Engineering a six-condition LLM experiment without breaking the experiment</h1>
+                <p class="case-summary">Negotiation Task Reader is an online research platform where participants read the same evidence but receive different forms of AI support. The engineering challenge was to vary the treatment while keeping documents, timing, information architecture, persistence, and failure behavior controlled.</p>
+                <div class="case-actions"><a class="engineering-button primary" href="https://negotiation-task-reader.vercel.app/" target="_blank" rel="noopener">Open live system ↗</a><a class="engineering-button" href="../portfolio.html">All systems</a></div>
+                <div class="case-metrics">
+                    <div class="case-metric"><strong>6</strong><span>implemented conditions</span></div>
+                    <div class="case-metric"><strong>3</strong><span>active AI mechanisms compared</span></div>
+                    <div class="case-metric"><strong>12 + 20</strong><span>minute reading / writing phases</span></div>
+                    <div class="case-metric"><strong>14</strong><span>scored preparation responses</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container article-shell">
+            <aside class="case-nav" aria-label="Case study sections"><strong>On this page</strong><a href="#contract">Experiment contract</a><a href="#architecture">Architecture</a><a href="#grounding">Evidence grounding</a><a href="#reliability">Reliability</a><a href="#observability">Observability</a><a href="#failures">Failure modes</a><a href="#ownership">Scope</a></aside>
+            <article class="case-content">
+                <section class="case-section" id="contract">
+                    <h2>The platform had to preserve causal validity.</h2>
+                    <p>An experiment platform must keep shared elements fixed while changing one mechanism by condition. Conditions 3, 5, and 6 use the same three preparation modules—what each side wants, where they agree and disagree, and how a deal could work—but vary whether the AI generates a sheet, extends a participant draft, or only pressure-tests reasoning.</p>
+                    <div class="constraint-grid">
+                        <div class="constraint"><small>01 / ISOLATION</small><h3>Keep non-treatment elements matched</h3><p>Documents, reading targets, visual grammar, timers, and evidence navigation stay matched across the active conditions.</p></div>
+                        <div class="constraint"><small>02 / GROUNDING</small><h3>A citation is not enough</h3><p>Every passage must be verbatim, assigned to the right analytic slot, and allowed by its source provenance.</p></div>
+                        <div class="constraint"><small>03 / ASYNC STATE</small><h3>Slow models cannot corrupt logs</h3><p>Streaming, parallel scans, autosave, and model responses can finish out of order; writes need monotonic revisions.</p></div>
+                        <div class="constraint"><small>04 / COMPLETION</small><h3>Participants cannot wait for scoring</h3><p>Survey completion and LLM scoring are separate transactions with a local fallback path.</p></div>
+                    </div>
+                </section>
+
+                <section class="case-section" id="architecture">
+                    <h2>System architecture</h2>
+                    <div class="architecture-stack" aria-label="Negotiation platform architecture">
+                        <div class="architecture-layer"><code>01 / ASSIGN</code><p><strong>URL + participant ID → deterministic condition.</strong> Explicit debug conditions remain available without contaminating the randomized pool.</p></div>
+                        <div class="architecture-layer"><code>02 / READ</code><p><strong>Predetermined files → role-visible document reader.</strong> The browser cannot upload arbitrary files; every model request receives only the materials allowed for that role.</p></div>
+                        <div class="architecture-layer"><code>03 / EVIDENCE</code><p><strong>Parallel per-file scans → provenance validation → global clustering.</strong> Candidates remain clickable back to exact source spans.</p></div>
+                        <div class="architecture-layer"><code>04 / TREATMENT</code><p><strong>C3 autofill / C5 extension / C6 challenge.</strong> Separate prompts and handlers share output contracts and the visible preparation structure.</p></div>
+                        <div class="architecture-layer"><code>05 / STREAM</code><p><strong>Server-sent events → incremental UI state.</strong> JSON frames carry text, artifacts, and errors; local fallbacks keep the task moving.</p></div>
+                        <div class="architecture-layer"><code>06 / PERSIST</code><p><strong>Postgres participant stages + interaction revision.</strong> Consent, demographics, drafts, events, final survey, and scoring have explicit save semantics.</p></div>
+                        <div class="architecture-layer"><code>07 / INSPECT</code><p><strong>Read-only dashboard.</strong> Cohort counts, timeouts, condition summaries, interaction heatmaps, and system versions support launch checks and analysis.</p></div>
+                    </div>
+                </section>
+
+                <section class="case-section" id="grounding">
+                    <h2>Grounding required semantic contracts.</h2>
+                    <p>A model can return a real quote that is still invalid for the intended use. A private note from one side cannot prove shared agreement; an unverified media report cannot establish a party’s red line; a passage about an intermediary does not authorize that actor to implement a deal.</p>
+                    <p>The evidence handler therefore couples a JSON schema with deterministic checks. Each item has a verbatim quote, framework, slot, one or two visible cell IDs, importance, reason, and semantic-group label. A second layer validates source context and prohibited routes. Exact text matching confirms that the quoted span really exists in the document.</p>
+
+                    <div class="code-window">
+                        <div class="code-window-head"><span>lib/highlights-handler.mjs</span><span>source contract</span></div>
+<pre><code>function sourceContextAllowsHighlight(framework, slot, sourceContext) {
+  if (framework === "ioa" &amp;&amp; slot.endsWith("-agree") &amp;&amp;
+      ["role-private-document", "unverified-external-report",
+       "third-party-media", "third-party-advocacy"]
+        .includes(sourceContext)) return false;
+
+  if (framework === "paths" &amp;&amp; slot === "boundaries" &amp;&amp;
+      !["unspecified", "role-private-document",
+        "two-party-meeting-record"].includes(sourceContext)) return false;
+
+  return true;
+}</code></pre>
+                    </div>
+                    <p>Cross-document deduplication also operates at the proposition level, not the keyword level. “Food distribution” can describe a constraint, a package term, or background context; those are not interchangeable evidence.</p>
+                </section>
+
+                <section class="case-section" id="reliability">
+                    <h2>Model failure is part of the treatment environment.</h2>
+                    <p>Different conditions call different handlers and models, but failure behavior must not silently become another experimental manipulation. Structured-output requests use schema validation and bounded retries. Evidence ranking falls back to deterministic core/support ordering. Final scoring has a local rubric-based fallback so a participant still receives a result if the model provider is unavailable.</p>
+                    <div class="decision-table-wrap"><table class="decision-table"><thead><tr><th>Risk</th><th>System control</th><th>Why it matters</th></tr></thead><tbody>
+                        <tr><td>Malformed output</td><td>Strict JSON schemas, normalization, bounded retry</td><td>Prevents one condition from failing as an unhandled UI state.</td></tr>
+                        <tr><td>Slow generation</td><td>SSE streaming and parallel evidence scans</td><td>Keeps timing visible and avoids blocking the reading workflow.</td></tr>
+                        <tr><td>Ranking outage</td><td>Deterministic evidence-order fallback</td><td>Participants can continue with the same source set.</td></tr>
+                        <tr><td>Scoring outage</td><td>Compute-only scoring endpoint plus local fallback</td><td>Completion codes are released after survey storage, not model success.</td></tr>
+                    </tbody></table></div>
+                </section>
+
+                <section class="case-section" id="observability">
+                    <h2>Log the path to each answer.</h2>
+                    <p>The platform records file opens, document clicks, saved evidence, AI requests, draft state, prompt edits, condition-specific artifacts, and timing. A monotonic interaction revision prevents a slower autosave from overwriting a newer snapshot. Each cohort also carries the case-material version and the deployed commit-derived system version, so analysis can separate participants who saw different code or content.</p>
+                    <p>The dashboard supports launch and validity checks. Started versus completed counts, timeout rates, missing stages, fallback-scored rows, condition summaries, and interaction sequences surface broken data before a batch becomes unusable.</p>
+                </section>
+
+                <section class="case-section" id="failures">
+                    <h2>Failure modes that changed the design</h2>
+                    <ul>
+                        <li><strong>Per-file evidence labels looked globally meaningful.</strong> They were replaced with a separate cross-document clustering pass and migration logic for already-saved quotes.</li>
+                        <li><strong>Topic overlap created false “similar evidence.”</strong> The clustering contract now requires the same decision-relevant proposition, actor, authority, and implication.</li>
+                        <li><strong>Asynchronous snapshots could arrive out of order.</strong> Interaction saves now carry increasing revisions and reject stale state.</li>
+                        <li><strong>Version labels were manually stale.</strong> The API derives the runtime version from the deployed commit and stores it with participant rows.</li>
+                        <li><strong>Scoring coupled to completion created a fragile exit path.</strong> The final survey commits first; scoring saves later through a separate stage.</li>
+                    </ul>
+                </section>
+
+                <section class="case-section" id="ownership">
+                    <h2>My scope</h2>
+                    <p>I implemented the experimental condition logic, document reader, evidence layer, LLM handlers, schemas, SSE path, Postgres persistence, behavioral instrumentation, dashboard, model benchmarks, tests, and deployment. Research materials shown in the public system are predetermined scenarios; participant records remain in the protected study database and are never embedded here.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="engineering-footer"><div class="container"><div class="footer-content"><div class="footer-logo">Zilin Ma<span class="dot">.</span></div><div class="footer-links"><a href="../portfolio.html">Systems</a><a href="mailto:zilinma@g.harvard.edu">Email</a></div><p>&copy; <span class="footer-year">2026</span> Zilin Ma.</p></div></div></footer>
+    <script src="../../js/main.js?v=20260720"></script>
+</body>
+</html>
