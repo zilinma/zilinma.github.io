@@ -7,7 +7,7 @@ This repository contains the source code for Zilin Ma's personal academic and UX
 - Responsive design that works well on desktop, tablet, and mobile devices
 - Clean, professional aesthetic suitable for academic purposes
 - Sections for bio, publications, portfolio, CV, and contact information
-- Interactive project portfolio with detailed project pages
+- Project portfolio with detailed project pages
 - Easy to update and maintain
 
 ## Structure
@@ -46,6 +46,7 @@ This repository contains the source code for Zilin Ma's personal academic and UX
 - The main styling is controlled in `css/style.css`
 - Color scheme can be adjusted by modifying the CSS variables at the top of the stylesheet
 - Fonts can be changed by updating the Google Fonts link in the HTML `<head>` and the font-family properties in the CSS
+- The visual system uses warm neutral surfaces, solid accent colors, square corners, and restrained motion. Keep headings in Archivo and body copy in IBM Plex Sans unless the full type system is updated together.
 
 ## Contact Form
 
@@ -63,4 +64,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Font Awesome for icons
 - Google Fonts for typography
-- Design inspiration from other academic websites 
+- Design inspiration from other academic websites
