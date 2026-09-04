@@ -26,7 +26,7 @@
             <div class="container">
                 <p class="case-kicker">Beyond a Technology Lens · HBS Working Paper 27-016</p>
                 <h1>From 30.1M archived pages to 265 startup problem categories</h1>
-                <p class="case-summary">We use LLMs to measure the customer problems addressed by 88,336 U.S. startups. Independent human labels, untouched test sets, and 331 founder interviews provide three separate checks on the measurements. Licensed source rows and interview content remain private.</p>
+                <p class="case-summary">We use LLMs to measure the customer problems addressed by 88,336 U.S. startups. Independent human labels, untouched test sets, and 331 founder interviews provide three separate checks on the measurements.</p>
                 <div class="case-actions">
                     <a class="engineering-button primary" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7339099" target="_blank" rel="noopener">Read the paper ↗</a>
                     <a class="engineering-button" href="../portfolio.html">All systems</a>
@@ -62,7 +62,6 @@
                         <div class="constraint"><small>01 / RETRIEVAL</small><h3>WARC byte ranges</h3><p>Common Crawl index queries reduce each snapshot to ranked record pointers before any page content moves.</p></div>
                         <div class="constraint"><small>02 / COST</small><h3>Observed AWS spend</h3><p>The completed crawl stored 883.1 GiB. A monitor snapshot showed roughly $199 accumulated AWS cost and about $22/month in storage.</p></div>
                         <div class="constraint"><small>03 / EVALUATION</small><h3>Human-labeled test sets</h3><p>Each classifier has a written construct, independently coded labels, separate optimization data, and an untouched test split.</p></div>
-                        <div class="constraint"><small>04 / DISCLOSURE</small><h3>Restricted inputs</h3><p>Public artifacts include schemas, synthetic fixtures, prompts, and aggregate metrics—not licensed company rows or interview records.</p></div>
                     </div>
                 </section>
 
@@ -112,15 +111,15 @@
 
                     <figure class="ops-figure">
                         <img src="../../images/problem-taxonomy/crawl-pages-by-year.svg" alt="Archived pages processed by panel year across the Common Crawl recovery run">
-                        <figcaption>Operational output from the crawl monitor: page volume by panel year. This is pipeline telemetry, not a research result.</figcaption>
+                        <figcaption>Archived page volume by panel year from the crawl monitor.</figcaption>
                     </figure>
                 </section>
 
                 <section class="case-section" id="measurement">
                     <h2>Structured extraction and external validation</h2>
                     <p>Website prose is noisy: it mixes the customer, the problem, the solution, marketing claims, and investor language. The extractor therefore returns fixed fields under a strict schema instead of free-form summaries. Inference runs at temperature 0, output parsing is deterministic, and the same record identifiers survive through caches and downstream flat files.</p>
-                    <p>Before scaling the company-segment router, I ran a balanced 2,000-company audit against the licensed source taxonomy. Overall agreement was 85.45%, but the confusion matrix was asymmetric: text-derived B2B assignments often disagreed with source-side B2C labels when the described buyer was an institution or operator. That result became a routing diagnostic, not a claim that either label source was automatic ground truth.</p>
-                    <p>External validation uses 331 structured founder interviews. Founders describe their company’s problem before reviewing the extracted components, which avoids anchoring their first response on the model’s framing. Only aggregate validation statistics are reported publicly.</p>
+                    <p>Before scaling the company-segment router, I ran a balanced 2,000-company audit against the licensed source taxonomy. Overall agreement was 85.45%, but the confusion matrix was asymmetric: text-derived B2B assignments often disagreed with source-side B2C labels when the described buyer was an institution or operator. I used these cases to revise the routing rules.</p>
+                    <p>External validation uses 331 structured founder interviews. Founders describe their company’s problem before reviewing the extracted components, which avoids anchoring their first response on the model’s framing.</p>
                 </section>
 
                 <section class="case-section" id="evaluation">
@@ -164,7 +163,7 @@
                         <li><strong>Current-site crawls leaked later information into earlier years.</strong> The final pipeline preserves snapshot identity until the longitudinal panel is assembled.</li>
                         <li><strong>Whole-WARC downloads transferred unnecessary data.</strong> Record-level byte ranges reduced transfer and made retries addressable.</li>
                         <li><strong>More optimization did not reliably improve held-out F1.</strong> Larger search budgets stayed in a narrow band, and optimized prompts were model-specific.</li>
-                        <li><strong>The 256-feature taxonomy could reflect its chosen resolution.</strong> We recomputed the analysis on a raw 512-feature partition.</li>
+                        <li><strong>Resolution sensitivity.</strong> We recomputed the analysis on a raw 512-feature partition.</li>
                         <li><strong>Coder disagreement exposed ambiguous construct boundaries.</strong> Six codebook rounds revised boundaries before prompt optimization.</li>
                     </ul>
                 </section>
@@ -172,7 +171,6 @@
                 <section class="case-section" id="ownership">
                     <h2>My scope</h2>
                     <p>I led the computational research pipeline and manuscript integration: historical web recovery, orchestration, structured LLM extraction, annotation tools, codebooks, gold-set construction, DSPy/GEPA evaluation, analysis artifacts, and reproducibility. The broader research—including interviews, construct development, and sparse-representation work—is collaborative.</p>
-                    <p class="ownership-note">Disclosure: licensed company data, raw web captures, and interview materials remain private. This case study uses aggregate metrics and implementation details only.</p>
                 </section>
             </article>
         </div>

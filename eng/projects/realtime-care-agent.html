@@ -19,7 +19,7 @@
             <div class="container">
                 <p class="case-kicker">Agent systems · realtime voice · Google Cloud</p>
                 <h1>Realtime voice and planning services for a caregiving prototype</h1>
-                <p class="case-summary">CareCorgi used two runtimes: a memory-enabled planning API for a mobile app and a phone service connecting Twilio Media Streams to Gemini Live. The product did not reach commercial adoption.</p>
+                <p class="case-summary">CareCorgi used two runtimes: a memory-enabled planning API for a mobile app and a phone service connecting Twilio Media Streams to Gemini Live.</p>
                 <div class="case-actions"><a class="engineering-button primary" href="../portfolio.html">All systems</a></div>
                 <div class="case-metrics">
                     <div class="case-metric"><strong>250 ms</strong><span>sustained-speech barge-in threshold</span></div>
@@ -35,12 +35,12 @@
             <article class="case-content">
                 <section class="case-section" id="boundaries">
                     <h2>Separate planning and voice runtimes</h2>
-                    <p>The planning backend can spend seconds assembling goals, tasks, and memory. A phone call cannot: every audio chunk competes with network delay, transcoding, model response time, and playback. I separated these paths rather than forcing a single agent loop to own HTTP requests, persistent state, and realtime audio.</p>
+                    <p>The planning backend assembles goals, tasks, and memory over HTTP. A separate phone service handles network delay, transcoding, model response time, and playback for each audio chunk.</p>
                     <div class="constraint-grid">
                         <div class="constraint"><small>01 / AUDIO</small><h3>Three sample rates</h3><p>Twilio uses μ-law at 8 kHz; Gemini receives PCM at 16 kHz and returns PCM at 24 kHz.</p></div>
                         <div class="constraint"><small>02 / BARGE-IN</small><h3>Sustained-speech gate</h3><p>A single VAD-positive frame can be line hiss, echo, or a click. Interruption requires sustained voiced frames after a cooldown.</p></div>
                         <div class="constraint"><small>03 / STATE</small><h3>Separate stores</h3><p>Firestore holds product entities; Vertex AI Memory Bank supplies cross-session semantic recall.</p></div>
-                        <div class="constraint"><small>04 / LOGGING</small><h3>Operational fields only</h3><p>The call service records transport metrics and applies PII redaction to transcripts. Secrets stay outside source code.</p></div>
+                        <div class="constraint"><small>04 / LOGGING</small><h3>Call telemetry</h3><p>The call service records transport metrics and applies PII redaction to transcripts. Secrets stay outside source code.</p></div>
                     </div>
                 </section>
 
@@ -75,7 +75,7 @@
     self._active = self._active + 1 if voiced else 0
     return self._active &gt;= self.min_frames</code></pre>
                     </div>
-                    <p>The adapter also tracks connection state, reconnect attempts, audio bytes, received chunks, interruptions, completed turns, call duration, and average send bitrate. These are debugging signals—not claimed product outcomes.</p>
+                    <p>The adapter also tracks connection state, reconnect attempts, audio bytes, received chunks, interruptions, completed turns, call duration, and average send bitrate.</p>
                 </section>
 
                 <section class="case-section" id="memory">
@@ -87,7 +87,7 @@
                 <section class="case-section" id="deployment">
                     <h2>Deployment and smoke checks</h2>
                     <p>The backend shipped as containers through Cloud Build, Artifact Registry, and Cloud Run. API Gateway validates Firebase secure tokens before forwarding requests. Firestore emulator and mock-LLM smoke paths made it possible to exercise basic routes without consuming live model traffic.</p>
-                    <p>CareCorgi was accepted into the Google for Startups Cloud Program and received approximately $20,000 per month in Google Cloud credits. That was infrastructure support, not revenue or user adoption, so I keep it separate from product-outcome claims.</p>
+                    <p>CareCorgi was accepted into the Google for Startups Cloud Program and received approximately $20,000 per month in Google Cloud credits.</p>
                 </section>
 
                 <section class="case-section" id="failures">
@@ -95,7 +95,7 @@
                     <ul>
                         <li><strong>Unbounded audio buffers add playback latency.</strong> Input and output queues have fixed capacity and explicit backpressure behavior.</li>
                         <li><strong>Single-frame VAD triggers on hiss or echo.</strong> A cooldown and sustained-speech threshold gate interruption.</li>
-                        <li><strong>Semantic recall cannot store transactional state.</strong> Product entities remain in Firestore; Memory Bank handles retrieval.</li>
+                        <li><strong>Transactional state belongs in Firestore.</strong> Memory Bank handles semantic retrieval.</li>
                         <li><strong>Mobile and backend schemas can drift.</strong> Pydantic request and response models reject malformed calls.</li>
                         <li><strong>Long-lived calls retain tasks after disconnects.</strong> Per-call ownership and stale-session cleanup release them.</li>
                     </ul>
