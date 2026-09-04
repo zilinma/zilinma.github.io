@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reducing Bias in Online Platforms | Zilin Ma</title>
     <link rel="icon" href="../../images/favicon.svg">
-    <link rel="stylesheet" href="../../css/style.css?v=20260904">
+    <link rel="stylesheet" href="../../css/style.css?v=20260904b">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,57 +42,17 @@
                 <img src="../../images/bias-reduction/interface-teaser.png" alt="Comparison of Swipe and Reverse Interface Designs">
             </div>
             
-            <div class="project-roadmap">
-                <div class="roadmap-item" data-section="background">
-                    <div class="roadmap-circle">1</div>
-                    <div class="roadmap-line"></div>
-                    <div class="roadmap-label">Background</div>
-                </div>
-                <div class="roadmap-item" data-section="method">
-                    <div class="roadmap-circle">2</div>
-                    <div class="roadmap-line"></div>
-                    <div class="roadmap-label">Method</div>
-                </div>
-                <div class="roadmap-item" data-section="findings">
-                    <div class="roadmap-circle">3</div>
-                    <div class="roadmap-line"></div>
-                    <div class="roadmap-label">Findings</div>
-                </div>
-                <div class="roadmap-item" data-section="impact">
-                    <div class="roadmap-circle">4</div>
-                    <div class="roadmap-label">Impact</div>
-                </div>
-            </div>
-            
             <div class="project-content">
                 <h3 id="background">Background</h3>
                 <p>
-                    Our study draws on Daniel Kahneman's <em>Thinking, Fast and Slow</em>, which distinguishes between two modes of thinking: <strong>System 1</strong>, which is fast, automatic, and emotion-driven, and <strong>System 2</strong>, which is slow, deliberate, and reflective. We hypothesized that dating app interfaces disproportionately activate System 1 thinking by encouraging quick, photo-based judgments—thus increasing the likelihood of bias. Our intervention aimed to engage System 2 thinking by shifting attention to user values and interests before revealing photos.
+                    Photo-first dating interfaces encourage rapid, appearance-based judgments. Drawing on dual-process accounts of decision making, we tested whether showing profile compatibility before a photo changes racial bias in users' choices.
                 </p>
                 <p>
-                    Online dating platforms are one of the most common ways people meet, but many design choices unintentionally reinforce racial biases. In particular, swipe interfaces encourage fast, appearance-based decisions that can amplify users' implicit biases. Our research set out to explore: Can UX interventions reduce bias without removing user autonomy or engagement?
+                    The experiment also tested an update interface: participants made an initial decision, saw a compatibility score, and could revise their choice.
                 </p>
                 
-                <div class="two-column">
-                    <div>
-                        <h3 id="method">Problem</h3>
-                        <p>
-                            Even users who explicitly say race doesn't matter in dating often show bias in their choices. Swipe interfaces reveal photos first, prompting fast judgments. We hypothesized that reversing this order—presenting meaningful profile information before photos—might reduce biased decision-making. We also tested whether giving users a second chance to reconsider their decision (the update design) could help mitigate this effect.
-                        </p>
-                        
-                        <h4>Research Questions</h4>
-                        <ul>
-                            <li>RQ1: Does the swipe interface encourage decisions based on racial bias rather than stated preferences?</li>
-                            <li>RQ2: Can reversing the information sequence (showing photos last) reduce implicit racial bias in user choices?</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="stat-box">
-                            <h4>Problem Statement</h4>
-                            <p>Dating app interfaces that prioritize photos before personal information may inadvertently amplify racial bias in user decision-making, even among users who explicitly reject racial preferences in dating.</p>
-                        </div>
-                    </div>
-                </div>
+                <h3 id="method">Study design</h3>
+                <p>We compared five interfaces to separate the effects of information order, compatibility scores, and a chance to reconsider an initial choice. A total of 1,907 participants were randomly assigned to one interface and evaluated 15 controlled profiles.</p>
                 
                 <h3>My Role</h3>
                 <p>
@@ -124,69 +84,18 @@
                     </div>
                 </div>
                 
-                <h3>Personas & User Stories</h3>
-                
-                <div class="two-column">
-                    <div class="persona-card">
-                        <h4>Primary Persona: Jordan, a Thoughtful Swiper</h4>
-                        <div class="persona-meta">
-                            <ul>
-                                <li>Age 29, identifies as Asian American</li>
-                                <li>Uses dating apps regularly but feels frustrated by superficial judgments</li>
-                                <li>Believes in giving people a fair chance, yet notices patterns in who they swipe on</li>
-                            </ul>
-                        </div>
-                        
-                        <h5>Goals</h5>
-                        <p>Find partners who share meaningful values and interests</p>
-                        
-                        <h5>Frustrations</h5>
-                        <p>Unconscious bias, fast-paced swiping leads to decisions based on appearance</p>
-                        
-                        <h5>User Story</h5>
-                        <p>"As someone who wants to date beyond appearance, I need a way to get to know people's values first so I can make fairer decisions."</p>
-                    </div>
-                    
-                    <div class="persona-card">
-                        <h4>Secondary Persona: Maya, a Skeptical New User</h4>
-                        <div class="persona-meta">
-                            <ul>
-                                <li>Age 26, identifies as Black, first-time user of dating apps</li>
-                                <li>Concerned about bias and discrimination based on race</li>
-                                <li>Prefers intentional dating but unsure if platforms support that</li>
-                            </ul>
-                        </div>
-                        
-                        <h5>Goals</h5>
-                        <p>Feel respected and valued while exploring dating online</p>
-                        
-                        <h5>Frustrations</h5>
-                        <p>Biased user behavior, profile photo-first interfaces reinforce racial stereotypes</p>
-                        
-                        <h5>User Story</h5>
-                        <p>"As a new user who's worried about racial bias, I want an app that encourages thoughtful matching so I'm not judged instantly by my face."</p>
-                    </div>
-                </div>
-                
-                <h3 id="findings">Final Design & Key Findings</h3>
+                <h3 id="findings">Results</h3>
                 
                 <p>
-                    We tested five interface variants, finding that the reversed sequence interface—where users saw profile compatibility before photos—was most effective in reducing bias.
+                    In the reversed-sequence condition, participants saw compatibility information before names and photos. Anti-Black bias was lower in this condition (OR = 0.78, p = 0.018). The update condition alone did not reduce bias.
                 </p>
                 
                 <div class="two-column">
-                    <div>
-                        <h4>Key Results</h4>
-                        <ul>
-                            <li>Reversed sequence led to significant drop in anti-Black bias (OR = 0.78, p = 0.018)</li>
-                            <li>Participants spent more time evaluating profiles and showed more equitable engagement patterns</li>
-                            <li>Update condition alone didn't reduce bias, suggesting cognitive motivation matters in dating contexts</li>
-                        </ul>
-                    </div>
+                    <div><p>Participants in the reversed-sequence condition also spent more time evaluating profiles.</p></div>
                     <div>
                         <div class="image-placeholder" style="max-width: 100%; margin: 0 auto;">
                             <img src="../../images/bias-reduction/bias-reduction-results.png" alt="Bar chart comparing percentage of racially biased choices across interface types" style="width: 100%; max-width: 400px;">
-                            <p style="margin-top: 10px; font-size: 0.9rem;">My intervention successfully reduced racially biased choices among participants who explicitly stated they were against racial preferences.</p>
+                            <p style="margin-top: 10px; font-size: 0.9rem;">Racially biased choices by interface condition.</p>
                         </div>
                     </div>
                 </div>
@@ -194,36 +103,7 @@
                 <h3 id="impact">Outcome</h3>
                 
                 <p>
-                    We published this research at CHI 2022 in <em>Not Just a Preference: Reducing Biased Decision-making on Dating Websites</em>. The prototype remains live on LabInTheWild.org, continuing to educate the public and gather feedback.
-                </p>
-                
-                <div class="two-column">
-                    <div>
-                        <h4>Impact Metrics</h4>
-                        <ul>
-                            <li>1,907 participants in large-scale experiment</li>
-                            <li>Statistically significant bias reduction (Z = -2.36, p = 0.018)</li>
-                            <li>Increased profile viewing time and equalized engagement</li>
-                        </ul>
-                        
-                        <h4>Design Insights</h4>
-                        <ul>
-                            <li>Implicit bias can be shaped by interaction order</li>
-                            <li>Interfaces can act as cognitive forcing functions</li>
-                            <li>Well-designed friction can lead to fairer decisions</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <h4>Design Recommendations</h4>
-                <ul>
-                    <li>Don't place race-salient features (photos) as the first interaction point</li>
-                    <li>Center algorithmic sorting on user-stated preferences</li>
-                    <li>Support reflection by revealing potential gaps between behavior and stated values</li>
-                </ul>
-                
-                <p>
-                    This project demonstrates how interface design can be a lever for social equity without requiring users to change their awareness or values.
+                    This work was published at CHI 2022. The experiment isolates a specific interface change; it does not show that information order eliminates racial bias across dating platforms.
                 </p>
                 
                 <div class="publication-card">
@@ -245,65 +125,6 @@
         </div>
     </footer>
 
-    <script src="../../js/main.js?v=20260904"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = [
-                { id: 'background', element: document.getElementById('background') },
-                { id: 'method', element: document.getElementById('method') },
-                { id: 'findings', element: document.getElementById('findings') },
-                { id: 'impact', element: document.getElementById('impact') }
-            ];
-            
-            const roadmapItems = document.querySelectorAll('.roadmap-item');
-            
-            function updateRoadmap() {
-                const scrollPosition = window.scrollY + 300;
-                
-                let currentSectionIndex = -1;
-                sections.forEach((section, index) => {
-                    if (section.element && section.element.offsetTop <= scrollPosition) {
-                        currentSectionIndex = index;
-                    }
-                });
-                
-                roadmapItems.forEach((item, index) => {
-                    if (index <= currentSectionIndex) {
-                        item.classList.add('completed');
-                        item.classList.remove('active');
-                    } else {
-                        item.classList.remove('completed');
-                    }
-                    
-                    if (index === currentSectionIndex) {
-                        item.classList.add('active');
-                    } else {
-                        item.classList.remove('active');
-                    }
-                });
-                
-                if (currentSectionIndex === -1 && scrollPosition < 500) {
-                    roadmapItems[0].classList.add('active');
-                }
-            }
-            
-            window.addEventListener('scroll', updateRoadmap);
-            updateRoadmap();
-            
-            roadmapItems.forEach((item) => {
-                item.addEventListener('click', function() {
-                    const sectionId = this.getAttribute('data-section');
-                    const targetElement = document.getElementById(sectionId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 150,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="../../js/main.js?v=20260904b"></script>
 </body>
 </html>

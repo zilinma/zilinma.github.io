@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI for Humanitarian Negotiations | Zilin Ma</title>
     <link rel="icon" href="../images/favicon.svg">
-    <link rel="stylesheet" href="../css/style.css?v=20260904">
+    <link rel="stylesheet" href="../css/style.css?v=20260904b">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,37 +43,15 @@
                 <img src="../images/humanitarian/analysis_page.png" alt="Humanitarian Negotiations AI Interface">
             </div>
             
-            <div class="project-roadmap">
-                <div class="roadmap-item" data-section="research">
-                    <div class="roadmap-circle">1</div>
-                    <div class="roadmap-line"></div>
-                    <div class="roadmap-label">Research</div>
-                </div>
-                <div class="roadmap-item" data-section="design">
-                    <div class="roadmap-circle">2</div>
-                    <div class="roadmap-line"></div>
-                    <div class="roadmap-label">Design</div>
-                </div>
-                <div class="roadmap-item" data-section="ideate">
-                    <div class="roadmap-circle">3</div>
-                    <div class="roadmap-line"></div>
-                    <div class="roadmap-label">Ideate</div>
-                </div>
-                <div class="roadmap-item" data-section="results">
-                    <div class="roadmap-circle">4</div>
-                    <div class="roadmap-label">Results</div>
-                </div>
-            </div>
-            
             <div class="project-content">
                 <div class="two-column" id="research">
                     <div>
                         <h3>Background</h3>
                         <p>
-                            Frontline Associates, a global network of humanitarian negotiators, approached my team to investigate how AI could support their negotiation workflows. As conflicts intensify globally, these negotiators sought guidance on whether LLMs could responsibly support their highly contextual and relational work.
+                            Frontline Associates asked our team to study how humanitarian negotiators were using LLMs and where existing chat interfaces conflicted with their work.
                         </p>
                         <p>
-                            Humanitarian negotiations are ethically complex and emotionally demanding. Negotiators—often working unarmed under political pressure—must engage with actors ranging from tribal leaders to armed groups. While they've begun experimenting with LLMs to synthesize information and prepare for engagements, current AI tools prioritize outcome optimization rather than supporting the human, iterative processes critical to this work.
+                            Negotiators described using LLMs to summarize case materials, prepare engagements, and generate options. They also raised concerns about confidentiality, bias, overconfident advice, and the loss of local context.
                         </p>
                     </div>
                     <div>
@@ -86,20 +64,17 @@
                 
                 <h3>Problem</h3>
                 <p>
-                    Negotiators at organizations like MSF, UN, and ICRC are turning to AI, but existing tools don't align with their workflows. My research revealed they need structured, context-aware assistance that preserves negotiator agency and aligns with established frameworks like Iceberg and Island of Agreements. To address this, I designed and evaluated an AI-powered interface tailored to negotiation preparation.
+                    We designed a structured preparation interface around two frameworks already used by practitioners: Iceberg CSS and Island of Agreements. The interface organizes case evidence and proposes editable analyses; negotiators retain control over what enters the final preparation document.
                 </p>
                 
                 <h3>My Role</h3>
                 <p>
-                    I led this project end-to-end as designer, developer, and UX researcher. Key responsibilities included conducting formative interviews, building the probe interface, leading a comparison study between ChatGPT and my interface, facilitating synthesis workshops, and collaborating with practitioners to ground the design in real-world constraints.
+                    I led the interviews, interface design and implementation, comparison study, qualitative analysis, and synthesis workshops. The work was conducted with Frontline Associates and negotiators from MSF, the UN, and the ICRC.
                 </p>
                 
                 <h3>Methods</h3>
                 <p>
-                    I used affinity diagramming extensively in both studies to synthesize qualitative data. After transcribing interviews and study sessions, I grouped quotes and observations on virtual whiteboards to identify emerging themes. This method allowed me to contrast experiences with ChatGPT and my custom probe interface, helping surface insights around usability, collaboration, and alignment with negotiation workflows.
-                </p>
-                <p>
-                    I partnered with Frontline Associates, a global NGO network of negotiators, to run the study. My work unfolded in two phases:
+                    The project had two phases: 14 formative interviews, followed by a within-subjects think-aloud study in which 18 negotiators used ChatGPT and the custom interface. We analyzed the transcripts with open coding and thematic analysis.
                 </p>
                 
                 <div class="two-column">
@@ -123,76 +98,24 @@
                     </div>
                 </div>
                 
-                <h3 id="design">Personas & User Stories</h3>
+                <h3 id="design">Design requirements</h3>
                 <p>
-                    These personas emerged from my formative study with 14 humanitarian negotiators and directly informed the design requirements of the probe interface. Amina's persona represents concerns about AI overreach and loss of agency, while Luis embodies newer negotiators who struggle with complex frameworks.
-                </p>
-                
-                <div class="persona-card">
-                    <h4>Primary Persona: Amina, Experienced Field Negotiator</h4>
-                    <div class="persona-meta">
-                        <ul>
-                            <li>15+ years of humanitarian negotiation experience</li>
-                            <li>Comfortable with traditional tools and skeptical of new tech</li>
-                            <li>Needs tools that preserve agency and don't oversimplify context</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="persona-divider"></div>
-                    
-                    <h5>Goals</h5>
-                    <p>Build trust with counterparties, make ethically grounded decisions, pass on negotiation strategies to less experienced colleagues</p>
-                    
-                    <h5>Frustrations</h5>
-                    <p>LLMs offer "overconfident" advice; require too much prompt engineering; lack sensitivity to local norms</p>
-                    
-                    <h5>User Story</h5>
-                    <p>"As a senior negotiator, I want AI tools that help me organize negotiation knowledge without automating away my judgment."</p>
-                </div>
-                
-                <div class="persona-card" style="margin-top: 30px;">
-                    <h4>Secondary Persona: Luis, Early-Career Regional Negotiator</h4>
-                    <div class="persona-meta">
-                        <ul>
-                            <li>2 years of experience, focused on logistics and documentation</li>
-                            <li>Interested in using LLMs but unsure how to trust or structure them</li>
-                            <li>Relies on senior negotiators for framing strategies</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="persona-divider"></div>
-                    
-                    <h5>Goals</h5>
-                    <p>Learn effective practices, reduce prep time, avoid errors</p>
-                    
-                    <h5>Frustrations</h5>
-                    <p>Chat interfaces are overwhelming and unstructured; difficult to learn frameworks like Iceberg CSS alone</p>
-                    
-                    <h5>User Story</h5>
-                    <p>"As a new negotiator, I want AI to guide me through strategy frameworks so I can build better cases and learn from experts."</p>
-                </div>
-                
-                <h3 id="ideate">Design Process & Sketches</h3>
-                <p>
-                    Before implementation, I created low-fidelity sketches to explore concepts with subject matter experts. These visualizations clarified how to scaffold negotiators' workflows using frameworks like Island of Agreements and Iceberg CSS, while helping me pivot from an outcome-based to a process-oriented approach.
-                </p>
-                <p>
-                    Iterative testing with negotiators shaped key design decisions such as editable markdown summaries, simplified risk visualizations, and strategic organization of negotiation tiers.
+                    The formative interviews led to four requirements: preserve source context, organize analysis around familiar negotiation frameworks, keep model output editable, and show risks without recommending a single course of action.
                 </p>
 
-                <h3>Probe Interface Implementation</h3>
+                <h3 id="ideate">Interface implementation</h3>
                 <p>
-                    I implemented the interface as a full-stack web application using React for the frontend and Node.js with Express for the backend. The interface integrated with the OpenAI API to provide context-sensitive assistance while maintaining negotiator control through carefully designed interaction patterns.
+                    I built the probe in React and Node.js with Express. OpenAI API calls populate structured modules for context analysis, framework application, position mapping, and risk assessment. Every output remains editable.
                 </p>
                 
                 <div class="two-column">
                     <div>
                         <h4>Technical Implementation</h4>
                         <ul>
-                            <li>Built a modular component architecture to handle different negotiation frameworks</li>
-                            <li>Implemented state management to track negotiation progress and allow for collaborative review</li>
-                            <li>Created custom prompt engineering templates to maintain consistency while providing targeted assistance</li>
-                            <li>Developed a markdown-based editing system that balanced structure with flexibility</li>
+                            <li>Separate components for each negotiation framework</li>
+                            <li>Shared state for preparation progress and review</li>
+                            <li>Prompt templates tied to specific analytic modules</li>
+                            <li>Markdown editing for generated analyses</li>
                         </ul>
                     </div>
                     <div>
@@ -206,7 +129,7 @@
                 </div>
 
                 <p>
-                    The probe interface was designed as a guided workflow with four key modules, each addressing a specific negotiation preparation need:
+                    The interface contains four modules:
                 </p>
 
                 <ol>
@@ -217,7 +140,7 @@
                 </ol>
 
                 <p>
-                    Each module leveraged AI capabilities while maintaining human judgment at decision points. The AI components were designed to suggest rather than decide, providing options that negotiators could accept, modify, or reject within their established workflows.
+                    Model outputs are suggestions. Negotiators can accept, modify, or reject them before continuing.
                 </p>
                 
                 <div class="sketch-gallery">
@@ -228,7 +151,7 @@
                             </a>
                         </div>
                         <div class="sketch-caption">
-                            At the left, the user can input the case file, and the negotiation parties. Then the probe will generate Islands of Agreement, Iceberg CSS, and Components. The user can choose to inspect the generated content (for example in box B) in markdown format, and modify in a text box (for example in box A).
+                            Case materials and parties appear on the left; generated Islands of Agreement, Iceberg CSS, and component analyses remain editable on the right.
                         </div>
                     </div>
                     
@@ -239,74 +162,42 @@
                             </a>
                         </div>
                         <div class="sketch-caption">
-                            Overview of the red line and bottom line interface. Panel E shows the red line and bottom line of the negotiation party that the user represents. The two boxes on the right show the red line and the bottom line of the counterparty. Panel F shows one of the scenarios or outcomes that the negotiator decides on. The outcomes are listed such that, from the right to the left, there is an increasing amount of risk of negotiation failure as the outcome crosses the bottom line and the red line of the party that the user represents. After selecting the scenario, the user can generate a risk assessment for this selection through button Ga, and show a risk matrix in Gb.
+                            The risk view compares both parties' red and bottom lines, then generates a risk matrix for a negotiator-selected scenario.
                         </div>
                     </div>
                 </div>
                 
-                <p>
-                    These visual explorations grounded my interface in the real cognitive processes of negotiation, informed the probe's modular architecture, and allowed me to align the final design with the participants' mental models.
-                </p>
-                
-                <h3 id="results">Final Design & Key Findings</h3>
-                
-                <div class="two-column" id="results">
-                    <div>
-                        <h4>Probe Design Implementation</h4>
-                        <ul>
-                            <li>Step-by-step workflow integrating established negotiation frameworks</li>
-                            <li>Custom LLM prompt templates that maintain ethical boundaries</li>
-                            <li>Editable, structured outputs that preserve human oversight</li>
-                            <li>Progressive disclosure interface reducing cognitive load</li>
-                        </ul>
-                        
-                        <h4>Key Results</h4>
-                        <ul>
-                            <li>Negotiators preferred my interface over ChatGPT for its transparency and alignment with frameworks</li>
-                            <li>Novices gained structure while experts retained flexibility</li>
-                            <li>The interface reduced bias and encouraged team-based validation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h4>Implementation Challenges & Solutions</h4>
-                <p>
-                    Developing the probe interface required balancing several competing requirements:
-                </p>
+                <h3 id="results">Study findings</h3>
                 
                 <div class="two-column">
                     <div>
-                        <h5>Challenge: Contextual Understanding</h5>
-                        <p>LLMs struggled with the nuanced geopolitical contexts of negotiations</p>
-                        <h5>Solution:</h5>
-                        <p>Implemented a pre-processing layer where negotiators could verify and correct contextual information before framework application</p>
-                    </div>
-                    <div>
-                        <h5>Challenge: Maintaining Agency</h5>
-                        <p>Early prototypes sometimes overrode negotiator judgment</p>
-                        <h5>Solution:</h5>
-                        <p>Redesigned to provide suggestions with explicit "accept/modify/reject" controls in each module</p>
+                        <ul>
+                            <li>Negotiators preferred my interface over ChatGPT for its transparency and alignment with frameworks</li>
+                            <li>Less-experienced negotiators used the structure to work through unfamiliar frameworks</li>
+                            <li>Experienced negotiators valued editable output and the ability to reject model suggestions</li>
+                        </ul>
                     </div>
                 </div>
 
-                <p>
-                    Through iterative user testing, I refined the implementation to better match negotiators' mental models. Key improvements included simplifying the UI, adding collaborative annotation features, and providing clearer pathways between negotiation framework stages.
-                </p>
+                <h4>Changes after testing</h4>
                 
-                <h3>Impact</h3>
+                <div class="two-column">
+                    <div>
+                        <h5>Context verification</h5>
+                        <p>Negotiators can correct extracted context before the system applies a framework.</p>
+                    </div>
+                    <div>
+                        <h5>Output control</h5>
+                        <p>Each module exposes explicit accept, modify, and reject controls.</p>
+                    </div>
+                </div>
+
+                <h3>Publication and use</h3>
                 
-                <p><strong>Deliverables</strong></p>
                 <ul>
                     <li>A deployed design probe tested in two studies</li>
                     <li>Published at CHIWORK 2025</li>
                     <li>Shared with 200+ professional negotiators through the <strong>AI in Negotiation Workshop</strong>, hosted by Frontline Associates (<a href="https://www.frontline-associates.org/_files/ugd/2481ae_0d5bf0d7df9841cd9bd66f6c408b5688.pdf" target="_blank">workshop PDF</a>)</li>
-                </ul>
-                
-                <p><strong>Outcomes</strong></p>
-                <ul>
-                    <li>Disseminated findings to MSF, UN, ICRC, and others via weekly workshops with over 20+ participants each week</li>
-                    <li>Helped shape professional guidelines on AI use in negotiation</li>
-                    <li>Reinforced the need for process-oriented AI in high-stakes, human-centered fields</li>
                 </ul>
                 
                 <div class="publication-card">
@@ -336,64 +227,6 @@
         </div>
     </footer>
 
-    <script src="../js/main.js?v=20260904"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = [
-                { id: 'research', element: document.getElementById('research') },
-                { id: 'design', element: document.getElementById('design') },
-                { id: 'ideate', element: document.getElementById('ideate') },
-                { id: 'results', element: document.getElementById('results') }
-            ];
-            
-            const roadmapItems = document.querySelectorAll('.roadmap-item');
-            
-            function updateRoadmap() {
-                const scrollPosition = window.scrollY + 300; 
-                
-                let currentSectionIndex = -1;
-                sections.forEach((section, index) => {
-                    if (section.element && section.element.offsetTop <= scrollPosition) {
-                        currentSectionIndex = index;
-                    }
-                });
-                
-                roadmapItems.forEach((item, index) => {
-                    if (index <= currentSectionIndex) {
-                        item.classList.add('completed');
-                        item.classList.remove('active');
-                    } else {
-                        item.classList.remove('completed');
-                    }
-                    
-                    if (index === currentSectionIndex) {
-                        item.classList.add('active');
-                    } else {
-                        item.classList.remove('active');
-                    }
-                });
-                
-                if (currentSectionIndex === -1 && scrollPosition < 500) {
-                    roadmapItems[0].classList.add('active');
-                }
-            }
-            
-            window.addEventListener('scroll', updateRoadmap);
-            updateRoadmap();
-            
-            roadmapItems.forEach((item) => {
-                item.addEventListener('click', function() {
-                    const sectionId = this.getAttribute('data-section');
-                    const targetElement = document.getElementById(sectionId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 150,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="../js/main.js?v=20260904b"></script>
 </body>
 </html>

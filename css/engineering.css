@@ -11,10 +11,6 @@ body.engineering-site {
     --eng-soft: rgba(8, 126, 164, 0.08);
     --eng-dark: #0c2635;
     background: var(--eng-bg);
-    background-image:
-        linear-gradient(rgba(16, 43, 58, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 43, 58, 0.035) 1px, transparent 1px);
-    background-size: 32px 32px;
     color: var(--eng-ink);
 }
 
@@ -24,9 +20,9 @@ body.engineering-site {
 }
 
 .engineering-site .nav-menu a.active {
-    background: var(--eng-ink);
-    color: #fff;
-    box-shadow: none;
+    background: transparent;
+    color: var(--eng-ink);
+    border-bottom-color: var(--eng-coral);
 }
 
 .engineering-site .nav-menu a:hover {
@@ -43,7 +39,7 @@ body.engineering-site {
 
 .systems-hero {
     padding: 132px 0 56px;
-    min-height: 700px;
+    min-height: 640px;
     display: flex;
     align-items: center;
 }
@@ -65,7 +61,7 @@ body.engineering-site {
     line-height: 0.98;
 }
 
-.systems-hero h1 { font-size: clamp(3.3rem, 7.2vw, 6.25rem); max-width: 11ch; }
+.systems-hero h1 { font-size: clamp(3.1rem, 6vw, 4.9rem); max-width: 14ch; }
 
 .hero-positioning {
     margin: 28px 0 0;
@@ -173,10 +169,10 @@ body.engineering-site {
 .section-number { font-family: var(--font-mono); color: var(--eng-coral); font-size: 0.78rem; }
 .engineering-section h2 {
     font-family: var(--font-heading);
-    font-size: clamp(2.25rem, 5vw, 4.4rem);
-    line-height: 1.02;
+    font-size: clamp(2rem, 4vw, 3.35rem);
+    line-height: 1.08;
     letter-spacing: -0.035em;
-    max-width: 14ch;
+    max-width: 20ch;
     margin-top: 10px;
 }
 .section-intro { max-width: 62ch; color: var(--eng-muted); margin-top: 18px; font-size: 1.03rem; }
@@ -249,12 +245,13 @@ body.engineering-site {
 
 /* Case studies */
 .case-hero { padding: 158px 0 62px; border-bottom: 1px solid var(--eng-line); }
-.case-hero h1 { font-size: clamp(3rem, 7vw, 5.75rem); max-width: 13ch; }
+.case-hero h1 { font-size: clamp(2.8rem, 6vw, 4.6rem); max-width: 18ch; }
 .case-summary { max-width: 72ch; margin-top: 26px; color: var(--eng-muted); font-size: 1.12rem; }
 .case-kicker { font-family: var(--font-mono); color: var(--eng-coral); font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .case-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-.case-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 48px; background: var(--eng-line); border: 1px solid var(--eng-line); }
-.case-metric { background: var(--eng-bg); padding: 20px; }
+.case-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 48px; border-block: 1px solid var(--eng-line); }
+.case-metric { background: transparent; padding: 20px; border-right: 1px solid var(--eng-line); }
+.case-metric:last-child { border-right: 0; }
 .case-metric strong { display: block; color: var(--eng-blue); font-family: var(--font-heading); font-size: 2rem; }
 .case-metric span { display: block; margin-top: 4px; color: var(--eng-muted); font-family: var(--font-mono); font-size: 0.69rem; }
 
@@ -273,11 +270,11 @@ body.engineering-site {
 .case-section li { margin-bottom: 9px; padding-left: 4px; }
 .case-section strong { color: var(--eng-ink); }
 
-.constraint-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 26px; background: var(--eng-line); border: 1px solid var(--eng-line); }
-.constraint { background: var(--eng-bg); padding: 22px; }
+.constraint-grid { display: block; margin-top: 26px; border-top: 1px solid var(--eng-line); }
+.constraint { display: grid; grid-template-columns: 110px 210px minmax(0, 1fr); gap: 24px; align-items: baseline; background: transparent; padding: 18px 0; border-bottom: 1px solid var(--eng-line); }
 .constraint small { font-family: var(--font-mono); color: var(--eng-coral); }
-.constraint h3 { margin-top: 14px; font-size: 1.15rem; }
-.constraint p { font-size: 0.88rem; margin-top: 9px; }
+.constraint h3 { margin-top: 0; font-size: 1.05rem; }
+.constraint p { font-size: 0.88rem; margin-top: 0; }
 
 .architecture-stack { margin-top: 28px; border: 1px solid var(--eng-line); }
 .architecture-layer { display: grid; grid-template-columns: 140px 1fr; gap: 20px; padding: 18px 20px; border-bottom: 1px solid var(--eng-line); background: var(--bg-elevated); }
@@ -335,6 +332,7 @@ body.engineering-site {
     .pipeline-step:last-child { border-bottom: 0; }
     .principles-grid,
     .constraint-grid { grid-template-columns: 1fr; }
+    .constraint { grid-template-columns: 1fr; gap: 6px; }
     .principle { border-right: 0; border-bottom: 1px solid var(--eng-line); }
     .principle:last-child { border-bottom: 0; }
     .case-hero { padding-top: 128px; }

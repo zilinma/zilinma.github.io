@@ -2,21 +2,21 @@
 
 This repository contains the source code for Zilin Ma's personal academic and UX research website. The website is built with HTML, CSS, and JavaScript and is designed to be hosted on GitHub Pages.
 
-## Features
+## Site map
 
-- Responsive design that works well on desktop, tablet, and mobile devices
-- Clean, professional aesthetic suitable for academic purposes
-- Sections for bio, publications, portfolio, CV, and contact information
-- Project portfolio with detailed project pages
-- Easy to update and maintain
+- `/`: research profile, current projects, and selected publications
+- `/eng/`: engineering-oriented profile and system case studies
+- `/portfolio.html`: research project index
+- `/publications.html`: complete publication list and citations
+- `/cv.html`: appointments, education, research, and service
 
 ## Structure
 
 - `index.html`: Main landing page with bio and featured content
 - `cv.html`: CV/Resume page with downloadable PDF option
 - `publications.html`: Academic publications listing
-- `portfolio.html`: Project portfolio displayed as interactive tiles
-- `contact.html`: Contact information and form
+- `portfolio.html`: Project portfolio displayed as editorial rows
+- `contact.html`: Contact information
 - `projects/`: Directory containing individual project detail pages
 - `css/`: Contains all styling information
 - `js/`: Contains JavaScript functionality
@@ -31,30 +31,20 @@ This repository contains the source code for Zilin Ma's personal academic and UX
 4. Select the main branch as the source
 5. The site will be published at `https://zilinma.github.io`
 
-## Customization
+## Updating content
 
-### Adding Content
-
-- Replace placeholder text in all HTML files with your actual content
-- Replace placeholder images in the `images/` directory with your actual images
-- Update the CV section and add your CV PDF to the `files/` directory
-- Add your actual publications to the publications page
-- Create additional project pages based on the template in `projects/project1.html`
+- Update the profile and selected work in `index.html`
+- Keep publication entries synchronized between `publications.html` and `eng/publications.html`
+- Add research pages under `projects/` and engineering case studies under `eng/projects/`
+- Replace `files/ZilinMa_CV.pdf` when the CV changes
 
 ### Styling
 
 - The main styling is controlled in `css/style.css`
 - Color scheme can be adjusted by modifying the CSS variables at the top of the stylesheet
 - Fonts can be changed by updating the Google Fonts link in the HTML `<head>` and the font-family properties in the CSS
-- The visual system uses warm neutral surfaces, solid accent colors, square corners, and restrained motion. Keep headings in Archivo and body copy in IBM Plex Sans unless the full type system is updated together.
-
-## Contact Form
-
-The contact form is set up to use [Formspree](https://formspree.io/). To make it functional:
-
-1. Create a Formspree account
-2. Set up a new form
-3. Replace the placeholder endpoint in the form action attribute with your actual Formspree endpoint
+- The visual system uses warm neutral surfaces, solid accents, square corners, editorial rows, and restrained motion. Keep headings in Archivo and body copy in IBM Plex Sans unless the full type system is updated together.
+- Public copy should state the work, evidence, and constraints directly. Avoid tutorial framing, generic principles, fabricated personas, and unsupported impact claims.
 
 ## License
 

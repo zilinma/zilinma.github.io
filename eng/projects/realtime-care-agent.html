@@ -6,7 +6,7 @@
     <title>Building a Memory-Enabled Realtime Voice Agent | Zilin Ma</title>
     <meta name="description" content="Engineering case study: Google ADK, Vertex AI Memory Bank, Firestore, Twilio Media Streams, Gemini Live, audio transcoding, backpressure, and barge-in controls.">
     <link rel="icon" href="../../images/favicon.svg">
-    <link rel="stylesheet" href="../../css/style.css?v=20260904"><link rel="stylesheet" href="../../css/engineering.css?v=20260904">
+    <link rel="stylesheet" href="../../css/style.css?v=20260904b"><link rel="stylesheet" href="../../css/engineering.css?v=20260904b">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -18,8 +18,8 @@
         <section class="case-hero">
             <div class="container">
                 <p class="case-kicker">Agent systems · realtime voice · Google Cloud</p>
-                <h1>Building one agent across mobile, memory, and phone calls</h1>
-                <p class="case-summary">CareCorgi was a caregiving companion prototype with two runtimes: a memory-enabled planning API for a mobile app and a low-latency phone service connecting Twilio Media Streams to Gemini Live. The product did not reach commercial adoption. This case study covers its service boundaries and failure controls.</p>
+                <h1>Realtime voice and planning services for a caregiving prototype</h1>
+                <p class="case-summary">CareCorgi used two runtimes: a memory-enabled planning API for a mobile app and a phone service connecting Twilio Media Streams to Gemini Live. The product did not reach commercial adoption.</p>
                 <div class="case-actions"><a class="engineering-button primary" href="../portfolio.html">All systems</a></div>
                 <div class="case-metrics">
                     <div class="case-metric"><strong>250 ms</strong><span>sustained-speech barge-in threshold</span></div>
@@ -34,13 +34,13 @@
             <aside class="case-nav" aria-label="Case study sections"><strong>On this page</strong><a href="#boundaries">Service boundaries</a><a href="#architecture">Architecture</a><a href="#voice">Voice path</a><a href="#memory">Memory &amp; tools</a><a href="#deployment">Deployment</a><a href="#failures">Failure modes</a><a href="#ownership">Scope</a></aside>
             <article class="case-content">
                 <section class="case-section" id="boundaries">
-                    <h2>One product, two latency regimes</h2>
+                    <h2>Separate planning and voice runtimes</h2>
                     <p>The planning backend can spend seconds assembling goals, tasks, and memory. A phone call cannot: every audio chunk competes with network delay, transcoding, model response time, and playback. I separated these paths rather than forcing a single agent loop to own HTTP requests, persistent state, and realtime audio.</p>
                     <div class="constraint-grid">
-                        <div class="constraint"><small>01 / REALTIME</small><h3>Latency accumulates</h3><p>Twilio uses μ-law at 8 kHz; Gemini receives PCM at 16 kHz and returns PCM at 24 kHz. Every conversion sits in the conversational loop.</p></div>
-                        <div class="constraint"><small>02 / INTERRUPTION</small><h3>Noise sounds like intent</h3><p>Naive voice activity detection can let line hiss or the assistant’s own audio interrupt a response.</p></div>
-                        <div class="constraint"><small>03 / STATE</small><h3>Memory is not session state</h3><p>Long-term semantic memory, current conversation, profile fields, plan objects, and task completion have different lifecycles.</p></div>
-                        <div class="constraint"><small>04 / PRIVACY</small><h3>Health-adjacent logs need restraint</h3><p>The call service tracks operational metrics while applying PII redaction to transcripts and keeping secrets outside source code.</p></div>
+                        <div class="constraint"><small>01 / AUDIO</small><h3>Three sample rates</h3><p>Twilio uses μ-law at 8 kHz; Gemini receives PCM at 16 kHz and returns PCM at 24 kHz.</p></div>
+                        <div class="constraint"><small>02 / BARGE-IN</small><h3>Sustained-speech gate</h3><p>A single VAD-positive frame can be line hiss, echo, or a click. Interruption requires sustained voiced frames after a cooldown.</p></div>
+                        <div class="constraint"><small>03 / STATE</small><h3>Separate stores</h3><p>Firestore holds product entities; Vertex AI Memory Bank supplies cross-session semantic recall.</p></div>
+                        <div class="constraint"><small>04 / LOGGING</small><h3>Operational fields only</h3><p>The call service records transport metrics and applies PII redaction to transcripts. Secrets stay outside source code.</p></div>
                     </div>
                 </section>
 
@@ -79,10 +79,9 @@
                 </section>
 
                 <section class="case-section" id="memory">
-                    <h2>Memory and tools were explicit services.</h2>
-                    <p>The agent did more than retain chat text. It called tools to read and update profile information, generate hierarchical care goals, create short tasks, record completion, build daily plans, save moods, and produce recaps. The FastAPI layer returned function-call traces so the mobile client and logs could distinguish a model message from a state-changing operation.</p>
+                    <h2>State and tool boundaries</h2>
+                    <p>The agent called tools to read and update profile information, generate hierarchical care goals, create short tasks, record completion, build daily plans, save moods, and produce recaps. The FastAPI layer returned function-call traces so the mobile client and logs could distinguish a model message from a state-changing operation.</p>
                     <p>Cross-session continuity used Vertex AI Memory Bank, while Firestore stored product truth: user/session mappings, goals, tasks, category order, daily selections, mood entries, and recaps. This separation avoided asking semantic retrieval to behave like a transactional database.</p>
-                    <div class="callout"><p><strong>State model:</strong> conversation context, semantic recall, user profile, and mutable task state have different consistency and retention requirements.</p></div>
                 </section>
 
                 <section class="case-section" id="deployment">
@@ -92,13 +91,13 @@
                 </section>
 
                 <section class="case-section" id="failures">
-                    <h2>Failure modes designed into the implementation</h2>
+                    <h2>Failure handling</h2>
                     <ul>
-                        <li><strong>Unbounded audio buffers create conversational time travel.</strong> Bounded queues trade controlled dropping/backpressure for runaway latency.</li>
-                        <li><strong>Immediate VAD interrupts on hiss or echo.</strong> Cooldown plus sustained-speech gating is more conservative.</li>
-                        <li><strong>One storage abstraction blurs consistency.</strong> Transactional product entities stay in Firestore; semantic recall stays in Memory Bank.</li>
-                        <li><strong>Mobile and backend schemas drift.</strong> Pydantic request/response models make the API contract inspectable and reject malformed calls.</li>
-                        <li><strong>Long-lived calls leak resources.</strong> Per-call task ownership, lifecycle cleanup, and stale-session cleanup release resources after disconnects.</li>
+                        <li><strong>Unbounded audio buffers add playback latency.</strong> Input and output queues have fixed capacity and explicit backpressure behavior.</li>
+                        <li><strong>Single-frame VAD triggers on hiss or echo.</strong> A cooldown and sustained-speech threshold gate interruption.</li>
+                        <li><strong>Semantic recall cannot store transactional state.</strong> Product entities remain in Firestore; Memory Bank handles retrieval.</li>
+                        <li><strong>Mobile and backend schemas can drift.</strong> Pydantic request and response models reject malformed calls.</li>
+                        <li><strong>Long-lived calls retain tasks after disconnects.</strong> Per-call ownership and stale-session cleanup release them.</li>
                     </ul>
                 </section>
 
@@ -111,6 +110,6 @@
     </main>
 
     <footer class="engineering-footer"><div class="container"><div class="footer-content"><div class="footer-logo">Zilin Ma<span class="dot">.</span></div><div class="footer-links"><a href="../portfolio.html">Systems</a><a href="mailto:zilinma@g.harvard.edu">Email</a></div><p>&copy; <span class="footer-year">2026</span> Zilin Ma.</p></div></div></footer>
-    <script src="../../js/main.js?v=20260904"></script>
+    <script src="../../js/main.js?v=20260904b"></script>
 </body>
 </html>

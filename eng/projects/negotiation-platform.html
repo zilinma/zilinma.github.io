@@ -6,7 +6,7 @@
     <title>Engineering a Six-Condition Human-AI Experiment | Zilin Ma</title>
     <meta name="description" content="Engineering case study: evidence-grounded LLM workflows, experimental condition isolation, SSE streaming, schema validation, and revision-safe behavioral logging.">
     <link rel="icon" href="../../images/favicon.svg">
-    <link rel="stylesheet" href="../../css/style.css?v=20260904"><link rel="stylesheet" href="../../css/engineering.css?v=20260904">
+    <link rel="stylesheet" href="../../css/style.css?v=20260904b"><link rel="stylesheet" href="../../css/engineering.css?v=20260904b">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -18,8 +18,8 @@
         <section class="case-hero">
             <div class="container">
                 <p class="case-kicker">Human-AI experimentation · grounded generation · observability</p>
-                <h1>Engineering a six-condition LLM experiment without breaking the experiment</h1>
-                <p class="case-summary">Negotiation Task Reader is an online research platform where participants read the same evidence but receive different forms of AI support. The engineering challenge was to vary the treatment while keeping documents, timing, information architecture, persistence, and failure behavior controlled.</p>
+                <h1>A six-condition platform for human-AI negotiation research</h1>
+                <p class="case-summary">Negotiation Task Reader compares several ways of organizing preparation work between a participant, an interface, and an LLM. Conditions share case materials and core tasks; participant and AI roles differ across configurations.</p>
                 <div class="case-actions"><a class="engineering-button primary" href="https://negotiation-task-reader.vercel.app/" target="_blank" rel="noopener">Open live system ↗</a><a class="engineering-button" href="../portfolio.html">All systems</a></div>
                 <div class="case-metrics">
                     <div class="case-metric"><strong>6</strong><span>implemented conditions</span></div>
@@ -34,13 +34,13 @@
             <aside class="case-nav" aria-label="Case study sections"><strong>On this page</strong><a href="#contract">Experiment contract</a><a href="#architecture">Architecture</a><a href="#grounding">Evidence grounding</a><a href="#reliability">Reliability</a><a href="#observability">Observability</a><a href="#failures">Failure modes</a><a href="#ownership">Scope</a></aside>
             <article class="case-content">
                 <section class="case-section" id="contract">
-                    <h2>The platform had to preserve causal validity.</h2>
-                    <p>An experiment platform must keep shared elements fixed while changing one mechanism by condition. Conditions 3, 5, and 6 use the same three preparation modules—what each side wants, where they agree and disagree, and how a deal could work—but vary whether the AI generates a sheet, extends a participant draft, or only pressure-tests reasoning.</p>
+                    <h2>Condition implementation</h2>
+                    <p>The conditions are distinct work configurations rather than levels of one manipulation. Conditions 3, 5, and 6 use the same three preparation modules—what each side wants, where they agree and disagree, and how a deal could work—but differ in task structure, participant role, and AI role.</p>
                     <div class="constraint-grid">
-                        <div class="constraint"><small>01 / ISOLATION</small><h3>Keep non-treatment elements matched</h3><p>Documents, reading targets, visual grammar, timers, and evidence navigation stay matched across the active conditions.</p></div>
-                        <div class="constraint"><small>02 / GROUNDING</small><h3>A citation is not enough</h3><p>Every passage must be verbatim, assigned to the right analytic slot, and allowed by its source provenance.</p></div>
-                        <div class="constraint"><small>03 / ASYNC STATE</small><h3>Slow models cannot corrupt logs</h3><p>Streaming, parallel scans, autosave, and model responses can finish out of order; writes need monotonic revisions.</p></div>
-                        <div class="constraint"><small>04 / COMPLETION</small><h3>Participants cannot wait for scoring</h3><p>Survey completion and LLM scoring are separate transactions with a local fallback path.</p></div>
+                        <div class="constraint"><small>01 / SHARED</small><h3>Materials and timing</h3><p>Documents, reading targets, visual grammar, timers, and evidence navigation stay matched across active conditions.</p></div>
+                        <div class="constraint"><small>02 / EVIDENCE</small><h3>Source validation</h3><p>Every quoted passage must be verbatim, assigned to the intended analytic slot, and permitted by its provenance.</p></div>
+                        <div class="constraint"><small>03 / STATE</small><h3>Revisioned writes</h3><p>Streaming, parallel scans, autosave, and model responses can finish out of order; stale revisions are rejected.</p></div>
+                        <div class="constraint"><small>04 / EXIT</small><h3>Separate completion</h3><p>Survey storage and LLM scoring are separate transactions, with a local scoring fallback.</p></div>
                     </div>
                 </section>
 
@@ -58,7 +58,7 @@
                 </section>
 
                 <section class="case-section" id="grounding">
-                    <h2>Grounding required semantic contracts.</h2>
+                    <h2>Evidence validation by source and analytic role</h2>
                     <p>A model can return a real quote that is still invalid for the intended use. A private note from one side cannot prove shared agreement; an unverified media report cannot establish a party’s red line; a passage about an intermediary does not authorize that actor to implement a deal.</p>
                     <p>The evidence handler therefore couples a JSON schema with deterministic checks. Each item has a verbatim quote, framework, slot, one or two visible cell IDs, importance, reason, and semantic-group label. A second layer validates source context and prohibited routes. Exact text matching confirms that the quoted span really exists in the document.</p>
 
@@ -81,9 +81,9 @@
                 </section>
 
                 <section class="case-section" id="reliability">
-                    <h2>Model failure is part of the treatment environment.</h2>
-                    <p>Different conditions call different handlers and models, but failure behavior must not silently become another experimental manipulation. Structured-output requests use schema validation and bounded retries. Evidence ranking falls back to deterministic core/support ordering. Final scoring has a local rubric-based fallback so a participant still receives a result if the model provider is unavailable.</p>
-                    <div class="decision-table-wrap"><table class="decision-table"><thead><tr><th>Risk</th><th>System control</th><th>Why it matters</th></tr></thead><tbody>
+                    <h2>Matched fallback behavior</h2>
+                    <p>Different configurations call different handlers and models, so failure behavior can otherwise become an unintended difference between conditions. Structured-output requests use schema validation and bounded retries. Evidence ranking falls back to deterministic core/support ordering. Final scoring has a local rubric-based fallback if the model provider is unavailable.</p>
+                    <div class="decision-table-wrap"><table class="decision-table"><thead><tr><th>Risk</th><th>System control</th><th>Failure prevented</th></tr></thead><tbody>
                         <tr><td>Malformed output</td><td>Strict JSON schemas, normalization, bounded retry</td><td>Prevents one condition from failing as an unhandled UI state.</td></tr>
                         <tr><td>Slow generation</td><td>SSE streaming and parallel evidence scans</td><td>Keeps timing visible and avoids blocking the reading workflow.</td></tr>
                         <tr><td>Ranking outage</td><td>Deterministic evidence-order fallback</td><td>Participants can continue with the same source set.</td></tr>
@@ -92,7 +92,7 @@
                 </section>
 
                 <section class="case-section" id="observability">
-                    <h2>Log the path to each answer.</h2>
+                    <h2>Behavioral instrumentation and versioning</h2>
                     <p>The platform records file opens, document clicks, saved evidence, AI requests, draft state, prompt edits, condition-specific artifacts, and timing. A monotonic interaction revision prevents a slower autosave from overwriting a newer snapshot. Each cohort also carries the case-material version and the deployed commit-derived system version, so analysis can separate participants who saw different code or content.</p>
                     <p>The dashboard supports launch and validity checks. Started versus completed counts, timeout rates, missing stages, fallback-scored rows, condition summaries, and interaction sequences surface broken data before a batch becomes unusable.</p>
                 </section>
@@ -100,7 +100,7 @@
                 <section class="case-section" id="failures">
                     <h2>Failure modes that changed the design</h2>
                     <ul>
-                        <li><strong>Per-file evidence labels looked globally meaningful.</strong> They were replaced with a separate cross-document clustering pass and migration logic for already-saved quotes.</li>
+                        <li><strong>Per-file evidence labels appeared to apply across documents.</strong> A separate cross-document clustering pass now groups saved quotes.</li>
                         <li><strong>Topic overlap created false “similar evidence.”</strong> The clustering contract now requires the same decision-relevant proposition, actor, authority, and implication.</li>
                         <li><strong>Asynchronous snapshots could arrive out of order.</strong> Interaction saves now carry increasing revisions and reject stale state.</li>
                         <li><strong>Version labels were manually stale.</strong> The API derives the runtime version from the deployed commit and stores it with participant rows.</li>
@@ -117,6 +117,6 @@
     </main>
 
     <footer class="engineering-footer"><div class="container"><div class="footer-content"><div class="footer-logo">Zilin Ma<span class="dot">.</span></div><div class="footer-links"><a href="../portfolio.html">Systems</a><a href="mailto:zilinma@g.harvard.edu">Email</a></div><p>&copy; <span class="footer-year">2026</span> Zilin Ma.</p></div></div></footer>
-    <script src="../../js/main.js?v=20260904"></script>
+    <script src="../../js/main.js?v=20260904b"></script>
 </body>
 </html>

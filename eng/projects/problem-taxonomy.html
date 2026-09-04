@@ -6,8 +6,8 @@
     <title>Beyond a Technology Lens | Zilin Ma</title>
     <meta name="description" content="Engineering case study for Beyond a Technology Lens: an evaluated LLM measurement pipeline covering 88,336 startups, 331 founder interviews, and 265 customer problems.">
     <link rel="icon" href="../../images/favicon.svg">
-    <link rel="stylesheet" href="../../css/style.css?v=20260904">
-    <link rel="stylesheet" href="../../css/engineering.css?v=20260904">
+    <link rel="stylesheet" href="../../css/style.css?v=20260904b">
+    <link rel="stylesheet" href="../../css/engineering.css?v=20260904b">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
         <section class="case-hero">
             <div class="container">
                 <p class="case-kicker">Beyond a Technology Lens · HBS Working Paper 27-016</p>
-                <h1>Building an evaluated taxonomy from 30.1M archived web pages</h1>
-                <p class="case-summary">We use LLMs to measure the customer problems addressed by 88,336 U.S. startups and organize them into 265 clusters. Evaluation combines independent human labels, untouched test sets, and external validation against 331 founder interviews. The proprietary source rows and interview content remain private.</p>
+                <h1>From 30.1M archived pages to 265 startup problem categories</h1>
+                <p class="case-summary">We use LLMs to measure the customer problems addressed by 88,336 U.S. startups. Independent human labels, untouched test sets, and 331 founder interviews provide three separate checks on the measurements. Licensed source rows and interview content remain private.</p>
                 <div class="case-actions">
                     <a class="engineering-button primary" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7339099" target="_blank" rel="noopener">Read the paper ↗</a>
                     <a class="engineering-button" href="../portfolio.html">All systems</a>
@@ -56,13 +56,13 @@
 
             <article class="case-content">
                 <section class="case-section" id="constraints">
-                    <h2>Scale and measurement validity</h2>
+                    <h2>Historical recovery and evaluation</h2>
                     <p>The research question required a longitudinal view of what problems startups said they were solving. Domains change owners, companies disappear, and present-day copy leaks future information into earlier years. The data layer had to recover each company website at the right historical snapshot before any model touched the text.</p>
                     <div class="constraint-grid">
-                        <div class="constraint"><small>01 / SCALE</small><h3>Do not download the web</h3><p>Common Crawl exposes a massive index and compressed WARC files. The system needed to reduce to relevant byte ranges before moving content.</p></div>
-                        <div class="constraint"><small>02 / COST</small><h3>Use managed scans selectively</h3><p>The completed crawl stored 883.1 GiB. A monitor snapshot showed roughly $199 accumulated AWS cost and about $22/month in storage.</p></div>
-                        <div class="constraint"><small>03 / MODEL RISK</small><h3>Prompts are fitted instruments</h3><p>Every classifier needed an explicit construct, human labels, held-out evaluation, and an audit trail—not confidence-by-anecdote.</p></div>
-                        <div class="constraint"><small>04 / DISCLOSURE</small><h3>Keep licensed rows private</h3><p>Public artifacts can expose schemas, synthetic fixtures, prompts, and metrics; they cannot publish the licensed company data or interview records.</p></div>
+                        <div class="constraint"><small>01 / RETRIEVAL</small><h3>WARC byte ranges</h3><p>Common Crawl index queries reduce each snapshot to ranked record pointers before any page content moves.</p></div>
+                        <div class="constraint"><small>02 / COST</small><h3>Observed AWS spend</h3><p>The completed crawl stored 883.1 GiB. A monitor snapshot showed roughly $199 accumulated AWS cost and about $22/month in storage.</p></div>
+                        <div class="constraint"><small>03 / EVALUATION</small><h3>Human-labeled test sets</h3><p>Each classifier has a written construct, independently coded labels, separate optimization data, and an untouched test split.</p></div>
+                        <div class="constraint"><small>04 / DISCLOSURE</small><h3>Restricted inputs</h3><p>Public artifacts include schemas, synthetic fixtures, prompts, and aggregate metrics—not licensed company rows or interview records.</p></div>
                     </div>
                 </section>
 
@@ -117,11 +117,10 @@
                 </section>
 
                 <section class="case-section" id="measurement">
-                    <h2>Treat LLM extraction as a measurement instrument.</h2>
+                    <h2>Structured extraction and external validation</h2>
                     <p>Website prose is noisy: it mixes the customer, the problem, the solution, marketing claims, and investor language. The extractor therefore returns fixed fields under a strict schema instead of free-form summaries. Inference runs at temperature 0, output parsing is deterministic, and the same record identifiers survive through caches and downstream flat files.</p>
                     <p>Before scaling the company-segment router, I ran a balanced 2,000-company audit against the licensed source taxonomy. Overall agreement was 85.45%, but the confusion matrix was asymmetric: text-derived B2B assignments often disagreed with source-side B2C labels when the described buyer was an institution or operator. That result became a routing diagnostic, not a claim that either label source was automatic ground truth.</p>
-                    <p>The most important validation is external. In an ongoing program of 331 structured founder interviews, founders first describe their company’s problem in their own words and review the extracted components afterward. The order avoids anchoring them on the model’s framing. Only aggregate validation statistics are reported publicly; transcripts and responses are not exposed.</p>
-                    <div class="callout"><p><strong>Validation rule:</strong> fluent output does not establish validity. Every measurement needs a comparison target independent of the model and source text being evaluated.</p></div>
+                    <p>External validation uses 331 structured founder interviews. Founders describe their company’s problem before reviewing the extracted components, which avoids anchoring their first response on the model’s framing. Only aggregate validation statistics are reported publicly.</p>
                 </section>
 
                 <section class="case-section" id="evaluation">
@@ -144,7 +143,7 @@
                 </section>
 
                 <section class="case-section" id="taxonomy">
-                    <h2>Why sparse autoencoders instead of one hard clustering?</h2>
+                    <h2>Representation comparison</h2>
                     <p>NMF and LDA provide familiar topic-word summaries, but their bag-of-words representation is sensitive to vocabulary and does not naturally express that one firm can address several problems. K-means is efficient and useful for local splits, yet it forces every firm into one centroid and produces unrelated partitions when the requested number of clusters changes.</p>
                     <div class="decision-table-wrap">
                         <table class="decision-table">
@@ -160,13 +159,13 @@
                 </section>
 
                 <section class="case-section" id="failures">
-                    <h2>What did not work cleanly</h2>
+                    <h2>Failures and sensitivity checks</h2>
                     <ul>
-                        <li><strong>Current-web crawling created temporal errors.</strong> Historical reconstruction had to preserve snapshot identity rather than collapsing immediately to a year-level row.</li>
-                        <li><strong>Fetching full WARC objects was the wrong unit.</strong> Pointer-first byte ranges reduced transfer and made retries addressable at the record level.</li>
-                        <li><strong>Prompt optimization was not monotonic.</strong> Larger search budgets stayed in a narrow mean-F1 band, and optimized prompts were model-specific.</li>
-                        <li><strong>One cluster resolution was not enough evidence.</strong> The full analysis was recomputed on a raw 512-feature partition to test sensitivity to both resolution and review decisions.</li>
-                        <li><strong>LLM labels without coder disagreement hid construct problems.</strong> Codebook rounds and IRR exposed boundaries that no amount of prompt tweaking could define on its own.</li>
+                        <li><strong>Current-site crawls leaked later information into earlier years.</strong> The final pipeline preserves snapshot identity until the longitudinal panel is assembled.</li>
+                        <li><strong>Whole-WARC downloads transferred unnecessary data.</strong> Record-level byte ranges reduced transfer and made retries addressable.</li>
+                        <li><strong>More optimization did not reliably improve held-out F1.</strong> Larger search budgets stayed in a narrow band, and optimized prompts were model-specific.</li>
+                        <li><strong>The 256-feature taxonomy could reflect its chosen resolution.</strong> We recomputed the analysis on a raw 512-feature partition.</li>
+                        <li><strong>Coder disagreement exposed ambiguous construct boundaries.</strong> Six codebook rounds revised boundaries before prompt optimization.</li>
                     </ul>
                 </section>
 
@@ -180,6 +179,6 @@
     </main>
 
     <footer class="engineering-footer"><div class="container"><div class="footer-content"><div class="footer-logo">Zilin Ma<span class="dot">.</span></div><div class="footer-links"><a href="../portfolio.html">Systems</a><a href="mailto:zilinma@g.harvard.edu">Email</a></div><p>&copy; <span class="footer-year">2026</span> Zilin Ma.</p></div></div></footer>
-    <script src="../../js/main.js?v=20260904"></script>
+    <script src="../../js/main.js?v=20260904b"></script>
 </body>
 </html>
